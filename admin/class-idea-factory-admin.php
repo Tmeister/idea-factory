@@ -40,6 +40,8 @@ class Idea_Factory_Admin {
 		$plugin = Idea_Factory::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
+		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.settings.php');
+
 
 	}
 
