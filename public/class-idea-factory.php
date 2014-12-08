@@ -68,6 +68,7 @@ class Idea_Factory {
 
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.template-loader.php');
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.assets.php');
+		require_once(IDEA_FACTORY_DIR.'/public/includes/helpers.php');
 	}
 
 	/**

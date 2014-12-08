@@ -2,11 +2,13 @@
 
 get_header();
 
+	$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
+
 	?>
 	<div class="idea-factory--wrap">
 		<aside class="idea-factory--layout-submit">
 			<div class="idea-factory--submit-left">
-				Submit and vote on your favorite ideas for Story.AM!
+				<?php echo esc_html( $intro_message );?>
 			</div>
 			<div clsas="idea-factory--submit-right">
 				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="btn btn-primary idea-factory-trigger">Submit Idea</a>
@@ -24,7 +26,7 @@ get_header();
 
 			);
 
-			$q = new WP_Query($args);
+			$q = new WP_Query( apply_filters('idea_factory_ideas_query', $args ) );
 
 			if ( $q->have_posts() ):
 
@@ -87,7 +89,7 @@ get_header();
 		<div class="modal-dialog ">
 		    <div class="modal-content">
 		    	<div class="modal-header">
-		    		<h3 class="modal-title">Submit an Idea</h3>
+		    		<h3 class="modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
 		    	</div>
 		    	<div class="modal-body">
 		    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
@@ -98,7 +100,7 @@ get_header();
 						<input type="text" name="idea-title" value="" placeholder="My Awesome Submission">
 
 						<label for="idea-description">Description</label>
-						<textarea form="ah-entry--form" name="idea-description" value=""></textarea>
+						<textarea form="ah-entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
 
 						<input type="hidden" name="action" value="process_entry">
 						<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">

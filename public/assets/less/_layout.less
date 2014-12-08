@@ -1,16 +1,14 @@
 // main layout wrap
 .idea-factory--wrap {
     .clearfix();
-    max-width:@width;
-    margin:0 auto;
 }
 
 // submit area
 .idea-factory--layout-submit {
     .clearfix();
-    .x-rem(margin-bottom,2);
-    .x-rem(padding-bottom,1.5);
-    border-bottom:1px dashed #999;
+    margin:@entry--margin;
+    padding:@entry--padding;
+    border-bottom:1px solid @border-color;
 
     .idea-factory--submit-left,
     .idea-factory--submit-right {
@@ -36,11 +34,19 @@
     .clearfix();
 }
 
-// entry
+// entry wrap
+.idea-factory--entry-wrap {
+    padding:@entry--wrap_padding;
+}
+
+// entry inner
 .idea-factory--entry {
+    font-size:@entry--font_size;
+    line-height: @entry--font_lineheight;
     h2 {
         margin:0 auto;
-        .x-rem(font-size,1.4);
+        font-size:@entry--title_fontsize;
+        line-height: @entry--title_lineheight;
         font-weight:bold;
     }
 }
@@ -53,7 +59,7 @@
 .idea-factory--controls {
     width:100px;
     text-align: center;
-    border-right:1px dashed #999;
+    border-right:1px solid @border-color;
     margin-right:25px;
 
     &.voted {
@@ -82,12 +88,12 @@
 }
 .vote-up:after {
     content:'\f132';
-    color:@brand-success;
+    color:@green;
 
 }
 .vote-down:after {
     content:'\f460';
-    color:@brand-danger;
+    color:@red;
 }
 .ah-thanks,
 .idea-factory--totals {

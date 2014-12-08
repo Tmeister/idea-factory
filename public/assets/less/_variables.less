@@ -1,151 +1,61 @@
+// COLORS
+@primary:                       #fff;
+@blue:                          #007aaf;
+@green:                         #5cb85c;
+@red:                           #d9534f;
 
-@primary:               #007aaf;
-@brand-success:         #5cb85c;
-@brand-info:            #5bc0de;
-@brand-warning:         #f0ad4e;
-@brand-danger:          #d9534f;
-/**
-*    FONTS
-*/
-@font-family-heading:    "brandon-grotesque",sans-serif;
-
-/*
-*   LAYOUT
-*/
-@width:              700px;
-@width-wide:         960px;
-@login-width:        500px;
-@menu-width:         250px;
-/**
-* forms
-*/
-@input-bg:                       #fff;
-@input-bg-disabled:              #999;
-@input-color:                    #333;
-@input-border:                   #ccc;
-@input-border-radius:            5px;
-@input-border-focus:             #66afe9;
-@input-color-placeholder:        #999;
-
-/*
-*   Buttons
-*/
-@border-radius-base:        5px;
-@button--background:        @primary;
-@button--color:             #EAEAEA;
-
-@btn-font-weight:                normal;
-
-@btn-default-color:              #333;
-@btn-default-bg:                 #fff;
-@btn-default-border:             #ccc;
-
-@btn-primary-color:              #fff;
-@btn-primary-bg:                 @primary;
-@btn-primary-border:             darken(@primary, 5%);
-
-@btn-success-color:              #fff;
-@btn-success-bg:                 @brand-success;
-@btn-success-border:             darken(@btn-success-bg, 5%);
-
-@btn-info-color:                 #fff;
-@btn-info-bg:                    @brand-info;
-@btn-info-border:                darken(@btn-info-bg, 5%);
-
-@btn-warning-color:              #fff;
-@btn-warning-bg:                 @brand-warning;
-@btn-warning-border:             darken(@btn-warning-bg, 5%);
-
-@btn-danger-color:               #fff;
-@btn-danger-bg:                  @brand-danger;
-@btn-danger-border:              darken(@btn-danger-bg, 5%);
-
-@btn-link-disabled-color:        #999 s;
-
-@padding-base-vertical:          2px;
-@padding-base-horizontal:        12px;
-
-@padding-large-vertical:         10px;
-@padding-large-horizontal:       16px;
-
-@padding-small-vertical:         5px;
-@padding-small-horizontal:       10px;
-
-@padding-xs-vertical:            1px;
-@padding-xs-horizontal:          5px;
-
-/*
-*   Icons
-*/
-@icon--color:               #777;
+// entry
 
 
-// Extra small screen / phone
-//** Deprecated `@screen-xs` as of v3.0.1
-@screen-xs:                  480px;
-//** Deprecated `@screen-xs-min` as of v3.2.0
-@screen-xs-min:              @screen-xs;
-//** Deprecated `@screen-phone` as of v3.0.1
-@screen-phone:               @screen-xs-min;
+@entry--wrap_padding:           15px 0;
 
-// Small screen / tablet
-//** Deprecated `@screen-sm` as of v3.0.1
-@screen-sm:                  768px;
-@screen-sm-min:              @screen-sm;
-//** Deprecated `@screen-tablet` as of v3.0.1
-@screen-tablet:              @screen-sm-min;
+@entry--font_size:             16px;
+@entry--font_lineheight:       @entry--font_size * 1.5;
+@entry--title_fontsize:        20px;
+@entry--title_lineheight:      @entry--title_fontsize * 1.5;
+@entry--margin:                0 0 20px;
+@entry--padding:               0 0 20px;
 
-// Medium screen / desktop
-//** Deprecated `@screen-md` as of v3.0.1
-@screen-md:                  992px;
-@screen-md-min:              @screen-md;
-//** Deprecated `@screen-desktop` as of v3.0.1
-@screen-desktop:             @screen-md-min;
+// MISC
+@border-color:                  darken(@primary,8);
 
-// Large screen / wide desktop
-//** Deprecated `@screen-lg` as of v3.0.1
-@screen-lg:                  1200px;
-@screen-lg-min:              @screen-lg;
-//** Deprecated `@screen-lg-desktop` as of v3
+// FORMS
+@input--font_size:               14px;
+@input--font_lineheight:         @input--font_size * 1.5;
+@input--bg:                      #fff;
+@input--bg_disabled:             #999;
+@input--color:                   #333;
+@input--border:                  #ccc;
+@input--border_radius:           5px;
+@input--border_focus:            @blue;
+@input--color_placeholder:       #999;
+@input--padding:                 6px 12px;
 
-//== Modals
-//
-//##
+// ICONS
+@icon--color:                   #777;
 
-//** Padding applied to the modal body
-@modal-inner-padding:         15px;
+// MODALS
 
-//** Padding applied to the modal title
-@modal-title-padding:         15px;
-//** Modal title line-height
-@modal-title-line-height:     1;
 
-//** Background color of modal content area
-@modal-content-bg:                             #fff;
-//** Modal content border color
-@modal-content-border-color:                   #999;
-//** Modal content border color **for IE8**
-@modal-content-fallback-border-color:          #999;
+@modal--innerpadding:           15px;
+@modal--title_padding:           15px;
+@modal--title-line-height:       1;
+@modal--content-bg:              #fff;
+@modal--content-border-color:    #999;
+@modal--content-fallback-border-color:          #999;
+@modal--backdrop-bg:             rgba(0,0,0,0.6);
+@modal--backdrop-opacity:        .5;
+@modal--header-border-color:     #e5e5e5;
+@modal--footer-border-color:     #999;
+@modal--border-radius:           5px;
 
-//** Modal backdrop background color
-@modal-backdrop-bg:           rgba(0,0,0,0.6);
-//** Modal backdrop opacity
-@modal-backdrop-opacity:      .5;
-//** Modal header border color
-@modal-header-border-color:   #e5e5e5;
-//** Modal footer border color
-@modal-footer-border-color:   #999;
+@modal--xl:                      96%;
+@modal--lg:                      900px;
+@modal--md:                      600px;
+@modal--sm:                      300px;
+@zindex-modal:                   1040;
 
-@modal-xl:                    96%;
-@modal-lg:                    900px;
-@modal-md:                    600px;
-@modal-sm:                    300px;
-@zindex-modal:             1040;
-
-//== Close
-//
-//##
-
-@close-font-weight:           bold;
-@close-color:                 #000;
-@close-text-shadow:           0 1px 0 #fff;
+@close--font_size:               15px;
+@close--font_weight:             bold;
+@close--font_color:              #000;
+@close--font_textshadow:         0 1px 0 #fff;

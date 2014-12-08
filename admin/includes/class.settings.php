@@ -61,7 +61,11 @@ class if_settings_api_wrap {
             ),
            	array(
                 'id' 	=> 'if_settings_design',
-                'title' => __( 'Design Options', 'idea-factory' )
+                'title' => __( 'Design', 'idea-factory' )
+            ),
+           	array(
+                'id' 	=> 'if_settings_advanced',
+                'title' => __( 'Advanced', 'idea-factory' )
             )
         );
         return $sections;
@@ -94,6 +98,16 @@ class if_settings_api_wrap {
                     'desc' 				=> __( 'Height of the masthead.', 'idea-factory' ),
                     'type'				=> 'text',
                     'default' 			=> 400,
+                    'sanitize_callback' => ''
+                )
+            ),
+            'if_settings_advanced' 	=> array(
+            	array(
+                    'name' 				=> 'if_disable_css',
+                    'label' 			=> __( 'Disable Core CSS', 'idea-factory' ),
+                    'desc' 				=> __( 'Disable the core css file from loading.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
                     'sanitize_callback' => ''
                 )
             )
