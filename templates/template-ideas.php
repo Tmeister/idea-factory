@@ -11,7 +11,7 @@ get_header();
 				<?php echo esc_html( $intro_message );?>
 			</div>
 			<div clsas="idea-factory--submit-right">
-				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="btn btn-primary idea-factory-trigger">Submit Idea</a>
+				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
 			</div>
 		</aside>
 		<section class="idea-factory--layout-main">
@@ -36,7 +36,7 @@ get_header();
 					$has_voted = get_user_meta( get_current_user_ID(), '_idea'.get_the_ID().'_has_voted', true);
 					$total_votes = get_post_meta( get_the_ID(), '_idea_votes', true);
 					?>
-					<section class="idea-factory--entry-wrap">
+					<section class="idea-factory--entry-wrap <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
 
 						<div class="idea-factory--controls">
 							<?php if ( !$has_voted ){ ?>
@@ -46,15 +46,13 @@ get_header();
 							<div class="idea-factory--totals">
 								<?php
 
-									if ( 0 == $total_votes ) {
-
-									} elseif ( 1 == $total_votes ) {
+									if ( 1 == $total_votes ) {
 
 										echo '1 vote';
 
-									} else {
+									} elseif( !empty( $total_votes ) ) {
 
-										echo $total_votes.' votes';
+										echo (int) $total_votes.' votes';
 
 									}
 
@@ -77,7 +75,7 @@ get_header();
 
 			else:
 
-				echo 'No ideas found yet, why not submit one?';
+				apply_filters('idea_factory_form_title', _e('No ideas found. Why not submit one?','idea-factory'));
 
 			endif;
 			?>
@@ -85,7 +83,7 @@ get_header();
 
 	</div>
 
-	<div class="modal fade idea-factory-modal" tabindex="-1" role="dialog" aria-labelledby="feedback" aria-hidden="true">
+	<div class="modal fade idea-factory-modal" tabindex="-1">
 		<div class="modal-dialog ">
 		    <div class="modal-content">
 		    	<div class="modal-header">
@@ -94,21 +92,28 @@ get_header();
 		    	<div class="modal-body">
 		    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
 					<div id="ah-entry--form-results"></div>
+
 					<form id="ah-entry--form" method="post" enctype="multipart/form-data">
 
-						<label for="idea-title">Title</label>
+						<?php do_action('idea_factory_inside_form_top');?>
+
+						<label for="idea-title"><?php apply_filters('idea_factory_form_title', _e('Title','idea-factory'));?></label>
 						<input type="text" name="idea-title" value="" placeholder="My Awesome Submission">
 
-						<label for="idea-description">Description</label>
+						<label for="idea-description"><?php apply_filters('idea_factory_form_title', _e('Description','idea-factory'));?></label>
 						<textarea form="ah-entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
+
+						<?php do_action('idea_factory_inside_form_bottom');?>
 
 						<input type="hidden" name="action" value="process_entry">
 						<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
 						<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
+
 						<div class="modal-footer">
-							<input class="btn btn-small" type="submit" value="Submit">
+							<input class="idea-factory--button" type="submit" value="Submit">
 						</div>
 					</form>
+
 				</div>
 			</div>
 		</div>

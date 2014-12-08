@@ -3,6 +3,11 @@
     .clearfix();
 }
 
+// main alyout
+.idea-factory--layout-main {
+
+}
+
 // submit area
 .idea-factory--layout-submit {
     .clearfix();
@@ -23,20 +28,30 @@
     }
 }
 
-// main alyout
-.idea-factory--layout-main {
-
+.idea-factory--button {
+    background:@button--background;
+    color:@button--color;
+    border-radius:2px;
+    padding:@button--padding;
+    text-decoration: none;
 }
 
 
 // main article
 .idea-factory--entry-wrap {
     .clearfix();
+    padding:@entry--wrap_padding;
+
+    &:nth-child(even){
+        background:darken(@primary,3);
+    }
 }
 
-// entry wrap
-.idea-factory--entry-wrap {
-    padding:@entry--wrap_padding;
+// main artilce - has v0ted
+.idea-factory--hasvoted {
+    .idea-factory--controls {
+        margin-top:8px;
+    }
 }
 
 // entry inner
@@ -79,12 +94,16 @@
     height:30px;
     width:30px;
     font-size:@icon--font_size;
+    margin-bottom: 4px;
 
     &:after {
         font-family:Dashicons;
         position:absolute;
         left:0;
-        top:0;
+        top:8px;
+        right:0;
+        bottom:0;
+        height:16px;
     }
 }
 .vote-up:after {

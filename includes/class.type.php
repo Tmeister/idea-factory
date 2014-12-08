@@ -47,7 +47,7 @@ class ahIdeaType {
 			'capability_type' 			=> 'post'
 		);
 
-		register_post_type( 'ideas',$args );
+		register_post_type( 'ideas', apply_filters('idea_factory_type_args', $args ) );
 
 	}
 }

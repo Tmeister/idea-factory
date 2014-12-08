@@ -42,11 +42,11 @@ class ideaFactoryProcessEntry {
 
 					// create an ideas post type
 					$post_args = array(
-					  'post_title'    => $title,
-					  'post_content'  => $desc,
-					  'post_status'   => 'publish',
-					  'post_type'	  => 'ideas',
-					  'post_author'   => $userid
+					  	'post_title'    => $title,
+					  	'post_content'  => $desc,
+					  	'post_status'   => 'publish',
+					  	'post_type'	  	=> 'ideas',
+					  	'post_author'   => $userid
 					);
 					$entry_id = wp_insert_post( $post_args );
 
