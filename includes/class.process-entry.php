@@ -30,7 +30,7 @@ class ideaFactoryProcessEntry {
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'ah-entry-nonce' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'if-entry-nonce' ) ) {
 
 
 				// bail if we dont have rquired fields

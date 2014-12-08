@@ -102,7 +102,7 @@ get_header();
 
 						<input type="hidden" name="action" value="process_entry">
 						<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
-						<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('ah-entry-nonce'); ?>"/>
+						<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 						<div class="modal-footer">
 							<input class="btn btn-small" type="submit" value="Submit">
 						</div>
