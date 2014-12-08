@@ -35,6 +35,8 @@ class ideaFactoryProcessVote {
 			// update user meta so they can't vote on this again
 			update_user_meta( $userid, '_idea'.$postid.'_has_voted', true );
 
+			do_action('idea_factory_vote_up', $postid, $userid );
+
 			echo 'success';
 
 		}
@@ -63,6 +65,8 @@ class ideaFactoryProcessVote {
 
 			// update user meta so they can't vote on this again
 			update_user_meta( $userid, '_idea'.$postid.'_has_voted', true );
+
+			do_action('idea_factory_vote_down', $postid, $userid );
 
 			echo 'success';
 

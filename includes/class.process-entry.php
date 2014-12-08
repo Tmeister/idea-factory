@@ -52,6 +52,8 @@ class ideaFactoryProcessEntry {
 
 					update_post_meta( $entry_id, '_idea_votes', 0 );
 
+					do_action('idea_factory_entry_submitted', $entry_id, $userid );
+
 					echo 'success';
 
 				}
