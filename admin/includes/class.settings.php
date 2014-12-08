@@ -1,94 +1,113 @@
 <?php
+/**
+* creates setting tabs
+*
+* @since version 1.0
+* @param null
+* @return global settings
+*/
 
-class ideaFactorySettings {
+require_once dirname( __FILE__ ) . '/class.settings-api.php';
 
-    private $options;
+if ( !class_exists('if_settings_api_wrap' ) ):
+class if_settings_api_wrap {
 
-    public function __construct() {
-        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-        add_action( 'admin_init', array( $this, 'page_init' ) );
+    private $settings_api;
+
+    const version = '1.0';
+
+    function __construct() {
+
+        $this->dir  		= plugin_dir_path( __FILE__ );
+        $this->url  		= plugins_url( '', __FILE__ );
+        $this->settings_api = new WeDevs_Settings_API;
+
+        add_action( 'admin_init', array($this, 'admin_init') );
+        add_action( 'admin_menu', array($this,'submenu_page'));
+
     }
 
-    /**
-     * Add options page
-     */
-    public function add_plugin_page() {
+    function admin_init() {
 
-        add_submenu_page( 'edit.php?post_type=ideas', 'Settings', 'Settings', 'manage_options', 'settings', array($this,'create_admin_page') );
+        //set the settings
+        $this->settings_api->set_sections( $this->get_settings_sections() );
+        $this->settings_api->set_fields( $this->get_settings_fields() );
+
+        //initialize settings
+        $this->settings_api->admin_init();
     }
 
-    /**
-     	* Options page callback
-    */
-    public function create_admin_page() {
+	function submenu_page() {
+		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
+	}
 
-        $this->options = get_option( 'idea_factory_options' );
-        ?>
-        <div class="wrap">
-            <h2>Idea Factory Settings</h2>
-            <form method="post" action="options.php">
-            <?php
-                settings_fields( 'if_option_group' );
-                do_settings_sections( 'idea-factory-settings' );
-                submit_button();
-            ?>
-            </form>
-        </div>
-        <?php
-    }
+	function submenu_page_callback() {
 
-    /**
-     	* Register and add settings
-    */
-    public function page_init() {
+		echo '<div class="wrap">';
+			?><h2><?php _e('Idea Factory Settings','idea-factory');?></h2><?php
 
-        register_setting('if_option_group','idea_factory_options',	array( $this, 'sanitize' ));
-        add_settings_section('idea_factory','',						array( $this, 'print_section_info' ),'idea-factory-settings');
-        add_settings_field('id_number','ID Number',					array( $this, 'id_number_callback' ),'idea-factory-settings','idea_factory');
-        add_settings_field('title','Title',							array( $this, 'title_callback' ),'idea-factory-settings','idea_factory');
-    }
+			$this->settings_api->show_navigation();
+        	$this->settings_api->show_forms();
 
-    /**
-     	* Sanitize each setting field as needed
-     	*
-     	* @param array $input Contains all settings fields as array keys
-    */
-    public function sanitize( $input ) {
-        $new_input = array();
-        if( isset( $input['id_number'] ) )
-            $new_input['id_number'] = absint( $input['id_number'] );
+		echo '</div>';
 
-        if( isset( $input['title'] ) )
-            $new_input['title'] = sanitize_text_field( $input['title'] );
+	}
 
-        return $new_input;
-    }
-
-    /**
-     	* Print the Section text
-    */
-    public function print_section_info() {
-        print 'Enter your settings below:';
-    }
-
-    /**
-     	* Get the settings option array and print one of its values
-    */
-    public function id_number_callback() {
-        printf(
-            '<input type="text" id="id_number" name="idea_factory_options[id_number]" value="%s" />',
-            isset( $this->options['id_number'] ) ? esc_attr( $this->options['id_number']) : ''
+    function get_settings_sections() {
+        $sections = array(
+            array(
+                'id' 	=> 'if_settings_main',
+                'title' => __( 'Setup', 'idea-factory' )
+            ),
+           	array(
+                'id' 	=> 'if_settings_design',
+                'title' => __( 'Design Options', 'idea-factory' )
+            )
         );
+        return $sections;
     }
 
-    /**
-     	* Get the settings option array and print one of its values
-    */
-    public function title_callback() {
-        printf(
-            '<input type="text" id="title" name="idea_factory_options[title]" value="%s" />',
-            isset( $this->options['title'] ) ? esc_attr( $this->options['title']) : ''
+    function get_settings_fields() {
+        $settings_fields = array(
+            'if_settings_main' => array(
+            	array(
+                    'name' 				=> 'if_domain',
+                    'label' 			=> __( 'Naming Convention', 'idea-factory' ),
+                    'desc' 				=> __( 'By default its called Ideas. You can rename this here. Flush permalinks after renaming by going to Settings-->Permalinks.', 'idea-factory' ),
+                    'type' 				=> 'text',
+                    'default' 			=> 'ideas',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name' 				=> 'if_welcome',
+                    'label' 			=> __( 'Welcome Message', 'idea-factory' ),
+                    'desc' 				=> __( 'Enter a message for new users to vote.', 'idea-factory' ),
+                    'type' 				=> 'textarea',
+                    'default' 			=> 'Submit and vote for new features!',
+                    'sanitize_callback' => 'sanitize_text_field'
+                )
+            ),
+			'if_settings_design' 	=> array(
+            	array(
+                    'name' 				=> 'single_mast_height',
+                    'label' 			=> __( 'Header Image Height', 'idea-factory' ),
+                    'desc' 				=> __( 'Height of the masthead.', 'idea-factory' ),
+                    'type'				=> 'text',
+                    'default' 			=> 400,
+                    'sanitize_callback' => ''
+                )
+            )
         );
+
+        return $settings_fields;
     }
 }
-new ideaFactorySettings;
+endif;
+
+$settings = new if_settings_api_wrap();
+
+
+
+
+
+
