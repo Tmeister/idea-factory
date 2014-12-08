@@ -28,8 +28,19 @@ module.exports = function(grunt) {
 		      		"public/assets/css/idea-factory.css": 	"public/assets/less/master.less"
 		    	}
 		  	}
-		}
-
+		},
+        // concatenation and minification all in one
+   		uglify: {
+            publicscripts: {
+               	files: {
+                    'public/assets/js/idea-factory.js': [
+                    	'public/assets/js/transition.js',
+                    	'public/assets/js/modal.js',
+                     	'public/assets/js/general.js'
+                    ]
+                }
+            }
+        },
     });
 
     // register task
