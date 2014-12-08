@@ -1,0 +1,32 @@
+/////////////////
+// Semantic.gs // for LESS: http://lesscss.org/
+/////////////////
+
+@column-width: 60;
+@gutter-width: 20;
+@columns: 12;
+@gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
+@total-width: 100%;
+
+.if-row(@columns:@columns) {
+    display: block;
+    width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width);
+    margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1);
+    // *width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width)-@correction;
+    // *margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1)-@correction;
+    .clearfix();
+}
+.if-column(@x,@columns:@columns) {
+    display: inline;
+    float: left;
+    width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+    margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+    // *width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width)-@correction;
+    // *margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width)-@correction;
+}
+.if-push(@offset:1) {
+    margin-left: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+.if-pull(@offset:1) {
+    margin-right: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}

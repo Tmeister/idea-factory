@@ -12,8 +12,10 @@ class ideaFactoryAssetLoader {
 	}
 
 	function scripts(){
+		$url 			= isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : null;
+		$is_empty_idea 	= substr($url,-6) == '/ideas' || substr($url,-7) == '/ideas/';
 
-	    if ( 'ideas' == get_post_type() ):
+	    if ( 'ideas' == get_post_type() || $is_empty_idea ):
 
 	    	wp_enqueue_style('dashicons');
 	    	wp_enqueue_style('idea-factory-css', IDEA_FACTORY_URL.'/public/assets/css/idea-factory.css', IDEA_FACTORY_VERSION, true );

@@ -43,7 +43,7 @@ class ahIdeaType {
  			'show_ui' 					=> true,
 			'query_var' 				=> true,
 			'can_export' 				=> true,
-			'has_archive'				=> 'ideas',
+			'has_archive'				=> true,
 			'capability_type' 			=> 'post'
 		);
 
