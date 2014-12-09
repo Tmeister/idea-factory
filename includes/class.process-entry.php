@@ -56,6 +56,8 @@ class ideaFactoryProcessEntry {
 
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
+					_e('Thanks for your entry!','idea-factory');
+
 				}
 
 			}

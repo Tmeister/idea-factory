@@ -120,10 +120,10 @@ get_header();
 						<?php do_action('idea_factory_inside_form_top');?>
 
 						<label for="idea-title"><?php apply_filters('idea_factory_form_title', _e('Title','idea-factory'));?></label>
-						<input type="text" name="idea-title" value="" placeholder="My Awesome Submission">
+						<input id="idea-factory--entryform_title" type="text" name="idea-title" value="" placeholder="My Awesome Submission">
 
 						<label for="idea-description"><?php apply_filters('idea_factory_form_title', _e('Description','idea-factory'));?></label>
-						<textarea form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
+						<textarea id="idea-factory--entryform_description" form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
 
 						<?php do_action('idea_factory_inside_form_bottom');?>
 

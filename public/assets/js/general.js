@@ -2,30 +2,35 @@ jQuery(document).ready(function($){
 
 	//vars
 	var ajaxurl			= idea_factory.ajaxurl,
-		results         = $('#ah-form--results');
+		results         = $('#idea-factory--entry--form-results');
 
 
 	// entry handler
   	$('#idea-factory--entry--form').submit(function(e) {
 
+  		var $this = $(this);
+
   		e.preventDefault();
 
-	   if ($.trim($('#idea-factory--entry--form input').val()) === "" || $.trim($('#idea-factory--entry--form input').val()) === "") {
-	        alert('you did not fill out one of the fields');
+	   	if ( $.trim( $('#idea-factory--entryform_title').val() ) === '' || $.trim( $('#idea-factory--entryform_description').val() ) === '' ) {
+	        $(results).html('Title and description are required.');
+	        $this.find('input').css('border-color','#d9534f');
+	        $this.find('textarea').css('border-color','#d9534f');
 	        return false;
 	    }
-		$(this).find(':submit').attr( 'disabled','disabled' );
 
-  		var data = $(this).serialize();
+		$this.find(':submit').attr( 'disabled','disabled' );
+
+  		var data = $this.serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
-	  		$('#idea-factory--entry--form-results').html(response);
+	  		$(results).html(response);
 	  		location.reload();
 	    });
 
     });
 
-	$( '.idea-factory' ).on('click', function(e) {
+	$( '.idea-factory' ).live('click', function(e) {
 		e.preventDefault();
 
 		var $this = $(this);
