@@ -2,24 +2,6 @@
 
 /**
 *
-*	Modify the post type archive to return results based on number of votes
-*
-*/add_action( 'pre_get_posts', 'idea_factory_archive_query');
-function idea_factory_archive_query( $query ) {
-
-	if ( is_admin() || ! $query->is_main_query() )
-        return;
-
- 	if ( is_post_type_archive( 'ideas' ) ) {
-        $query->set( 'meta_key', '_idea_votes' );
-        $query->set( 'orderby', 'meta_value_num' );
-        $query->set( 'order', 'DESC' );
-        return;
-    }
-}
-
-/**
-*
 *	Get the number of votes for a specific idea
 *
 *	@param $postid int id of the post to retrieve votes for
@@ -97,4 +79,24 @@ function idea_factory_media_filter( $input = '' ) {
 	$out = wp_kses( $input, apply_filters('idea_factory_allowed_html', $allowed_html ) );
 
 	return $out;
+}
+
+
+/**
+*
+*	Modify the post type archive to return results based on number of votes
+*
+*/
+add_action( 'pre_get_posts', 'idea_factory_archive_query');
+function idea_factory_archive_query( $query ) {
+
+	if ( is_admin() || ! $query->is_main_query() )
+        return;
+
+ 	if ( is_post_type_archive( 'ideas' ) ) {
+        $query->set( 'meta_key', '_idea_votes' );
+        $query->set( 'orderby', 'meta_value_num' );
+        $query->set( 'order', 'DESC' );
+        return;
+    }
 }
