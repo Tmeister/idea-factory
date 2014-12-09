@@ -21,19 +21,9 @@ get_header();
 		<section class="idea-factory--layout-main">
 			<?php
 
-			$args = array(
-				'post_type' 		=> 'ideas',
-	            'meta_key' 			=> '_idea_votes',
-            	'orderby'   		=> 'meta_value_num',
-            	'order'     		=> 'DESC'
+			if ( have_posts() ):
 
-			);
-
-			$q = new WP_Query( apply_filters('idea_factory_ideas_query', $args ) );
-
-			if ( $q->have_posts() ):
-
-				while( $q->have_posts() ) : $q->the_post();
+				while( have_posts() ) : the_post();
 
 					// setup some vars
 					$has_voted = get_user_meta( get_current_user_ID(), '_idea'.get_the_ID().'_has_voted', true);
