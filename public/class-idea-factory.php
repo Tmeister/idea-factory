@@ -20,15 +20,6 @@
 class Idea_Factory {
 
 	/**
-	 * Plugin version, used for cache-busting of style and script file references.
-	 *
-	 * @since   0.0.1
-	 *
-	 * @var     string
-	 */
-	const VERSION = '0.0.1';
-
-	/**
 	 * Unique identifier
 	 *
 	 *

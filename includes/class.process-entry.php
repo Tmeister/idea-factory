@@ -82,7 +82,7 @@ class ideaFactoryProcessEntry {
 
 		$message = "Submitted by: ".$user->display_name.".\n\n";
 		$message .= "Title:\n";
-		$message .= "Title: ".$entry->post_title."\n\n";
+		$message .= "".$entry->post_title."\n\n";
 		$message .= "Description:\n";
 		$message .= "".$entry->post_content."\n\n";
 		$message .= "Manage ideas at link below\n";

@@ -9,8 +9,8 @@
  *
  * Plugin Name:       Idea Factory
  * Plugin URI:        http://nickhaskins.com
- * Description:       Creates a user submission and voting system for site features
- * Version:           0.8
+ * Description:       Front-end user submission and voting system.
+ * Version:           0.9
  * GitLab Plugin URL: https://gitlab.com/bearded-avenger/idea-factory
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('IDEA_FACTORY_VERSION', '0.8');
+define('IDEA_FACTORY_VERSION', '0.9');
 define('IDEA_FACTORY_DIR', plugin_dir_path( __FILE__ ));
 define('IDEA_FACTORY_URL', plugins_url( '', __FILE__ ));
 /*----------------------------------------------------------------------------*

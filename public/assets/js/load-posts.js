@@ -1,13 +1,10 @@
 jQuery(document).ready(function($) {
 
-	// The number of the next page to load (/page/x/).
-	var pageNum = parseInt(idea_factory.startPage) + 1;
-
-	// The maximum number of pages the current query can return.
-	var max = parseInt(idea_factory.maxPages);
-
-	// The link of the next page of posts.
-	var nextLink = idea_factory.nextLink;
+	var pageNum 	= parseInt(idea_factory.startPage) + 1,
+		max 		= parseInt(idea_factory.maxPages),
+		nextLink 	= idea_factory.nextLink,
+		label    	= idea_factory.label,
+		label_loading = idea_factory.label_loading;
 
 	if(pageNum <= max) {
 		$('.idea-factory--wrap')
@@ -22,7 +19,7 @@ jQuery(document).ready(function($) {
 		if(pageNum <= max) {
 
 			// Show that we're working.
-			$(this).text('Loading ideas...');
+			$(this).text(label_loading);
 
 			$('.idea-factory--layout-main-'+ pageNum).load(nextLink + ' .idea-factory--entry-wrap',
 				function() {
@@ -31,12 +28,11 @@ jQuery(document).ready(function($) {
 					nextLink = nextLink.replace(/\/page\/[0-9]?/, '/page/'+ pageNum);
 
 					// Add a new placeholder, for when user clicks again.
-					$('.idea-factory--loadmore')
-						.before('<div class="idea-factory--layout-main clearfix idea-factory--layout-main-'+ pageNum +'"></div>')
+					$('.idea-factory--loadmore').before('<div class="idea-factory--layout-main clearfix idea-factory--layout-main-'+ pageNum +'"></div>')
 
 					// Update the button message.
 					if(pageNum <= max) {
-						$('.idea-factory--loadmore a').text('Load More Ideas');
+						$('.idea-factory--loadmore a').text(label);
 					} else {
 						$('.idea-factory--loadmore a').fadeOut();
 					}

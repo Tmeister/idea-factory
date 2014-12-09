@@ -26,7 +26,14 @@ class ideaFactoryTemplateLoader {
 
 	    if ( 'ideas' == get_post_type() || $is_empty_idea ):
 
-			$template = IDEA_FACTORY_DIR.'templates/template-ideas.php';
+	    	if ( $overridden_template = locate_template( 'template-ideas.php', true ) ) {
+
+			   $template = load_template( $overridden_template );
+
+			} else {
+
+			   	$template = IDEA_FACTORY_DIR.'templates/template-ideas.php';
+			}
 
 	    endif;
 
