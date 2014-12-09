@@ -12,18 +12,17 @@ jQuery(document).ready(function($) {
 	if(pageNum <= max) {
 		$('.idea-factory--wrap')
 			.append('<div class="idea-factory--layout-main clearfix idea-factory--layout-main-'+ pageNum +'"></div>')
-			.append('<p class="idea-factory--loadmore fix"><a href="#">Load More Stories</a></p>');
+			.append('<p class="idea-factory--loadmore fix"><a class="idea-factory--button" href="#">Load More Stories</a></p>');
 
 	}
 
 	$('.idea-factory--loadmore a').click(function() {
 
-
 		// Are there more posts to load?
 		if(pageNum <= max) {
 
 			// Show that we're working.
-			$(this).text('Loading stories...');
+			$(this).text('Loading ideas...');
 
 			$('.idea-factory--layout-main-'+ pageNum).load(nextLink + ' .idea-factory--entry-wrap',
 				function() {
@@ -39,13 +38,11 @@ jQuery(document).ready(function($) {
 					if(pageNum <= max) {
 						$('.idea-factory--loadmore a').text('Load More Ideas');
 					} else {
-						$('.idea-factory--loadmore a').text('No more ideas found');
+						$('.idea-factory--loadmore a').fadeOut();
 					}
 
 				}
 			);
-		} else {
-			$('.idea-factory--loadmore a').append('.');
 		}
 
 		return false;
