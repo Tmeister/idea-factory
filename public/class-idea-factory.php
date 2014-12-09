@@ -60,6 +60,9 @@ class Idea_Factory {
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.template-loader.php');
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.assets.php');
 		require_once(IDEA_FACTORY_DIR.'/public/includes/helpers.php');
+
+		// Load plugin text domain
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 	}
 
 	/**
@@ -225,6 +228,18 @@ class Idea_Factory {
 		// @TODO: Define deactivation functionality here
 	}
 
+	/**
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_plugin_textdomain() {
+
+		$domain = $this->plugin_slug;
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+
+		$out = load_textdomain( $domain, trailingslashit( IDEA_FACTORY_DIR ). 'languages/' . $domain . '-' . $locale . '.mo' );
+	}
 }
 
 
