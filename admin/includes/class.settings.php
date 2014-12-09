@@ -60,10 +60,6 @@ class if_settings_api_wrap {
                 'title' => __( 'Setup', 'idea-factory' )
             ),
            	array(
-                'id' 	=> 'if_settings_design',
-                'title' => __( 'Design', 'idea-factory' )
-            ),
-           	array(
                 'id' 	=> 'if_settings_advanced',
                 'title' => __( 'Advanced', 'idea-factory' )
             )
@@ -97,16 +93,6 @@ class if_settings_api_wrap {
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
-                )
-            ),
-			'if_settings_design' 	=> array(
-            	array(
-                    'name' 				=> 'single_mast_height',
-                    'label' 			=> __( 'Header Image Height', 'idea-factory' ),
-                    'desc' 				=> __( 'Height of the masthead.', 'idea-factory' ),
-                    'type'				=> 'text',
-                    'default' 			=> 400,
-                    'sanitize_callback' => ''
                 )
             ),
             'if_settings_advanced' 	=> array(
