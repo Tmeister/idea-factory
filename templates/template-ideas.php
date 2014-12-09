@@ -10,7 +10,7 @@ get_header();
 			<div class="idea-factory--submit-left">
 				<?php echo esc_html( $intro_message );?>
 			</div>
-			<div clsas="idea-factory--submit-right">
+			<div class="idea-factory--submit-right">
 				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
 			</div>
 		</aside>
