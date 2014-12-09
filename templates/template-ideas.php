@@ -6,6 +6,8 @@ get_header();
 
 	?>
 	<div class="idea-factory--wrap">
+
+		<?php if ( is_user_logged_in() ): ?>
 		<aside class="idea-factory--layout-submit">
 			<div class="idea-factory--submit-left">
 				<?php echo idea_factory_media_filter( $intro_message );?>
@@ -14,6 +16,8 @@ get_header();
 				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
 			</div>
 		</aside>
+		<?php endif; ?>
+
 		<section class="idea-factory--layout-main">
 			<?php
 
@@ -39,7 +43,7 @@ get_header();
 					<section class="idea-factory--entry-wrap <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
 
 						<div class="idea-factory--controls">
-							<?php if ( !$has_voted ){ ?>
+							<?php if ( !$has_voted && is_user_logged_in() ){ ?>
 								<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
 								<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
 							<?php } ?>
@@ -83,6 +87,7 @@ get_header();
 
 	</div>
 
+	<?php if ( is_user_logged_in() ): ?>
 	<div class="modal fade idea-factory-modal" tabindex="-1">
 		<div class="modal-dialog ">
 		    <div class="modal-content">
@@ -119,5 +124,6 @@ get_header();
 			</div>
 		</div>
 	</div>
+	<?php endif;
 
-	<?php get_footer();
+	get_footer();
