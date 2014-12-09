@@ -9,6 +9,7 @@ jQuery(document).ready(function($){
   	$('#ah-entry--form').submit(function(e) {
 
   		e.preventDefault();
+		$(this).find(':submit').attr( 'disabled','disabled' );
 
   		var data = $(this).serialize();
 
