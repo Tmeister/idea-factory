@@ -85,6 +85,7 @@ function idea_factory_media_filter( $input = '' ) {
 /**
 *
 *	Modify the post type archive to return results based on number of votes
+*	@since 1.0
 *
 */
 add_action( 'pre_get_posts', 'idea_factory_archive_query');
@@ -99,4 +100,29 @@ function idea_factory_archive_query( $query ) {
         $query->set( 'order', 'DESC' );
         return;
     }
+}
+
+/**
+*
+*	Determine if we're on the ideas post type and also account for their being no entries
+*	as our post type archive still has to work regardless
+*	@since 1.0
+*
+*/
+function idea_factory_is_archive(){
+
+	$label 			= idea_factory_get_option('if_domain','if_settings_main','ideas');
+	$url 			= isset($_SERVER['REQUEST_URI']) && isset($_SERVER['QUERY_STRING']) ? $_SERVER['REQUEST_URI'] : '';
+	$is_empty_idea 	= $url ? substr($url,-6) == '/'.esc_attr( trim( $label ) ).' ' || substr($url,-7) == '/'.esc_attr( trim( $label ) ).'/' : null;
+
+	if ( 'ideas' == get_post_type() || $is_empty_idea ):
+
+		return true;
+
+	else:
+
+		return false;
+
+	endif;
+
 }

@@ -19,6 +19,8 @@ class ahIdeaType {
 	*/
 	function do_type() {
 
+		$domain 	= idea_factory_get_option('if_domain','if_settings_main','ideas');
+
 		$labels = array(
 			'name'                		=> _x( 'Ideas','idea-factory' ),
 			'singular_name'       		=> _x( 'Idea','idea-factory' ),
@@ -44,7 +46,7 @@ class ahIdeaType {
  			'show_ui' 					=> true,
 			'query_var' 				=> true,
 			'can_export' 				=> true,
-			'has_archive'				=> true,
+			'has_archive'				=> $domain,
 			'capability_type' 			=> 'post'
 		);
 
