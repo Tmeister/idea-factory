@@ -4,19 +4,33 @@ get_header();
 
 	$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
 
-	?>
+	do_action('idea_factory_layout_before'); ?>
+
 	<div class="idea-factory--wrap">
 
 		<?php if ( is_user_logged_in() ): ?>
 		<aside class="idea-factory--layout-submit">
+
 			<div class="idea-factory--submit-left">
+
 				<?php echo idea_factory_media_filter( $intro_message );?>
+
 			</div>
+
 			<div class="idea-factory--submit-right">
-				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
+
+				<?php do_action('idea_factory_before_submit_button'); ?>
+
+					<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
+
+				<?php do_action('idea_factory_after_submit_button'); ?>
+
 			</div>
+
 		</aside>
 		<?php endif; ?>
+
+		<?php do_action('idea_factory_before_entries'); ?>
 
 		<section class="idea-factory--layout-main">
 			<?php
@@ -30,6 +44,8 @@ get_header();
 					$total_votes = get_post_meta( get_the_ID(), '_idea_votes', true);
 					?>
 					<section class="idea-factory--entry-wrap <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
+
+						<?php do_action('idea_factory_entry_wrap_top', get_the_ID() ); ?>
 
 						<div class="idea-factory--controls">
 							<?php if ( !$has_voted && is_user_logged_in() ){ ?>
@@ -54,9 +70,16 @@ get_header();
 						</div>
 
 						<div class="idea-factory--entry">
-							<?php the_title('<h2>','</h2>');?>
-							<?php the_content();?>
+
+							<?php the_title('<h2>','</h2>');
+
+							the_content();
+
+							do_action('idea_factory_entry_bottom', get_the_ID() ); ?>
+
 						</div>
+
+						<?php do_action('idea_factory_entry_wrap_bottom', get_the_ID() ); ?>
 
 					</section>
 
@@ -74,7 +97,11 @@ get_header();
 			?>
 		</section>
 
+		<?php do_action('idea_factory_after_entries'); ?>
+
 	</div>
+
+	<?php do_action('idea_factory_layout_after'); ?>
 
 	<?php if ( is_user_logged_in() ): ?>
 	<div class="modal fade idea-factory-modal" tabindex="-1">

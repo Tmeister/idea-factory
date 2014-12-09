@@ -79,7 +79,7 @@ class if_settings_api_wrap {
                     'label' 			=> __( 'Naming Convention', 'idea-factory' ),
                     'desc' 				=> __( 'By default its called Ideas. You can rename this here. Flush permalinks after renaming by going to Settings-->Permalinks.', 'idea-factory' ),
                     'type' 				=> 'text',
-                    'default' 			=> 'ideas',
+                    'default' 			=> __('ideas','idea-factory'),
                     'sanitize_callback' => 'sanitize_text_field'
                 ),
                 array(
@@ -87,7 +87,7 @@ class if_settings_api_wrap {
                     'label' 			=> __( 'Welcome Message', 'idea-factory' ),
                     'desc' 				=> __( 'Enter a message to display to users to vote. Some HTML ok.', 'idea-factory' ),
                     'type' 				=> 'textarea',
-                    'default' 			=> 'Submit and vote for new features!',
+                    'default' 			=> __('Submit and vote for new features!', 'idea-factory'),
                     'sanitize_callback' => 'idea_factory_media_filter'
                 ),
                 array(
@@ -96,7 +96,7 @@ class if_settings_api_wrap {
                     'desc' 				=> __( 'Check this box to enable newly submitted ideas to be put into a draft instead of automatically publishing.', 'idea-factory' ),
                     'type'				=> 'checkbox',
                     'default' 			=> '',
-                    'sanitize_callback' => ''
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 )
             ),
 			'if_settings_design' 	=> array(
@@ -116,7 +116,7 @@ class if_settings_api_wrap {
                     'desc' 				=> __( 'Disable the core css file from loading.', 'idea-factory' ),
                     'type'				=> 'checkbox',
                     'default' 			=> '',
-                    'sanitize_callback' => ''
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 ),
                  array(
                     'name' 				=> 'if_disable_mail',
@@ -124,13 +124,33 @@ class if_settings_api_wrap {
                     'desc' 				=> __( 'Disable the admin email notification of new submissions.', 'idea-factory' ),
                     'type'				=> 'checkbox',
                     'default' 			=> '',
-                    'sanitize_callback' => ''
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 )
             )
         );
 
         return $settings_fields;
     }
+
+    /**
+    *
+    *	Sanitize checkbox input
+    *
+    */
+    function idea_factory_sanitize_checkbox( $input ) {
+
+		if ( $input ) {
+
+			$output = '1';
+
+		} else {
+
+			$output = false;
+
+		}
+
+		return $output;
+	}
 }
 endif;
 

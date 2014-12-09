@@ -81,7 +81,6 @@ function idea_factory_media_filter( $input = '' ) {
 	return $out;
 }
 
-
 /**
 *
 *	Modify the post type archive to return results based on number of votes
