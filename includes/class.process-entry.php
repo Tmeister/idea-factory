@@ -81,6 +81,7 @@ class ideaFactoryProcessEntry {
 		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
 
 		$message = "Submitted by: ".$user->display_name.".\n\n";
+		$message .= "Title:\n";
 		$message .= "Title: ".$entry->post_title."\n\n";
 		$message .= "Description:\n";
 		$message .= "".$entry->post_content."\n\n";
@@ -88,7 +89,7 @@ class ideaFactoryProcessEntry {
 		$message .= "".wp_login_url()."\n\n";
 
 		if ( !$mail_disabled )
-			wp_mail( $admin_email, 'New Idea Submission', $message );
+			wp_mail( $admin_email, 'New Idea Submission - '.$userid.' ', $message );
 
 	}
 
