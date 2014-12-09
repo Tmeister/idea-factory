@@ -13,9 +13,14 @@ class ideaFactoryAssetLoader {
 
 	function scripts(){
 
+		global $wp_query;
+
 		$disable_css    = idea_factory_get_option('if_disable_css','if_settings_advanced');
 		$url 			= isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : null;
 		$is_empty_idea 	= substr($url,-6) == '/ideas' || substr($url,-7) == '/ideas/';
+
+	 	$max 			=  $wp_query->max_num_pages;
+	 	$paged 			= ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
 
 	    if ( 'ideas' == get_post_type() || $is_empty_idea ):
 
@@ -25,10 +30,12 @@ class ideaFactoryAssetLoader {
 			}
 
 			wp_enqueue_script('idea-factory-script', IDEA_FACTORY_URL.'/public/assets/js/idea-factory.js', array('jquery'), IDEA_FACTORY_VERSION, true);
-
 			wp_localize_script('idea-factory-script', 'idea_factory', array(
 				'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
-				'nonce'	=> wp_create_nonce('idea_factory')
+				'nonce'			=> wp_create_nonce('idea_factory'),
+				'startPage' 	=> $paged,
+	 			'maxPages' 		=> $max,
+	 			'nextLink' 		=> next_posts($max, false)
 			));
 
 		endif;

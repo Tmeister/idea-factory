@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                     'public/assets/js/idea-factory.js': [
                     	'public/assets/js/transition.js',
                     	'public/assets/js/modal.js',
+                     	'public/assets/js/load-posts.js',
                      	'public/assets/js/general.js'
                     ]
                 }

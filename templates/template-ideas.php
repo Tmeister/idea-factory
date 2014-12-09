@@ -23,7 +23,6 @@ get_header();
 
 			$args = array(
 				'post_type' 		=> 'ideas',
-				'posts_per_page' 	=> -1,
 	            'meta_key' 			=> '_idea_votes',
             	'orderby'   		=> 'meta_value_num',
             	'order'     		=> 'DESC'
