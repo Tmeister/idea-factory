@@ -31,7 +31,7 @@
     }
 }
 
-#ah-entry--form input[type="submit"],
+#idea-factory--entry--form input[type="submit"],
 .idea-factory--button {
     background:@button--background;
     color:@button--color;
@@ -122,15 +122,34 @@
         bottom:0;
         height:16px;
     }
+
+    &:focus,
+    &:active {
+        outline:none;
+    }
 }
-.vote-up:after {
-    content:'\f132';
-    color:@green;
+.vote-up{
+
+    &:after {
+        content:'\f132';
+        color:@green;
+    }
+
+    &:hover:after {
+        color:darken(@green,5);
+    }
 
 }
-.vote-down:after {
-    content:'\f460';
-    color:@red;
+.vote-down {
+
+    &:after {
+        content:'\f460';
+        color:@red;
+    }
+
+    &:hover:after {
+        color:darken(@red,5)
+    }
 }
 .ah-thanks,
 .idea-factory--totals {

@@ -6,15 +6,20 @@ jQuery(document).ready(function($){
 
 
 	// entry handler
-  	$('#ah-entry--form').submit(function(e) {
+  	$('#idea-factory--entry--form').submit(function(e) {
 
   		e.preventDefault();
+
+	   if ($.trim($('#idea-factory--entry--form input').val()) === "" || $.trim($('#idea-factory--entry--form input').val()) === "") {
+	        alert('you did not fill out one of the fields');
+	        return false;
+	    }
 		$(this).find(':submit').attr( 'disabled','disabled' );
 
   		var data = $(this).serialize();
 
 	  	$.post(ajaxurl, data, function(response) {
-	  		$('#ah-entry--form-results').html(response);
+	  		$('#idea-factory--entry--form-results').html(response);
 	  		location.reload();
 	    });
 

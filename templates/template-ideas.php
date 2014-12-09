@@ -57,11 +57,11 @@ get_header();
 
 									if ( 1 == $total_votes ) {
 
-										echo '1 vote';
+										echo '<span>1</span> <span>vote</span>';
 
 									} elseif( !empty( $total_votes ) ) {
 
-										echo (int) $total_votes.' votes';
+										echo '<span>'.(int) $total_votes.'</span><span> votes</span>';
 
 									}
 
@@ -114,8 +114,8 @@ get_header();
 		    	</div>
 		    	<div class="modal-body">
 
-					<div id="ah-entry--form-results"></div>
-					<form id="ah-entry--form" method="post" enctype="multipart/form-data">
+					<div id="idea-factory--entry--form-results"></div>
+					<form id="idea-factory--entry--form" method="post" enctype="multipart/form-data">
 
 						<?php do_action('idea_factory_inside_form_top');?>
 
@@ -123,7 +123,7 @@ get_header();
 						<input type="text" name="idea-title" value="" placeholder="My Awesome Submission">
 
 						<label for="idea-description"><?php apply_filters('idea_factory_form_title', _e('Description','idea-factory'));?></label>
-						<textarea form="ah-entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
+						<textarea form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
 
 						<?php do_action('idea_factory_inside_form_bottom');?>
 

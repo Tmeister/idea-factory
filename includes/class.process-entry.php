@@ -56,8 +56,6 @@ class ideaFactoryProcessEntry {
 
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
-					echo 'success';
-
 				}
 
 			}
