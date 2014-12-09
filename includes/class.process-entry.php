@@ -89,7 +89,7 @@ class ideaFactoryProcessEntry {
 		$message .= "".wp_login_url()."\n\n";
 
 		if ( !$mail_disabled )
-			wp_mail( $admin_email, 'New Idea Submission - '.$userid.' ', $message );
+			wp_mail( $admin_email, 'New Idea Submission - '.$entry_id.' ', $message );
 
 	}
 
