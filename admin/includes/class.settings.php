@@ -109,6 +109,14 @@ class if_settings_api_wrap {
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => ''
+                ),
+                 array(
+                    'name' 				=> 'if_disable_mail',
+                    'label' 			=> __( 'Disable Emails', 'idea-factory' ),
+                    'desc' 				=> __( 'Disable the admin email notification of new submissions.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => ''
                 )
             )
         );

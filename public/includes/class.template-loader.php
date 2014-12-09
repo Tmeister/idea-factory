@@ -21,8 +21,8 @@ class ideaFactoryTemplateLoader {
 	*/
 	function template_loader($template) {
 
-		$url 			= isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : null;
-		$is_empty_idea 	= substr($url,-6) == '/ideas' || substr($url,-7) == '/ideas/';
+		$url 			= !isset($_SERVER['REQUEST_URI']) && isset($_SERVER['QUERY_STRING']) ? $_SERVER['REQUEST_URI'] : '';
+		$is_empty_idea 	= $url ? substr($url,-6) == '/ideas' || substr($url,-7) == '/ideas/' : null;
 
 	    if ( 'ideas' == get_post_type() || $is_empty_idea ):
 

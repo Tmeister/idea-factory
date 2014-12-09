@@ -10,6 +10,7 @@ class ideaFactoryProcessEntry {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_entry', 				array($this, 'process_entry' ));
+		add_action( 'idea_factory_entry_submitted',			array($this,'send_mail'), 10, 2);
 	}
 
 	/**
@@ -64,6 +65,30 @@ class ideaFactoryProcessEntry {
 		exit(); // ajax
 	}
 
+	/**
+	*
+	*	Send email to the admin notifying of a new submission
+	*
+	*	@param $entry_id int postid object
+	*	@param $userid int userid object
+	*
+	*/
+	function send_mail( $entry_id, $userid ) {
+
+		$user 		 	= get_userdata( $userid );
+		$admin_email 	= get_bloginfo('admin_email');
+		$entry       	= get_post( $entry_id );
+		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
+
+
+		$message = "New idea submission from ".$user->display_name.".\n\n";
+		$message .= "Title:".$entry->post_title."\n\n";
+		$message .= "Description:".$entry->post_content."\n\n";
+
+		if ( !$mail_disabled )
+			wp_mail( $admin_email, 'New Idea Submission', $message );
+
+	}
 
 }
 new ideaFactoryProcessEntry;
