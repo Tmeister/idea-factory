@@ -32,7 +32,6 @@ class ideaFactoryProcessEntry {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'if-entry-nonce' ) ) {
 
-
 				// bail if we dont have rquired fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
@@ -42,11 +41,11 @@ class ideaFactoryProcessEntry {
 
 					// create an ideas post type
 					$post_args = array(
-					  	'post_title'    => $title,
-					  	'post_content'  => $desc,
+					  	'post_title'    => wp_strip_all_tags( $title ),
+					  	'post_content'  => idea_factory_media_filter( $desc ),
 					  	'post_status'   => 'publish',
 					  	'post_type'	  	=> 'ideas',
-					  	'post_author'   => $userid
+					  	'post_author'   => (int) $userid
 					);
 					$entry_id = wp_insert_post( $post_args );
 

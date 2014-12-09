@@ -13,6 +13,7 @@
     .clearfix();
     margin:@entry--margin;
     padding:@entry--padding;
+    border-top:1px solid @border-color;
     border-bottom:1px solid @border-color;
 
     .idea-factory--submit-left,
@@ -22,6 +23,8 @@
 
     .idea-factory--submit-left {
         .if-column(9);
+        padding:10px 0;
+        .box-sizing(border-box);
     }
     .idea-factory--submit-right {
         .if-column(3);
