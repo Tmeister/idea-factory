@@ -3,6 +3,9 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 
 ![Image](https://s3.amazonaws.com/f.cl.ly/items/001M1a0O3I1l1o0n0S2U/Image%202014-12-09%20at%205.22.10%20PM.png)
 
+![Image](http://cl.ly/0B1r0H2f2Z1c)
+
+
 ---
 
 ### Installation  
