@@ -73,9 +73,8 @@
 }
 
 .modal-footer {
-    padding: @modal--innerpadding;
-    text-align: right; // right align buttons
-    border-top: 1px solid @modal--footer-border-color;
+    padding-top: @modal--innerpadding;
+    text-align: left; // right align buttons
     &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
 
     // Properly space out buttons
@@ -91,6 +90,19 @@
     .btn-block + .btn-block {
         margin-left: 0;
     }
+
+    input[type="submit"] {
+        font-size:@input--font_size;
+        outline: none;
+        border:none;
+
+        &:active,
+        &:focus {
+            outline:none;
+            border:none;
+        }
+    }
+
 }
 .modal-scrollbar-measure {
     position: absolute;
@@ -104,7 +116,7 @@
 
     .modal-dialog {
         width: @modal--md;
-        margin: 30px auto;
+        margin: 80px auto 30px;
     }
     .modal-content {
         .box-shadow(0 5px 15px rgba(0,0,0,.5));
@@ -124,13 +136,22 @@
     font-weight: normal;
     line-height: 1;
     color: @close--font_color;
+    background:none;
+    border:none;
+    position:absolute;
+    top:8px;
+    right:10px;
     .opacity(.2);
 
     &:hover,
     &:focus {
         color: @close--font_color;
+        background:none;
         text-decoration: none;
         cursor: pointer;
+        box-shadow: none;
+        outline:none;
+        border:none;
         .opacity(.5);
     }
 

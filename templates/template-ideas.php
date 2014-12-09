@@ -8,7 +8,7 @@ get_header();
 	<div class="idea-factory--wrap">
 		<aside class="idea-factory--layout-submit">
 			<div class="idea-factory--submit-left">
-				<?php echo esc_html( $intro_message );?>
+				<?php echo idea_factory_media_filter( $intro_message );?>
 			</div>
 			<div class="idea-factory--submit-right">
 				<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
@@ -86,13 +86,14 @@ get_header();
 	<div class="modal fade idea-factory-modal" tabindex="-1">
 		<div class="modal-dialog ">
 		    <div class="modal-content">
+		    	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
+
 		    	<div class="modal-header">
 		    		<h3 class="modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
 		    	</div>
 		    	<div class="modal-body">
-		    		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
-					<div id="ah-entry--form-results"></div>
 
+					<div id="ah-entry--form-results"></div>
 					<form id="ah-entry--form" method="post" enctype="multipart/form-data">
 
 						<?php do_action('idea_factory_inside_form_top');?>
@@ -110,7 +111,7 @@ get_header();
 						<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
 						<div class="modal-footer">
-							<input class="idea-factory--button" type="submit" value="Submit">
+							<input class="idea-factory--button" type="submit" value="<?php apply_filters('idea_factory_submit_label', _e('Submit','idea-factory'));?>">
 						</div>
 					</form>
 

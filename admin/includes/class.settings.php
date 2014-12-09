@@ -85,10 +85,10 @@ class if_settings_api_wrap {
                 array(
                     'name' 				=> 'if_welcome',
                     'label' 			=> __( 'Welcome Message', 'idea-factory' ),
-                    'desc' 				=> __( 'Enter a message for new users to vote.', 'idea-factory' ),
+                    'desc' 				=> __( 'Enter a message to display to users to vote. Some HTML ok.', 'idea-factory' ),
                     'type' 				=> 'textarea',
                     'default' 			=> 'Submit and vote for new features!',
-                    'sanitize_callback' => 'sanitize_text_field'
+                    'sanitize_callback' => 'idea_factory_media_filter'
                 )
             ),
 			'if_settings_design' 	=> array(
