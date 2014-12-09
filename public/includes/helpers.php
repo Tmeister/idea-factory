@@ -45,6 +45,7 @@ function idea_factory_get_option( $option, $section, $default = '' ) {
 
 /**
 *	Used on the front end to properly escape attributes where users have control over what input is entered
+*	as well as through a callback upon saving in the backend
 *
 *	@since 1.0
 *	@return a sanitized string
