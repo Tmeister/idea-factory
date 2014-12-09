@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 	if(pageNum <= max) {
 		$('.idea-factory--wrap')
 			.append('<div class="idea-factory--layout-main clearfix idea-factory--layout-main-'+ pageNum +'"></div>')
-			.append('<p class="idea-factory--loadmore fix"><a class="idea-factory--button" href="#">Load More Stories</a></p>');
+			.append('<p class="idea-factory--loadmore fix"><a class="idea-factory--button" href="#">'+label+'</a></p>');
 
 	}
 
