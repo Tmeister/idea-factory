@@ -24,6 +24,8 @@ class ideaFactoryProcessEntry {
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
+		$must_approve 	= 'on' == idea_factory_get_option('if_approve_ideas','if_settings_main') ? 'draft' : 'publish';
+
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_entry' ) {
 
 			// only run for logged in users
@@ -44,7 +46,7 @@ class ideaFactoryProcessEntry {
 					$post_args = array(
 					  	'post_title'    => wp_strip_all_tags( $title ),
 					  	'post_content'  => idea_factory_media_filter( $desc ),
-					  	'post_status'   => 'publish',
+					  	'post_status'   => $must_approve,
 					  	'post_type'	  	=> 'ideas',
 					  	'post_author'   => (int) $userid
 					);

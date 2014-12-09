@@ -89,6 +89,14 @@ class if_settings_api_wrap {
                     'type' 				=> 'textarea',
                     'default' 			=> 'Submit and vote for new features!',
                     'sanitize_callback' => 'idea_factory_media_filter'
+                ),
+                array(
+                    'name' 				=> 'if_approve_ideas',
+                    'label' 			=> __( 'Require Idea Approval', 'idea-factory' ),
+                    'desc' 				=> __( 'Check this box to enable newly submitted ideas to be put into a draft instead of automatically publishing.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => ''
                 )
             ),
 			'if_settings_design' 	=> array(
