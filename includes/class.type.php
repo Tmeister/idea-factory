@@ -42,6 +42,7 @@ class ahIdeaType {
 			'labels'              		=> $labels,
 			'supports'            		=> array( 'editor','title', 'comments'),
 			'public'              		=> false,
+			'menu_icon'					=> 'dashicons-lightbulb',
 			'publicly_queryable'		=> true,
  			'show_ui' 					=> true,
 			'query_var' 				=> true,
