@@ -1,0 +1,9 @@
+{
+   "name": "idea-factory",
+   "type": "wordpress-plugin",
+   "description": "Front end submission and voting for WordPress.",
+   "keywords": ["plugin","wordpress","voting"],
+   "require": {
+     "composer/installers": "~1.0.6"
+   }
+}
