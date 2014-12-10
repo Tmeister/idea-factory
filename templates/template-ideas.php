@@ -57,11 +57,11 @@ get_header();
 
 									if ( 1 == $total_votes ) {
 
-										echo '<span>1</span> <span>vote</span>';
+										echo '<span class="idea-factory--totals_num">1</span> <span class="idea-factory--totals_label">vote</span>';
 
 									} elseif( !empty( $total_votes ) ) {
 
-										echo '<span>'.(int) $total_votes.'</span><span> votes</span>';
+										echo '<span class="idea-factory--totals_num">'.(int) $total_votes.'</span><span class="idea-factory--totals_label"> votes</span>';
 
 									}
 
