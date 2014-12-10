@@ -91,7 +91,7 @@ get_header();
 
 			else:
 
-				apply_filters('idea_factory_form_title', _e('No ideas found. Why not submit one?','idea-factory'));
+				apply_filters('idea_factory_no_ideas', _e('No ideas found. Why not submit one?','idea-factory'));
 
 			endif;
 			?>
@@ -122,7 +122,7 @@ get_header();
 						<label for="idea-title"><?php apply_filters('idea_factory_form_title', _e('Title','idea-factory'));?></label>
 						<input id="idea-factory--entryform_title" type="text" name="idea-title" value="" placeholder="My Awesome Submission">
 
-						<label for="idea-description"><?php apply_filters('idea_factory_form_title', _e('Description','idea-factory'));?></label>
+						<label for="idea-description"><?php apply_filters('idea_factory_form_description', _e('Description','idea-factory'));?></label>
 						<textarea id="idea-factory--entryform_description" form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
 
 						<?php do_action('idea_factory_inside_form_bottom');?>
