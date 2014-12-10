@@ -1,6 +1,10 @@
 // main layout wrap
 .idea-factory--wrap {
     .clearfix();
+
+    * {
+        .box-sizing(border-box);
+    }
 }
 
 // main alyout
@@ -41,6 +45,7 @@
     .transition(background .1s ease);
     display: inline-block;
 
+    &:visited,
     &:hover {
         color:white;
         background:darken(@button--background,5);
