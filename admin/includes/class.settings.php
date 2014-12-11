@@ -93,6 +93,14 @@ class if_settings_api_wrap {
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
+                ),
+            	array(
+                    'name' 				=> 'if_threshold',
+                    'label' 			=> __( 'Voting Threshold', 'idea-factory' ),
+                    'desc' 				=> __( 'Specify an optional number of votes that each idea must reach in order for its status to be automatically updated to "approved" , "declined", or "open."', 'idea-factory' ),
+                    'type' 				=> 'text',
+                    'default' 			=> __('','idea-factory'),
+                    'sanitize_callback' => 'idea_factory_sanitize_int'
                 )
             ),
             'if_settings_advanced' 	=> array(
@@ -128,6 +136,26 @@ class if_settings_api_wrap {
 		if ( $input ) {
 
 			$output = '1';
+
+		} else {
+
+			$output = false;
+
+		}
+
+		return $output;
+	}
+
+	/**
+	*
+	*	Sanitize integers
+	*
+	*/
+	function idea_factory_sanitize_int( $input ) {
+
+		if ( $input ) {
+
+			$output = absint( $input );
 
 		} else {
 
