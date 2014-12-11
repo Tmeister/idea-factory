@@ -49,7 +49,11 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 
 == Screenshots ==
 
-1. Front end votes view.
+1. What you see when you visit yoursite.com/ideas
+2. User submit new ideas within a popup modal
+3. New ideas are logged as a custom post type
+4. You can change a few settings here
+5. And more settings here
 
 == Upgrade Notice ==
 
