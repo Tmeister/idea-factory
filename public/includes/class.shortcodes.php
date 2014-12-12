@@ -49,6 +49,18 @@ class ideaFactoryShortcodes {
 				);
 				$q = new WP_Query( apply_filters('idea_factory_query_args', $args ) );
 
+				$max = $q->max_num_pages;
+
+				wp_localize_script('idea-factory-script', 'idea_factory', array(
+					'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+					'nonce'			=> wp_create_nonce('idea_factory'),
+					'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
+					'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
+					'startPage' 	=> $paged,
+		 			'maxPages' 		=> $max,
+		 			'nextLink' 		=> next_posts($max, false)
+				));
+
 				if ( $q->have_posts() ):
 
 					while( $q->have_posts() ) : $q->the_post();
@@ -110,9 +122,6 @@ class ideaFactoryShortcodes {
 
 
 					endwhile;
-
-					previous_posts_link( 'Newer &raquo;', $q->max_num_pages );
-        			next_posts_link('Older &raquo;', $q->max_num_pages);
 
 				else:
 
