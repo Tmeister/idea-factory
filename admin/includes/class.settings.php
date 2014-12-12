@@ -22,8 +22,10 @@ class if_settings_api_wrap {
         $this->url  		= plugins_url( '', __FILE__ );
         $this->settings_api = new WeDevs_Settings_API;
 
-        add_action( 'admin_init', array($this, 'admin_init') );
-        add_action( 'admin_menu', array($this,'submenu_page'));
+        add_action( 'admin_init', 					array($this, 'admin_init') );
+        add_action( 'admin_menu', 					array($this,'submenu_page'));
+        add_action( 'admin_head', 					array($this, 'reset_votes'));
+        add_action( 'wp_ajax_idea_factory_reset', 	array($this, 'idea_factory_reset' ));
 
     }
 
@@ -39,6 +41,79 @@ class if_settings_api_wrap {
 
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
+		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
+	}
+
+	/**
+	*
+	*	Allow admins to reset the votes
+	*
+	*/
+	function reset_callback(){
+
+		echo '<div class="wrap">';
+
+			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
+
+			<label style="display:block;margin-top:20px;">Click the button below to reset the votes. Warning, there is no going back!</label>
+			<a style="display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes">Reset Votes</a>
+
+			<?php
+
+
+		echo '</div>';
+
+
+	}
+
+	/**
+	*
+	*	Handl the click event for resetting votes
+	*
+	*/
+	function reset_votes() {
+
+		$nonce = wp_create_nonce('idea-factory-reset');
+
+		?>
+			<!-- Reset Votes -->
+			<script>
+				jQuery(document).ready(function($){
+				  	jQuery('#idea-factory-reset--votes').click(function(e){
+
+				  		e.preventDefault();
+
+				  		var data = {
+				            action: 'idea_factory_reset',
+				            security: '<?php echo $nonce;?>'
+				        };
+
+					  	jQuery.post(ajaxurl, data, function(response) {
+					  		if( response ){
+					        	alert(response);
+					        	location.reload();
+					  		}
+					    });
+
+				    });
+				});
+			</script>
+		<?php 
+	}
+
+	/**
+	*
+	*	Process the votes reste
+	*	@since 1.1
+	*/
+	function idea_factory_reset(){
+
+		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		echo __('Success!','idea-factory');
+
+		exit;
+
 	}
 
 	function submenu_page_callback() {
