@@ -24,7 +24,7 @@ class ideaFactoryProcessEntry {
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
-		$must_approve 	= 'on' == idea_factory_get_option('if_approve_ideas','if_settings_main') ? 'draft' : 'publish';
+		$must_approve 	= 'on' == idea_factory_get_option('if_approve_ideas','if_settings_main') ? 'pending' : 'publish';
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_entry' ) {
 
