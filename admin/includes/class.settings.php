@@ -110,7 +110,27 @@ class if_settings_api_wrap {
 
 		check_ajax_referer( 'idea-factory-reset', 'security' );
 
-		echo __('Success!','idea-factory');
+		$posts = get_posts( array('post_type' => 'ideas', 'posts_per_page' => -1 ) );
+
+		if ( $posts ):
+
+			foreach ( $posts as $post ) {
+
+				$total_votes = get_post_meta( $post->ID, '_idea_total_votes', true );
+				$votes 		 = get_post_meta( $post->ID, '_idea_votes', true );
+
+				if ( !empty( $total_votes ) ) {
+					update_post_meta( $post->ID, '_idea_total_votes', 0 );
+				}
+
+				if ( !empty( $votes ) ) {
+					update_post_meta( $post->ID, '_idea_votes', 0 );
+				}
+			}
+
+		endif;
+
+		echo __('All reset!','idea-factory');
 
 		exit;
 
