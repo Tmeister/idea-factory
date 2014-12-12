@@ -20,11 +20,15 @@ class ideaFactoryShortcodes {
 	function idea_factory_sc($atts, $content = null) {
 
 		$defaults = array(
-			'hide_submit'	=> 'off'
+			'hide_submit'	=> 'off',
+			'hide_voting'	=> 'off',
+			'hide_votes'	=> 'off'
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 
-		$show_submit = 'on' !== $atts['hide_submit'];
+		$show_submit  = 'on' !== $atts['hide_submit'];
+		$show_voting  = 'on' !== $atts['hide_voting'];
+		$show_votes   = 'on' !== $atts['hide_votes'];
 
 		ob_start();
 
@@ -62,12 +66,13 @@ class ideaFactoryShortcodes {
 
 							<div class="idea-factory--controls">
 
-								<?php if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){ ?>
-									<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-									<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-								<?php }
+								<?php if ( idea_factory_is_voting_active( $id ) && $show_voting ){
 
-								if ( $total_votes ) { ?>
+									echo idea_factory_vote_controls( $id );
+
+								}
+
+								if ( $total_votes && $show_votes ) { ?>
 									<div class="idea-factory--totals">
 										<?php
 
@@ -85,11 +90,9 @@ class ideaFactoryShortcodes {
 									</div>
 								<?php }
 
-								if ( 'open' !== $status && false !== $status ) { ?>
-									<div class="idea-factory--status">
-										<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
-									</div>
-								<?php } ?>
+								echo idea_factory_vote_status( $id );
+
+								?>
 
 							</div>
 

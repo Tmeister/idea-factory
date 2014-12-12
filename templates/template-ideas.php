@@ -32,10 +32,9 @@ get_header();
 
 						<div class="idea-factory--controls">
 
-							<?php if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){ ?>
-								<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-								<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-							<?php }
+							<?php if ( idea_factory_is_voting_active( $id ) ){
+								echo idea_factory_vote_controls( $id );
+							}
 
 							if ( $total_votes ) { ?>
 								<div class="idea-factory--totals">
@@ -55,11 +54,7 @@ get_header();
 								</div>
 							<?php }
 
-							if ( 'open' !== $status && false !== $status ) { ?>
-								<div class="idea-factory--status">
-									<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
-								</div>
-							<?php } ?>
+							echo idea_factory_vote_status( $id );?>
 
 						</div>
 

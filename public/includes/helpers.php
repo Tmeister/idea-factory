@@ -166,6 +166,37 @@ function idea_factory_is_archive(){
 
 /**
 *
+*	Determines if the voting controls should be shown or not based on if the
+*	user has voted, is logged in, and status is approved
+*
+*	@since 1.1
+*	@param $postid int id of the actual idea
+*	@return bool
+*/
+function idea_factory_is_voting_active( $postid = '' ) {
+
+	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
+	$status      	= idea_factory_get_status( $postid );
+
+	if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){
+
+		return true;
+
+	} else {
+
+		return false;
+	}
+}
+
+/**
+*
+*
+*	ALL PLUGGABLE BELOW
+*
+*/
+
+/**
+*
 *	The modal used to show the idea submission form
 *	@since 1.1
 */
@@ -256,9 +287,45 @@ if ( !function_exists('idea_factory_submit_header') ):
 endif;
 
 
+/**
+*	Draw teh actual voting controls
+*	@since 1.1
+*
+*/
+if ( !function_exists('idea_factory_vote_controls') ):
 
+	function idea_factory_vote_controls( $postid = '' ) {
 
+		if ( empty( $postid ) )
+			$postid = get_the_ID();
 
+		?>
+			<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+		<?php
+	}
+
+endif;
+
+/**
+*	Draw teh voting status
+*	@since 1.1
+*
+*/
+if ( !function_exists('idea_factory_vote_status') ):
+
+	function idea_factory_vote_status( $postid = '' ) {
+
+		$status      	= idea_factory_get_status( $postid );
+
+		if ( 'open' !== $status && false !== $status ) { ?>
+			<div class="idea-factory--status">
+				<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
+			</div>
+		<?php }
+	}
+
+endif;
 
 
 
