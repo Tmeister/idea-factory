@@ -54,12 +54,15 @@ class Idea_Factory {
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		require_once(IDEA_FACTORY_DIR.'/includes/class.type.php');
-		require_once(IDEA_FACTORY_DIR.'/includes/class.process-vote.php');
 		require_once(IDEA_FACTORY_DIR.'/includes/class.process-entry.php');
+		require_once(IDEA_FACTORY_DIR.'/includes/class.process-vote.php');
+		require_once(IDEA_FACTORY_DIR.'/includes/class.process-status.php');
 
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.template-loader.php');
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.assets.php');
 		require_once(IDEA_FACTORY_DIR.'/public/includes/helpers.php');
+
+		require_once(IDEA_FACTORY_DIR.'/public/includes/class.shortcodes.php');
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );

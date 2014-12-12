@@ -53,6 +53,7 @@ class ideaFactoryProcessEntry {
 					$entry_id = wp_insert_post( $post_args );
 
 					update_post_meta( $entry_id, '_idea_votes', 0 );
+					update_post_meta( $entry_id, '_idea_total_votes', 0 );
 
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
