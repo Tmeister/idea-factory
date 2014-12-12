@@ -27,10 +27,12 @@ class ideaFactoryProcessVote {
 			$userid = $_POST['user_id'];
 
 			// get votes
-			$votes 			=	 get_post_meta( $postid, '_idea_votes', true );
+			$votes 			=	get_post_meta( $postid, '_idea_votes', true );
+			$total_votes 	=	get_post_meta( $postid, '_idea_total_votes', true );
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) + 1 );
+			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
 			// update user meta so they can't vote on this again
 			update_user_meta( $userid, '_idea'.$postid.'_has_voted', true );
@@ -58,10 +60,12 @@ class ideaFactoryProcessVote {
 			$userid = $_POST['user_id'];
 
 			// get votes
-			$votes 			=	 get_post_meta( $postid, '_idea_votes', true );
+			$votes 			=	get_post_meta( $postid, '_idea_votes', true );
+			$total_votes 	=	get_post_meta( $postid, '_idea_total_votes', true );
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) - 1 );
+			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
 			// update user meta so they can't vote on this again
 			update_user_meta( $userid, '_idea'.$postid.'_has_voted', true );

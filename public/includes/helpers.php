@@ -2,10 +2,46 @@
 
 /**
 *
-*	Get the number of votes for a specific idea
+*	Get the status of an idea
+*
+*	@param $postid int id of the post to retrieve the status for
+*	@return status
+*	@since 1.1
+*/
+function idea_factory_get_status( $postid = 0 ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	$status = get_post_meta( $postid, '_idea_status', true );
+
+	return !empty( $status ) ? $status : false;
+}
+
+/**
+*
+*	Get the total number of votes for a specific idea
 *
 *	@param $postid int id of the post to retrieve votes for
-*	@return number of votes
+*	@return number of total votes
+*	@since 1.1
+*/
+function idea_factory_get_total_votes( $postid = 0 ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	$total_votes = get_post_meta( $postid, '_idea_total_votes', true );
+
+	return !empty( $total_votes ) ? $total_votes : false;
+}
+
+/**
+*
+*	Get the number of vote up votes for a specific idea
+*
+*	@param $postid int id of the post to retrieve votes for
+*	@return number of vote ups
 *	@since 1.0
 */
 function idea_factory_get_votes( $postid = 0 ) {

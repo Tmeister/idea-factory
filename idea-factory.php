@@ -39,7 +39,7 @@ register_deactivation_hook( __FILE__, array( 'Idea_Factory', 'deactivate' ) );
 
 add_action( 'plugins_loaded', array( 'Idea_Factory', 'get_instance' ) );
 
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+if ( is_admin() ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-idea-factory-admin.php' );
 	add_action( 'plugins_loaded', array( 'Idea_Factory_Admin', 'get_instance' ) );

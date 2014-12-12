@@ -22,8 +22,10 @@ class if_settings_api_wrap {
         $this->url  		= plugins_url( '', __FILE__ );
         $this->settings_api = new WeDevs_Settings_API;
 
-        add_action( 'admin_init', array($this, 'admin_init') );
-        add_action( 'admin_menu', array($this,'submenu_page'));
+        add_action( 'admin_init', 					array($this, 'admin_init') );
+        add_action( 'admin_menu', 					array($this,'submenu_page'));
+        add_action( 'admin_head', 					array($this, 'reset_votes'));
+        add_action( 'wp_ajax_idea_factory_reset', 	array($this, 'idea_factory_reset' ));
 
     }
 
@@ -39,6 +41,99 @@ class if_settings_api_wrap {
 
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
+		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
+	}
+
+	/**
+	*
+	*	Allow admins to reset the votes
+	*
+	*/
+	function reset_callback(){
+
+		echo '<div class="wrap">';
+
+			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
+
+			<label style="display:block;margin-top:20px;">Click the button below to reset the votes. Warning, there is no going back!</label>
+			<a style="display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes">Reset Votes</a>
+
+			<?php
+
+
+		echo '</div>';
+
+
+	}
+
+	/**
+	*
+	*	Handl the click event for resetting votes
+	*
+	*/
+	function reset_votes() {
+
+		$nonce = wp_create_nonce('idea-factory-reset');
+
+		?>
+			<!-- Reset Votes -->
+			<script>
+				jQuery(document).ready(function($){
+				  	jQuery('#idea-factory-reset--votes').click(function(e){
+
+				  		e.preventDefault();
+
+				  		var data = {
+				            action: 'idea_factory_reset',
+				            security: '<?php echo $nonce;?>'
+				        };
+
+					  	jQuery.post(ajaxurl, data, function(response) {
+					  		if( response ){
+					        	alert(response);
+					        	location.reload();
+					  		}
+					    });
+
+				    });
+				});
+			</script>
+		<?php 
+	}
+
+	/**
+	*
+	*	Process the votes reste
+	*	@since 1.1
+	*/
+	function idea_factory_reset(){
+
+		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		$posts = get_posts( array('post_type' => 'ideas', 'posts_per_page' => -1 ) );
+
+		if ( $posts ):
+
+			foreach ( $posts as $post ) {
+
+				$total_votes = get_post_meta( $post->ID, '_idea_total_votes', true );
+				$votes 		 = get_post_meta( $post->ID, '_idea_votes', true );
+
+				if ( !empty( $total_votes ) ) {
+					update_post_meta( $post->ID, '_idea_total_votes', 0 );
+				}
+
+				if ( !empty( $votes ) ) {
+					update_post_meta( $post->ID, '_idea_votes', 0 );
+				}
+			}
+
+		endif;
+
+		echo __('All reset!','idea-factory');
+
+		exit;
+
 	}
 
 	function submenu_page_callback() {
@@ -93,6 +188,14 @@ class if_settings_api_wrap {
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
+                ),
+            	array(
+                    'name' 				=> 'if_threshold',
+                    'label' 			=> __( 'Voting Threshold', 'idea-factory' ),
+                    'desc' 				=> __( 'Specify an optional number of votes that each idea must reach in order for its status to be automatically updated to "approved" , "declined", or "open."', 'idea-factory' ),
+                    'type' 				=> 'text',
+                    'default' 			=> __('','idea-factory'),
+                    'sanitize_callback' => 'idea_factory_sanitize_int'
                 )
             ),
             'if_settings_advanced' 	=> array(
@@ -128,6 +231,26 @@ class if_settings_api_wrap {
 		if ( $input ) {
 
 			$output = '1';
+
+		} else {
+
+			$output = false;
+
+		}
+
+		return $output;
+	}
+
+	/**
+	*
+	*	Sanitize integers
+	*
+	*/
+	function idea_factory_sanitize_int( $input ) {
+
+		if ( $input ) {
+
+			$output = absint( $input );
 
 		} else {
 
