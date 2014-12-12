@@ -20,7 +20,7 @@ class ideaFactoryAssetLoader {
 	 	$max 			=  $wp_query->max_num_pages;
 	 	$paged 			= ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
 
-	    if ( idea_factory_is_archive() ):
+	    if ( idea_factory_is_archive() || has_shortcode( isset( $post ) ? $post->post_content : null, 'idea_factory') ):
 
 	    	if ( 'on' !== $disable_css ) {
 	    		wp_enqueue_style('dashicons');
