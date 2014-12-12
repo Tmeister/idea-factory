@@ -41,17 +41,21 @@ get_header();
 
 					// setup some vars
 					$has_voted = get_user_meta( get_current_user_ID(), '_idea'.get_the_ID().'_has_voted', true);
-					$total_votes = get_post_meta( get_the_ID(), '_idea_votes', true);
+					$total_votes = idea_factory_get_votes( get_the_ID() );
+					$status      = idea_factory_get_status( get_the_ID() );
 					?>
 					<section class="idea-factory--entry-wrap <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
 
 						<?php do_action('idea_factory_entry_wrap_top', get_the_ID() ); ?>
 
 						<div class="idea-factory--controls">
+
 							<?php if ( !$has_voted && is_user_logged_in() ){ ?>
 								<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
 								<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
 							<?php } ?>
+
+							<?php if ( $total_votes ) { ?>
 							<div class="idea-factory--totals">
 								<?php
 
@@ -67,6 +71,14 @@ get_header();
 
 								?>
 							</div>
+							<?php } ?>
+
+							<?php if ( $status ) { ?>
+								<div class="idea-factory--status">
+									<?php echo esc_attr( $status );?>
+								</div>
+							<?php } ?>
+
 						</div>
 
 						<div class="idea-factory--entry">
