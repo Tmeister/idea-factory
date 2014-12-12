@@ -2,10 +2,10 @@
 
 /*
 *
-*	Class responsible for processign the vote
+*	Class responsible for processign the status of the idea
 *
 */
-class ideaFactoryProcessVote {
+class ideaFactoryProcessStatus {
 
 	function __construct(){
 
@@ -28,9 +28,9 @@ class ideaFactoryProcessVote {
 		// get total number of vote ups
 		$votes     = idea_factory_get_votes( $postid );
 
-		if ( $total => $threshold ) {
+		if ( $total >= $threshold ) {
 
-			if ( $votes => $threshold ) {
+			if ( $votes >= $threshold ) {
 				update_post_meta( $postid, '_idea_status', 'approved');
 			} else {
 				update_post_meta( $postid, '_idea_status', 'declined');
@@ -43,4 +43,4 @@ class ideaFactoryProcessVote {
 	}
 
 }
-new ideaFactoryProcessVote;
+new ideaFactoryProcessStatus;
