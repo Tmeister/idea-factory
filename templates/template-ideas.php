@@ -53,29 +53,29 @@ get_header();
 							<?php if ( !$has_voted && is_user_logged_in() ){ ?>
 								<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
 								<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) get_the_ID();?>" href="#"></a>
-							<?php } ?>
+							<?php }
 
-							<?php if ( $total_votes ) { ?>
-							<div class="idea-factory--totals">
-								<?php
+							if ( $total_votes ) { ?>
+								<div class="idea-factory--totals">
+									<?php
 
-									if ( 1 == $total_votes ) {
+										if ( 1 == $total_votes ) {
 
-										echo '<span class="idea-factory--totals_num">1</span> <span class="idea-factory--totals_label">vote</span>';
+											echo '<span class="idea-factory--totals_num">1</span> <span class="idea-factory--totals_label">vote</span>';
 
-									} elseif( !empty( $total_votes ) ) {
+										} elseif( !empty( $total_votes ) ) {
 
-										echo '<span class="idea-factory--totals_num">'.(int) $total_votes.'</span><span class="idea-factory--totals_label"> votes</span>';
+											echo '<span class="idea-factory--totals_num">'.(int) $total_votes.'</span><span class="idea-factory--totals_label"> votes</span>';
 
-									}
+										}
 
-								?>
-							</div>
-							<?php } ?>
+									?>
+								</div>
+							<?php }
 
-							<?php if ( $status ) { ?>
+							if ( $status ) { ?>
 								<div class="idea-factory--status">
-									<?php echo esc_attr( $status );?>
+									<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
 								</div>
 							<?php } ?>
 

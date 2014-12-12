@@ -165,6 +165,35 @@
     line-height:0.9;
 }
 
+// status
+.idea-factory--status {
+
+    margin-top:10px;
+    font-size:12px;
+    letter-spacing: 0.05em;
+
+    span{
+        display:inline-block;
+        vertical-align: baseline;
+        white-space: nowrap;
+        text-align: center;
+        padding:4px 6px;
+        color:white;
+        text-shadow:0 1px 1px rgba(0,0,0,0.1);
+        border-radius:2px;
+    }
+
+    .idea-factory--status_approved{
+        background: @green;
+    }
+    .idea-factory--status_declined{
+        background: @red;
+    }
+    .idea-factory--status_open{
+        background: @teal;
+    }
+}
+
 .idea-factory--loadmore {
     margin:20px auto;
 }
