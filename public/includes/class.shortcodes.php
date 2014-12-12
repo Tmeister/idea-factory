@@ -24,11 +24,13 @@ class ideaFactoryShortcodes {
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 
+		$show_submit = 'on' !== $atts['hide_submit'];
+
 		ob_start();
 
 		?><div class="idea-factory--wrap"><?php
 
-		echo idea_factory_submit_header(); ?>
+			if ( $show_submit ) { echo idea_factory_submit_header(); } ?>
 
 			<section class="idea-factory--layout-main">
 				<?php
@@ -121,7 +123,7 @@ class ideaFactoryShortcodes {
 
 		</div>
 
-		<?php echo idea_factory_submit_modal();
+		<?php if ( $show_submit ) { echo idea_factory_submit_modal(); }
 
 		return ob_get_clean();
 
