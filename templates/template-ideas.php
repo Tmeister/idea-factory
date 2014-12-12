@@ -2,35 +2,13 @@
 
 get_header();
 
-	$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
-
 	do_action('idea_factory_layout_before'); ?>
 
 	<div class="idea-factory--wrap">
 
-		<?php if ( is_user_logged_in() ): ?>
-		<aside class="idea-factory--layout-submit">
+		<?php echo idea_factory_submit_header();
 
-			<div class="idea-factory--submit-left">
-
-				<?php echo idea_factory_media_filter( $intro_message );?>
-
-			</div>
-
-			<div class="idea-factory--submit-right">
-
-				<?php do_action('idea_factory_before_submit_button'); ?>
-
-					<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger">Submit Idea</a>
-
-				<?php do_action('idea_factory_after_submit_button'); ?>
-
-			</div>
-
-		</aside>
-		<?php endif; ?>
-
-		<?php do_action('idea_factory_before_entries'); ?>
+		do_action('idea_factory_before_entries'); ?>
 
 		<section class="idea-factory--layout-main">
 			<?php
@@ -54,10 +32,9 @@ get_header();
 
 						<div class="idea-factory--controls">
 
-							<?php if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){ ?>
-								<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-								<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $id;?>" href="#"></a>
-							<?php }
+							<?php if ( idea_factory_is_voting_active( $id ) ){
+								echo idea_factory_vote_controls( $id );
+							}
 
 							if ( $total_votes ) { ?>
 								<div class="idea-factory--totals">
@@ -77,11 +54,7 @@ get_header();
 								</div>
 							<?php }
 
-							if ( 'open' !== $status && false !== $status ) { ?>
-								<div class="idea-factory--status">
-									<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
-								</div>
-							<?php } ?>
+							echo idea_factory_vote_status( $id );?>
 
 						</div>
 
@@ -117,45 +90,8 @@ get_header();
 
 	</div>
 
-	<?php do_action('idea_factory_layout_after'); ?>
+	<?php do_action('idea_factory_layout_after');
 
-	<?php if ( is_user_logged_in() ): ?>
-	<div class="modal fade idea-factory-modal" tabindex="-1">
-		<div class="modal-dialog ">
-		    <div class="modal-content">
-		    	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
-
-		    	<div class="modal-header">
-		    		<h3 class="modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
-		    	</div>
-		    	<div class="modal-body">
-
-					<div id="idea-factory--entry--form-results"></div>
-					<form id="idea-factory--entry--form" method="post" enctype="multipart/form-data">
-
-						<?php do_action('idea_factory_inside_form_top');?>
-
-						<label for="idea-title"><?php apply_filters('idea_factory_form_title', _e('Title','idea-factory'));?></label>
-						<input id="idea-factory--entryform_title" type="text" name="idea-title" value="" placeholder="My Awesome Submission">
-
-						<label for="idea-description"><?php apply_filters('idea_factory_form_description', _e('Description','idea-factory'));?></label>
-						<textarea id="idea-factory--entryform_description" form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
-
-						<?php do_action('idea_factory_inside_form_bottom');?>
-
-						<input type="hidden" name="action" value="process_entry">
-						<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
-						<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
-
-						<div class="modal-footer">
-							<input class="idea-factory--button" type="submit" value="<?php apply_filters('idea_factory_submit_label', _e('Submit','idea-factory'));?>">
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php endif;
+	echo idea_factory_submit_modal();
 
 	get_footer();
