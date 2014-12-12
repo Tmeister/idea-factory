@@ -42,6 +42,7 @@ class if_settings_api_wrap {
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
 		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
+		add_submenu_page( 'edit.php?post_type=ideas', 'Docs', __('Docs','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );
 	}
 
 	/**
@@ -64,6 +65,34 @@ class if_settings_api_wrap {
 		echo '</div>';
 
 
+	}
+
+	/**
+	*
+	*	Documentation page callback
+	*
+	*/
+	function docs_callback(){
+		echo '<div class="wrap">';
+
+			?><h2 style="border-bottom:1px solid #ccc;padding-bottom:5px;"><?php _e('Idea Factory Documentation','idea-factory');?></h2>
+
+			<h3 style="margin-bottom:0;">The Basics</h3> 
+			<p style="margin-top:5px;">After you activate <em>Idea Factory</em>, it will automatically be available at yoursite.com/ideas. You can change this in the settings, and also deactivate the archive all together. You can additionally display the form and ideas via a shortcode as documented below.</p>
+
+			<h3 style="margin-bottom:0;">Voting</h3> 
+			<p style="margin-top:5px;">Voting is currently restricted to logged in users. Total votes are stored in the post meta table. Once a user votes, a flag is recorded in the user_meta table, preventing this user from being able to vote again on the same idea.</p>
+
+			<h3 style="margin-bottom:0;">The Shortcode</h3> 
+			<p style="margin-top:5px;">The ideas and form can be displayed with a shortcode. The shortcode is below, along with a description of the options within it.</p>
+
+			<h3 style="margin-bottom:0;">Developers</h3> 
+			<p style="margin-top:5px;">Full documentation of hooks, actions, and filters are available on the GitHub wiki page located here.</p>
+
+			<?php
+
+
+		echo '</div>';
 	}
 
 	/**
@@ -184,7 +213,7 @@ class if_settings_api_wrap {
                 array(
                     'name' 				=> 'if_approve_ideas',
                     'label' 			=> __( 'Require Idea Approval', 'idea-factory' ),
-                    'desc' 				=> __( 'Check this box to enable newly submitted ideas to be put into a draft instead of automatically publishing.', 'idea-factory' ),
+                    'desc' 				=> __( 'Check this box to enable newly submitted ideas to be put into a pending status instead of automatically publishing.', 'idea-factory' ),
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
