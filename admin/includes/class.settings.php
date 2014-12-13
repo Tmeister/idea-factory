@@ -56,8 +56,8 @@ class if_settings_api_wrap {
 
 			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
 
-			<label style="display:block;margin-top:20px;">Click the button below to reset the votes. Warning, there is no going back!</label>
-			<a style="display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes">Reset Votes</a>
+			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
+			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes"><?php _e('Reset Votes','idea-factory');?></a>
 
 			<?php
 
