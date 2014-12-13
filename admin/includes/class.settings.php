@@ -42,7 +42,7 @@ class if_settings_api_wrap {
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
 		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
-		add_submenu_page( 'edit.php?post_type=ideas', 'Docs', __('Docs','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );
+		add_submenu_page( 'edit.php?post_type=ideas', 'Help', __('Help','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );
 	}
 
 	/**
