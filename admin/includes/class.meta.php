@@ -46,11 +46,13 @@ class ideaFactoryMeta {
 
 		$status = get_post_meta( $post->ID, '_idea_status', true );
 
-		echo '<label for="idea_status">';
-			_e( 'Manually adjust the idea status here.', 'idea-factory' );
-		echo '</label> ';
-
-		echo '<input type="text" id="idea_status_field" name="idea_status" value="' . esc_attr( $status ) . '" size="25" />';
+		?>
+		<select name="idea_status">
+	      	<option value="approved" <?php selected( $status, 'approved' ); ?>><?php _e('Approved','idea-factory');?></option>
+	      	<option value="declined" <?php selected( $status, 'declined' ); ?>><?php _e('Declined','idea-factory');?></option>
+	      	<option value="open" <?php selected( $status, 'open' ); ?>><?php _e('Open','idea-factory');?></option>
+	    </select>
+	    <?php
 	}
 
 	/**
