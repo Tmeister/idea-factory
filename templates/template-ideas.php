@@ -41,12 +41,17 @@ get_header();
 									<?php
 
 										if ( 1 == $total_votes ) {
-
-											echo '<span class="idea-factory--totals_num">1</span> <span class="idea-factory--totals_label">vote</span>';
+											printf(
+												'<span class="idea-factory--totals_label">' . apply_filters( 'idea_factory_vote', __( '%s vote','idea-factory' ) ) . '</span>',
+												'<span class="idea-factory--totals_num">1</span>'
+											);
 
 										} elseif( !empty( $total_votes ) ) {
 
-											echo '<span class="idea-factory--totals_num">'.(int) $total_votes.'</span><span class="idea-factory--totals_label"> votes</span>';
+											printf(
+												'<span class="idea-factory--totals_label">' . apply_filters( 'idea_factory_votes', __( '%s votes','idea-factory' ) ) . '</span>',
+												'<span class="idea-factory--totals_num">'.(int) $total_votes.'</span>'
+											);
 
 										}
 
