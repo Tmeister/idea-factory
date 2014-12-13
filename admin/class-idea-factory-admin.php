@@ -42,6 +42,7 @@ class Idea_Factory_Admin {
 
 		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.settings.php');
 		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.meta.php');
+		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.column-mods.php');
 
 
 	}
