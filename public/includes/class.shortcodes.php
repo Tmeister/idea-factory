@@ -88,15 +88,20 @@ class ideaFactoryShortcodes {
 									<div class="idea-factory--totals">
 										<?php
 
-											if ( 1 == $total_votes ) {
+										if ( 1 == $total_votes ) {
+											printf(
+												'<span class="idea-factory--totals_label">' . apply_filters( 'idea_factory_vote', __( '%s vote','idea-factory' ) ) . '</span>',
+												'<span class="idea-factory--totals_num">1</span>'
+											);
 
-												echo '<span class="idea-factory--totals_num">1</span> <span class="idea-factory--totals_label">vote</span>';
+										} elseif( !empty( $total_votes ) ) {
 
-											} elseif( !empty( $total_votes ) ) {
+											printf(
+												'<span class="idea-factory--totals_label">' . apply_filters( 'idea_factory_votes', __( '%s votes','idea-factory' ) ) . '</span>',
+												'<span class="idea-factory--totals_num">'.(int) $total_votes.'</span>'
+											);
 
-												echo '<span class="idea-factory--totals_num">'.(int) $total_votes.'</span><span class="idea-factory--totals_label"> votes</span>';
-
-											}
+										}
 
 										?>
 									</div>
