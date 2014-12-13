@@ -273,7 +273,7 @@ if ( !function_exists('idea_factory_submit_header') ):
 
 					<?php do_action('idea_factory_before_submit_button'); ?>
 
-						<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e(' Submit Idea','idea-factory'); ?></a>
+						<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e('Submit Idea','idea-factory');?></a>
 
 					<?php do_action('idea_factory_after_submit_button'); ?>
 
