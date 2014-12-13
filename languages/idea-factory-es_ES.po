@@ -64,17 +64,17 @@ msgstr "Entre un mensaje para mostrar a los usuarios a votar. Alguno HTML está 
 
 #: ../admin/includes/class.settings.php:90 ../templates/template-ideas.php:5
 msgid "Submit and vote for new features!"
-msgstr ""
+msgstr "¡Presentar y votar por nuevas características!"
 
 #: ../admin/includes/class.settings.php:95
 msgid "Require Idea Approval"
-msgstr ""
+msgstr "Requiera Aprobación de la Idea"
 
 #: ../admin/includes/class.settings.php:96
-msgid ""
-"Check this box to enable newly submitted ideas to be put into a draft "
+msgid "Check this box to enable newly submitted ideas to be put into a draft "
 "instead of automatically publishing."
-msgstr ""
+msgstr "Marque esta casilla de verificación para activar nuevas ideas presentadas para ser puesto en un proyecto"
+"en vez de publicar automáticamente."
 
 #: ../admin/includes/class.settings.php:105
 msgid "Header Image Height"
