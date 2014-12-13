@@ -192,12 +192,15 @@ class if_settings_api_wrap {
     }
 
     function get_settings_fields() {
+
+		$domain 	= idea_factory_get_option('if_domain','if_settings_main','ideas');
+
         $settings_fields = array(
             'if_settings_main' => array(
             	array(
                     'name' 				=> 'if_domain',
                     'label' 			=> __( 'Naming Convention', 'idea-factory' ),
-                    'desc' 				=> '<a href="' . get_post_type_archive_link( 'ideas' ) . '">' . __( 'Link to ideas page', 'idea-factory' ) . '</a> - ' . __( 'By default its called Ideas. You can rename this here. Flush permalinks after renaming by going to Settings-->Permalinks.', 'idea-factory' ),
+                    'desc' 				=> '<a href="'.get_post_type_archive_link( $domain ).'">'. __( 'Link to ideas page', 'idea-factory' ) .'</a> - ' . __( 'By default its called Ideas. You can rename this here. Flush permalinks after renaming by going to Settings-->Permalinks.', 'idea-factory' ),
                     'type' 				=> 'text',
                     'default' 			=> __('ideas','idea-factory'),
                     'sanitize_callback' => 'sanitize_text_field'
