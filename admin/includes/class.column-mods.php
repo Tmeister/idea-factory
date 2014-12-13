@@ -46,7 +46,15 @@ class ideaFactoryColumnMods {
 
 	       	$status = get_post_meta( $post_ID,'_idea_status', true );
 
-	        echo '<strong>'.$status.'</strong>';
+	       	if ( 'approved' == $status ) {
+	       		$color = '#5cb85c';
+	       	} elseif ('declined' == $status ) {
+	       		$color = '#d9534f';
+	       	} else {
+	       		$color = '#5bc0de';
+	       	}
+
+	        echo '<strong style="color:'.esc_attr( $color ).';">'.esc_html( $status ).'</strong>';
 
 	    }
 	}
