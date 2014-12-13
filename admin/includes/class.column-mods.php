@@ -21,7 +21,15 @@ class ideaFactoryColumnMods {
 	*/
 	function col_head( $item ) {
 
+	    unset(
+	    	$item['title'],
+			$item['date'],
+			$item['comments']
+		);
+
+	    $item['title'] = __('Title','idea-factory');
 	    $item['idea_status'] = __('Idea Status','idea-factory');
+		$item['date'] = __('Date Published','idea-factory');
 
 	    return $item;
 	}
