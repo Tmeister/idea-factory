@@ -10,8 +10,9 @@ class ideaFactoryProcessStatus {
 
 	function __construct(){
 
-		add_action( 'idea_factory_vote_up', 				array($this, 'process_status' ));
-		add_action( 'idea_factory_vote_down', 				array($this, 'process_status' ));
+		add_action( 'idea_factory_vote_up', 				array($this, 'process_status' ), 10, 2);
+		add_action( 'idea_factory_vote_down', 				array($this, 'process_status' ), 10, 2);
+		add_action( 'idea_factory_status', 					array($this, 'mail_status' ), 10, 2);
 
 	}
 
@@ -46,14 +47,14 @@ class ideaFactoryProcessStatus {
 
 				update_post_meta( $postid, '_idea_status', 'approved');
 
-				do_action('idea_status', 'approved', $postid );
+				do_action('idea_factory_status', 'approved', $postid );
 
 			// up votes failed
 			} else {
 
 				update_post_meta( $postid, '_idea_status', 'declined');
 
-				do_action('idea_status', 'declined', $postid );
+				do_action('idea_factory_status', 'declined', $postid );
 
 			}
 
@@ -63,6 +64,10 @@ class ideaFactoryProcessStatus {
 			update_post_meta( $postid, '_idea_status', 'open');
 
 		}
+
+	}
+
+	function mail_status( $status, $postid ) {
 
 	}
 
