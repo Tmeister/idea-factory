@@ -21,6 +21,8 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 * Limited to logged in users for now
 * 1 vote allowed per user per idea
 * Emails the admin of a new submission
+* Automatic setup or use anywhere with a shortcode
+* Optionally set a threshold where each idea will be given a status based on total votes and emails the admin
 * Extensible with hooks and actions on events
 * More ideas loaded with AJAX on front-end
 * Mobile friendly
