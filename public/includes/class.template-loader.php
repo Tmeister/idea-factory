@@ -19,9 +19,11 @@ class ideaFactoryTemplateLoader {
 	* @param $template - return based on view
 	* @return page template based on view regardless if the post type doesnt even exist yet due to no posts
 	*/
-	function template_loader($template) {
+	function template_loader( $template ) {
 
-	   	if ( idea_factory_is_archive() ):
+		$disable_archive = idea_factory_get_option('if_disable_archive','if_settings_advanced');
+
+	   	if ( idea_factory_is_archive() && 'on' !== $disable_archive ):
 
 	    	if ( $overridden_template = locate_template( 'template-ideas.php', true ) ) {
 

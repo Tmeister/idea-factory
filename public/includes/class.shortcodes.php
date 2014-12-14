@@ -26,13 +26,19 @@ class ideaFactoryShortcodes {
 		);
 		$atts = shortcode_atts( $defaults, $atts );
 
+		$postid = get_the_ID();
+
 		$show_submit  = 'on' !== $atts['hide_submit'];
 		$show_voting  = 'on' !== $atts['hide_voting'];
 		$show_votes   = 'on' !== $atts['hide_votes'];
 
 		ob_start();
 
+		do_action('idea_factory_sc_layout_before', $postid);
+
 		?><div class="idea-factory--wrap"><?php
+
+			do_action('idea_factory_sc_layout_before_entries', $postid);
 
 			if ( $show_submit ) { echo idea_factory_submit_header(); } ?>
 
@@ -75,6 +81,8 @@ class ideaFactoryShortcodes {
 
 						?>
 						<section class="idea-factory--entry-wrap <?php echo sanitize_html_class( $status_class );?> <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
+
+							<?php do_action('idea_factory_sc_entry_wrap_top', $postid ); ?>
 
 							<div class="idea-factory--controls">
 
@@ -121,6 +129,8 @@ class ideaFactoryShortcodes {
 
 							</div>
 
+							<?php do_action('idea_factory_sc_entry_wrap_bottom', $postid ); ?>
+
 						</section>
 
 						<?php
@@ -137,10 +147,13 @@ class ideaFactoryShortcodes {
 				?>
 			</section>
 
+			<?php do_action('idea_factory_sc_layout_after_entries', $postid); ?>
 
 		</div>
 
 		<?php if ( $show_submit ) { echo idea_factory_submit_modal(); }
+
+		do_action('idea_factory_sc_layout_after', $postid);
 
 		return ob_get_clean();
 

@@ -214,12 +214,12 @@ class Idea_Factory {
 	}
 
 	/**
-	 * Fired for each blog when the plugin is activated.
+	 * Flush rewrite rules for custom post type archive on single activation
 	 *
 	 * @since    0.0.1
 	 */
 	private static function single_activate() {
-		// @TODO: Define activation functionality here
+		flush_rewrite_rules();
 	}
 
 	/**
