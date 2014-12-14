@@ -10,7 +10,7 @@
  	* 	Plugin Name:       Idea Factory
  	* 	Plugin URI:        http://nickhaskins.com/idea-factory
  	* 	Description:       Front-end user submission and voting system.
- 	* 	Version:           1.0
+ 	* 	Version:           1.1
  	* 	GitHub Plugin URI: https://github.com/bearded-avenger/idea-factory
  	*	Author:            Nick Haskins
 	* 	Author URI:        http://nickhaskins.com
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('IDEA_FACTORY_VERSION', '1.0');
+define('IDEA_FACTORY_VERSION', '1.1');
 define('IDEA_FACTORY_DIR', plugin_dir_path( __FILE__ ));
 define('IDEA_FACTORY_URL', plugins_url( '', __FILE__ ));
 
