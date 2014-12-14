@@ -317,8 +317,10 @@ if ( !function_exists('idea_factory_vote_status') ):
 	function idea_factory_vote_status( $postid = '' ) {
 
 		$status      	= idea_factory_get_status( $postid );
+		$threshold 		= idea_factory_get_option('if_threshold','if_settings_main');
 
-		if ( 'open' !== $status && false !== $status ) { ?>
+
+		if ( 'open' !== $status && false !== $status && !empty( $threshold ) ) { ?>
 			<div class="idea-factory--status">
 				<?php echo '<span class="idea-factory--status_'.sanitize_html_class( $status ).'">'.esc_attr( $status ).'</span>';?>
 			</div>
