@@ -67,6 +67,7 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 * NEW - Added an option to manually reset all votes on all ideas back to zero
 * NEW - Added a status column within the edit posts screen to show the status of each idea
 * NEW - Added a shortcode [idea_factory] to show the ideas and voting form with options to hide the form, votes, or voting
+* NEW - Added an option to disable the automatic archive
 * TWEAK - Instead of posts being put into draft when the option is selected, they are put into "pending" allowing proper review
 
 = 1.0 =

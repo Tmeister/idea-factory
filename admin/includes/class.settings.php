@@ -261,6 +261,14 @@ class if_settings_api_wrap {
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
+                ),
+                array(
+                    'name' 				=> 'if_disable_archive',
+                    'label' 			=> __( 'Disable Archive', 'idea-factory' ),
+                    'desc' 				=> __( 'Disable the automatic archive. This assumes you will be using the shortcode instead to show the ideas on a page that you specify.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 )
             )
         );

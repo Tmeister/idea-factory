@@ -19,7 +19,9 @@ class ahIdeaType {
 	*/
 	function do_type() {
 
-		$domain 	= idea_factory_get_option('if_domain','if_settings_main','ideas');
+		$disable_archive = idea_factory_get_option('if_disable_archive','if_settings_advanced');
+
+		$domain = 'on' == $disable_archive ? false : idea_factory_get_option('if_domain','if_settings_main','ideas');
 
 		$labels = array(
 			'name'                		=> _x( 'Ideas','idea-factory' ),
