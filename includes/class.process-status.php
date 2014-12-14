@@ -12,7 +12,7 @@ class ideaFactoryProcessStatus {
 
 		add_action( 'idea_factory_vote_up', 				array($this, 'process_status' ), 10, 2);
 		add_action( 'idea_factory_vote_down', 				array($this, 'process_status' ), 10, 2);
-		add_action( 'idea_factory_status', 					array($this, 'mail_status' ), 11, 2);
+		add_action( 'idea_factory_status', 					array($this, 'mail_status' ), 10, 2);
 
 	}
 
