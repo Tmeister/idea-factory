@@ -13,14 +13,14 @@ class ideaFactoryAssetLoader {
 
 	function scripts(){
 
-		global $wp_query;
+		global $wp_query, $post;
 
 		$disable_css    = idea_factory_get_option('if_disable_css','if_settings_advanced');
 
 	 	$max 			=  $wp_query->max_num_pages;
 	 	$paged 			= ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
 
-	    if ( idea_factory_is_archive() ):
+	    if ( idea_factory_is_archive() || has_shortcode( isset( $post->post_content ) ? $post->post_content : null, 'idea_factory') ):
 
 	    	if ( 'on' !== $disable_css ) {
 	    		wp_enqueue_style('dashicons');

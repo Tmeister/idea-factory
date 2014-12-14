@@ -24,7 +24,7 @@ class ideaFactoryProcessEntry {
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
-		$must_approve 	= 'on' == idea_factory_get_option('if_approve_ideas','if_settings_main') ? 'draft' : 'publish';
+		$must_approve 	= 'on' == idea_factory_get_option('if_approve_ideas','if_settings_main') ? 'pending' : 'publish';
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_entry' ) {
 
@@ -53,6 +53,7 @@ class ideaFactoryProcessEntry {
 					$entry_id = wp_insert_post( $post_args );
 
 					update_post_meta( $entry_id, '_idea_votes', 0 );
+					update_post_meta( $entry_id, '_idea_total_votes', 0 );
 
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 

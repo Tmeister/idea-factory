@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Idea Factory\n"
-"POT-Creation-Date: 2014-12-09 17:30-0600\n"
-"PO-Revision-Date: 2014-12-09 17:30-0600\n"
+"POT-Creation-Date: 2014-12-14 14:54-0600\n"
+"PO-Revision-Date: 2014-12-14 14:54-0600\n"
 "Last-Translator: Team Aesop <support@aesopinteractive.com>\n"
 "Language-Team:  <email@nickhaskins.com>\n"
 "Language: en_US\n"
@@ -15,166 +15,313 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-SearchPath-0: ..\n"
 
+#: ../admin/includes/class.column-mods.php:30
+#: ../public/includes/helpers.php:224
+msgid "Title"
+msgstr ""
+
+#: ../admin/includes/class.column-mods.php:31
+#: ../admin/includes/class.meta.php:31
+msgid "Idea Status"
+msgstr ""
+
+#: ../admin/includes/class.column-mods.php:32
+msgid "Date Published"
+msgstr ""
+
+#: ../admin/includes/class.meta.php:51
+msgid "Approved"
+msgstr ""
+
+#: ../admin/includes/class.meta.php:52
+msgid "Declined"
+msgstr ""
+
+#: ../admin/includes/class.meta.php:53
+msgid "Open"
+msgstr ""
+
 #: ../admin/includes/class.settings-api.php:239
 msgid "Browse"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:41
+#: ../admin/includes/class.settings.php:43
 msgid "Settings"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:47
-msgid "Idea Factory Settings"
+#: ../admin/includes/class.settings.php:44
+msgid "Help"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:45
+msgid "Reset"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:57
+msgid "Idea Factory Reset"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:59
+msgid ""
+"Click the button below to reset the votes. Warning, there is no going back!"
 msgstr ""
 
 #: ../admin/includes/class.settings.php:60
-msgid "Setup"
+msgid "Reset Votes"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:64
-msgid "Design"
+#: ../admin/includes/class.settings.php:81
+msgid "Idea Factory Documentation"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:68
-msgid "Advanced"
+#: ../admin/includes/class.settings.php:84
+msgid "The Basics"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:79
-msgid "Naming Convention"
-msgstr ""
-
-#: ../admin/includes/class.settings.php:80
+#: ../admin/includes/class.settings.php:85
 msgid ""
-"By default its called Ideas. You can rename this here. Flush permalinks "
-"after renaming by going to Settings-->Permalinks."
+"After you activate <em>Idea Factory</em>, it will automatically be available "
+"at <a href=\""
 msgstr ""
 
-#: ../admin/includes/class.settings.php:82
-msgid "ideas"
+#: ../admin/includes/class.settings.php:89
+msgid "The Shortcode"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:87
-msgid "Welcome Message"
-msgstr ""
-
-#: ../admin/includes/class.settings.php:88
-msgid "Enter a message to display to users to vote. Some HTML ok."
-msgstr ""
-
-#: ../admin/includes/class.settings.php:90 ../templates/template-ideas.php:5
-msgid "Submit and vote for new features!"
+#: ../admin/includes/class.settings.php:90
+msgid ""
+"You can additionally display the form and ideas via a shortcode as "
+"documented below."
 msgstr ""
 
 #: ../admin/includes/class.settings.php:95
-msgid "Require Idea Approval"
+msgid "Hide Submit"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:95
+msgid "Set this to \"on\" to hide the submission button and form."
 msgstr ""
 
 #: ../admin/includes/class.settings.php:96
+msgid "Hide Votes"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:96
+msgid "Set this to \"on\" to hide the votes."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:97
+msgid "Hide Voting"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:97
+msgid "Set this to \"on\" to hide the voting features."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:102
+msgid "How Voting Works"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:103
 msgid ""
-"Check this box to enable newly submitted ideas to be put into a draft "
-"instead of automatically publishing."
+"Voting is currently restricted to logged in users. Total votes are stored in "
+"the post meta table. Once a user votes, a flag is recorded in the user_meta "
+"table, preventing this user from being able to vote again on the same idea."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:105
-msgid "Header Image Height"
+#: ../admin/includes/class.settings.php:107
+msgid "Developers"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:106
-msgid "Height of the masthead."
+#: ../admin/includes/class.settings.php:108
+msgid ""
+"Full documentation of hooks, actions, filters, and helper functions are "
+"available on the GitHub wiki page located <a href=\"https://github.com/"
+"bearded-avenger/idea-factory/wiki\">here</a>"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:115
+#: ../admin/includes/class.settings.php:180
+msgid "All reset!"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:189
+msgid "Idea Factory Settings"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:202
+msgid "Setup"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:206
+msgid "Advanced"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:220
+msgid "Naming Convention"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:221
+msgid "Link to ideas page"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:221
+msgid "By default its called Ideas. You can rename this here."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:223
+msgid "ideas"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:228
+msgid "Welcome Message"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:229
+msgid "Enter a message to display to users to vote. Some HTML ok."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:231 ../public/includes/helpers.php:260
+msgid "Submit and vote for new features!"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:236
+msgid "Require Idea Approval"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:237
+msgid ""
+"Check this box to enable newly submitted ideas to be put into a pending "
+"status instead of automatically publishing."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:244
+msgid "Voting Threshold"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:245
+msgid ""
+"Specify an optional number of votes that each idea must reach in order for "
+"its status to be automatically updated to \"approved\" , \"declined\", or "
+"\"open.\""
+msgstr ""
+
+#: ../admin/includes/class.settings.php:254
 msgid "Disable Core CSS"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:116
+#: ../admin/includes/class.settings.php:255
 msgid "Disable the core css file from loading."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:123
+#: ../admin/includes/class.settings.php:262
 msgid "Disable Emails"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:124
+#: ../admin/includes/class.settings.php:263
 msgid "Disable the admin email notification of new submissions."
 msgstr ""
 
-#: ../includes/class.process-entry.php:59
+#: ../admin/includes/class.settings.php:270
+msgid "Disable Archive"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:271
+msgid ""
+"Disable the automatic archive. This assumes you will be using the shortcode "
+"instead to show the ideas on a page that you specify."
+msgstr ""
+
+#: ../includes/class.process-entry.php:60
 msgid "Thanks for your entry!"
 msgstr ""
 
-#: ../includes/class.type.php:27 ../includes/class.type.php:40
+#: ../includes/class.type.php:29 ../includes/class.type.php:42
 msgid "Ideas"
 msgstr ""
 
-#: ../includes/class.type.php:28
+#: ../includes/class.type.php:30
 msgid "Parent Idea:"
 msgstr ""
 
-#: ../includes/class.type.php:29
+#: ../includes/class.type.php:31
 msgid "All Ideas"
 msgstr ""
 
-#: ../includes/class.type.php:30
+#: ../includes/class.type.php:32
 msgid "View Idea"
 msgstr ""
 
-#: ../includes/class.type.php:31
+#: ../includes/class.type.php:33
 msgid "Add New Idea"
 msgstr ""
 
-#: ../includes/class.type.php:32
+#: ../includes/class.type.php:34
 msgid "New Idea"
 msgstr ""
 
-#: ../includes/class.type.php:33
+#: ../includes/class.type.php:35
 msgid "Edit Idea"
 msgstr ""
 
-#: ../includes/class.type.php:34
+#: ../includes/class.type.php:36
 msgid "Update Idea"
 msgstr ""
 
-#: ../includes/class.type.php:35
+#: ../includes/class.type.php:37
 msgid "Search Ideas"
 msgstr ""
 
-#: ../includes/class.type.php:36
+#: ../includes/class.type.php:38
 msgid "No Ideas found"
 msgstr ""
 
-#: ../includes/class.type.php:37
+#: ../includes/class.type.php:39
 msgid "No Ideas found in Trash"
 msgstr ""
 
-#: ../includes/class.type.php:41
+#: ../includes/class.type.php:43
 msgid "Create votes"
 msgstr ""
 
 #: ../public/includes/class.assets.php:34
+#: ../public/includes/class.shortcodes.php:63
 msgid "Load more ideas"
 msgstr ""
 
 #: ../public/includes/class.assets.php:35
+#: ../public/includes/class.shortcodes.php:64
 msgid "Loading ideas..."
 msgstr ""
 
-#: ../templates/template-ideas.php:94
+#: ../public/includes/class.shortcodes.php:101
+#: ../templates/template-ideas.php:45
+#, php-format
+msgid "%s vote"
+msgstr ""
+
+#: ../public/includes/class.shortcodes.php:108
+#: ../templates/template-ideas.php:52
+#, php-format
+msgid "%s votes"
+msgstr ""
+
+#: ../public/includes/class.shortcodes.php:143
+#: ../templates/template-ideas.php:88
 msgid "No ideas found. Why not submit one?"
 msgstr ""
 
-#: ../templates/template-ideas.php:113
+#: ../public/includes/helpers.php:215
 msgid "Submit idea"
 msgstr ""
 
-#: ../templates/template-ideas.php:122
-msgid "Title"
-msgstr ""
-
-#: ../templates/template-ideas.php:125
+#: ../public/includes/helpers.php:227
 msgid "Description"
 msgstr ""
 
-#: ../templates/template-ideas.php:135
+#: ../public/includes/helpers.php:237
 msgid "Submit"
+msgstr ""
+
+#: ../public/includes/helpers.php:276
+msgid "Submit Idea"
 msgstr ""
