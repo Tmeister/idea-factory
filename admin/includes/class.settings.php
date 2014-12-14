@@ -73,13 +73,16 @@ class if_settings_api_wrap {
 	*
 	*/
 	function docs_callback(){
+
+		$domain = idea_factory_get_option('if_domain','if_settings_main','ideas');
+
 		echo '<div class="wrap">';
 
 			?><h2 style="margin-bottom:0;"><?php _e('Idea Factory Documentation','idea-factory');?></h2>
 			<hr>
 
 			<h3 style="margin-bottom:0;"><?php _e('The Basics','idea-factory');?></h3> 
-			<p style="margin-top:5px;"><?php _e('After you activate <em>Idea Factory</em>, it will automatically be available at yoursite.com/ideas. You can change this in the settings, and also deactivate the archive all together. You can additionally display the form and ideas via a shortcode as documented below.','idea-factory');?></p>
+			<p style="margin-top:5px;"><?php _e('After you activate <em>Idea Factory</em>, it will automatically be available at <a href="'.get_post_type_archive_link( $domain ).'" target="_blank">'.get_post_type_archive_link( $domain ).'</a>. You can rename this in the settings or deactivate it all together and use the shortcode instead.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
@@ -215,7 +218,7 @@ class if_settings_api_wrap {
             	array(
                     'name' 				=> 'if_domain',
                     'label' 			=> __( 'Naming Convention', 'idea-factory' ),
-                    'desc' 				=> '<a href="'.get_post_type_archive_link( $domain ).'">'. __( 'Link to ideas page', 'idea-factory' ) .'</a> - ' . __( 'By default its called Ideas. You can rename this here. Flush permalinks after renaming by going to Settings-->Permalinks.', 'idea-factory' ),
+                    'desc' 				=> '<a href="'.get_post_type_archive_link( $domain ).'">'. __( 'Link to ideas page', 'idea-factory' ) .'</a> - ' . __( 'By default its called Ideas. You can rename this here.', 'idea-factory' ),
                     'type' 				=> 'text',
                     'default' 			=> __('ideas','idea-factory'),
                     'sanitize_callback' => 'sanitize_text_field'
