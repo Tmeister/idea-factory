@@ -46,10 +46,14 @@ class ideaFactoryProcessStatus {
 
 				update_post_meta( $postid, '_idea_status', 'approved');
 
+				do_action('idea_status', 'approved', $postid );
+
 			// up votes failed
 			} else {
 
 				update_post_meta( $postid, '_idea_status', 'declined');
+
+				do_action('idea_status', 'declined', $postid );
 
 			}
 
