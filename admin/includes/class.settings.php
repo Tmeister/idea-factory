@@ -244,7 +244,7 @@ class if_settings_api_wrap {
                     'label' 			=> __( 'Voting Threshold', 'idea-factory' ),
                     'desc' 				=> __( 'Specify an optional number of votes that each idea must reach in order for its status to be automatically updated to "approved" , "declined", or "open."', 'idea-factory' ),
                     'type' 				=> 'text',
-                    'default' 			=> __('','idea-factory'),
+                    'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_int'
                 )
             ),
