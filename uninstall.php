@@ -17,5 +17,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 global $wpdb;
 $table = $wpdb->prefix.'idea_factory';
 
+// delete optoin
+delete_option('idea_factory_version');
+
 // drop db table
 $wpdb->query("DROP TABLE IF EXISTS $table");
