@@ -22,10 +22,11 @@ class if_settings_api_wrap {
         $this->url  		= plugins_url( '', __FILE__ );
         $this->settings_api = new WeDevs_Settings_API;
 
-        add_action( 'admin_init', 					array($this, 'admin_init') );
-        add_action( 'admin_menu', 					array($this,'submenu_page'));
-        add_action( 'admin_head', 					array($this, 'reset_votes'));
-        add_action( 'wp_ajax_idea_factory_reset', 	array($this, 'idea_factory_reset' ));
+        add_action( 'admin_init', 						array($this, 'admin_init') );
+        add_action( 'admin_menu', 						array($this,'submenu_page'));
+        add_action( 'admin_head', 						array($this, 'reset_votes'));
+        add_action( 'wp_ajax_idea_factory_reset', 		array($this, 'idea_factory_reset' ));
+        add_action( 'wp_ajax_idea_factory_db_reset', 	array($this, 'idea_factory_db_reset' ));
 
     }
 
@@ -52,15 +53,19 @@ class if_settings_api_wrap {
 	*/
 	function reset_callback(){
 
+
+
 		echo '<div class="wrap">';
 
 			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
 
 			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
-			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes"><?php _e('Reset Votes','idea-factory');?></a>
+			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes" href="#"><?php _e('Reset Logged-in Votes','idea-factory');?></a>
 
-			<?php
-
+			<?php if ( true == idea_factory_has_public_votes() ) { ?>
+				<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
+				<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes reset-db" href="#"><?php _e('Reset Public Votes','idea-factory');?></a>
+			<?php }
 
 		echo '</div>';
 
@@ -131,19 +136,20 @@ class if_settings_api_wrap {
 			<!-- Reset Votes -->
 			<script>
 				jQuery(document).ready(function($){
-				  	jQuery('#idea-factory-reset--votes').click(function(e){
+					// reset post meta
+				  	jQuery('.idea-factory-reset--votes').click(function(e){
 
 				  		e.preventDefault();
 
 				  		var data = {
-				            action: 'idea_factory_reset',
+				            action: $(this).hasClass('reset-db') ? 'idea_factory_db_reset' : 'idea_factory_reset',
 				            security: '<?php echo $nonce;?>'
 				        };
 
 					  	jQuery.post(ajaxurl, data, function(response) {
 					  		if( response ){
 					        	alert(response);
-					        	location.reload();
+					        	//location.reload();
 					  		}
 					    });
 
@@ -182,12 +188,32 @@ class if_settings_api_wrap {
 
 		endif;
 
-		echo __('All reset!','idea-factory');
+		echo __('All logged-in votes reset!','idea-factory');
 
 		exit;
 
 	}
 
+	/**
+	*
+	*	Process the votes database reset
+	*	@since 1.1
+	*/
+	function idea_factory_db_reset(){
+
+		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+	    global $wpdb;
+
+	    $table = $wpdb->base_prefix.'idea_factory';
+
+	   	$delete = $wpdb->query('TRUNCATE TABLE '.$table.'');
+
+		_e('All public votes reset!!','idea-factory');
+
+		exit;
+
+	}
 	function submenu_page_callback() {
 
 		echo '<div class="wrap">';

@@ -248,6 +248,29 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
 }
 
 /**
+*	Determinees if public votes exist
+*	@since 1.2
+*/
+function idea_factory_has_public_votes(){
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$result =  $wpdb->get_results('SELECT * FROM '.$table.' ');
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
 *
 *
 *	ALL PLUGGABLE BELOW
