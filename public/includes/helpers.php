@@ -142,7 +142,7 @@ function idea_factory_archive_query( $query ) {
 *	Determine if we're on the ideas post type and also account for their being no entries
 *	as our post type archive still has to work regardless
 *	@since 1.0
-*
+*	@return bool
 */
 function idea_factory_is_archive(){
 
@@ -194,6 +194,7 @@ function idea_factory_is_voting_active( $postid = '' ) {
 * 	Adds a public vote entry into the databse
 *
 * 	@since    1.2
+*	@return null
 */
 function idea_factory_add_public_vote( $args = array() ) {
 
@@ -215,6 +216,7 @@ function idea_factory_add_public_vote( $args = array() ) {
 *
 *	Has the public user voted
 *
+*	@since 1.2
 *	@param $postid int id of the post
 *	@param $ip ip address of the public voter
 *	@return bool
@@ -250,6 +252,7 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
 /**
 *	Determinees if public votes exist
 *	@since 1.2
+*	@return bool
 */
 function idea_factory_has_public_votes(){
 
