@@ -149,7 +149,7 @@ class if_settings_api_wrap {
 					  	jQuery.post(ajaxurl, data, function(response) {
 					  		if( response ){
 					        	alert(response);
-					        	//location.reload();
+					        	location.reload();
 					  		}
 					    });
 
