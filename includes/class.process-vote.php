@@ -10,6 +10,9 @@ class ideaFactoryProcessVote {
 
 		add_action( 'wp_ajax_process_vote_up', 				array($this, 'process_vote_up' ));
 		add_action( 'wp_ajax_process_vote_down', 			array($this, 'process_vote_down' ));
+
+		add_action( 'wp_ajax_nopriv_process_vote_up', 				array($this, 'process_vote_up' ));
+		add_action( 'wp_ajax_nopriv_process_vote_down', 			array($this, 'process_vote_down' ));
 	}
 
 	/**
