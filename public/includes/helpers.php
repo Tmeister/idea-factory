@@ -142,7 +142,7 @@ function idea_factory_archive_query( $query ) {
 *	Determine if we're on the ideas post type and also account for their being no entries
 *	as our post type archive still has to work regardless
 *	@since 1.0
-*
+*	@return bool
 */
 function idea_factory_is_archive(){
 
@@ -178,13 +178,98 @@ function idea_factory_is_voting_active( $postid = '' ) {
 	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
 	$status      	= idea_factory_get_status( $postid );
 
-	if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){
+	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+	if ( ( !$has_voted && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
 
 		return true;
 
 	} else {
 
 		return false;
+	}
+}
+
+/**
+* 	Adds a public vote entry into the databse
+*
+* 	@since    1.2
+*	@return null
+*/
+function idea_factory_add_public_vote( $args = array() ) {
+
+	$db = new ideaFactoryDB;
+
+	$defaults = array(
+		'postid' => get_the_ID(),
+		'time'   => current_time('timestamp'),
+		'ip'   	 => isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0,
+	);
+
+	$args = array_merge( $defaults, $args );
+
+	$db->insert( $args );
+
+}
+
+/**
+*
+*	Has the public user voted
+*
+*	@since 1.2
+*	@param $postid int id of the post
+*	@param $ip ip address of the public voter
+*	@return bool
+*/
+function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	if ( empty( $ip ) )
+		$ip =  isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
+
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="%s" AND postid ="%d"', $ip, $postid );
+
+   	$result =  $wpdb->get_results( $sql );
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
+*	Determinees if public votes exist
+*	@since 1.2
+*	@return bool
+*/
+function idea_factory_has_public_votes(){
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$result =  $wpdb->get_results('SELECT * FROM '.$table.' ');
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
 	}
 }
 
@@ -204,7 +289,11 @@ if ( !function_exists('idea_factory_submit_modal') ):
 
 	function idea_factory_submit_modal(){
 
-		if ( is_user_logged_in() ): ?>
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+		$userid 		= $public_can_vote && !is_user_logged_in() ? 1 : get_current_user_ID();
+
+		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<div class="modal fade idea-factory-modal" tabindex="-1">
 				<div class="modal-dialog ">
@@ -230,7 +319,7 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<?php do_action('idea_factory_inside_form_bottom');?>
 
 								<input type="hidden" name="action" value="process_entry">
-								<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
+								<input type="hidden" name="user_id" value="<?php echo $userid; ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
 								<div class="modal-footer">
@@ -258,8 +347,9 @@ if ( !function_exists('idea_factory_submit_header') ):
 	function idea_factory_submit_header(){
 
 		$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		if ( is_user_logged_in() ): ?>
+		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<aside class="idea-factory--layout-submit">
 
@@ -299,9 +389,14 @@ if ( !function_exists('idea_factory_vote_controls') ):
 		if ( empty( $postid ) )
 			$postid = get_the_ID();
 
+		$ip              = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+		$userid 		= $public_can_vote && !is_user_logged_in() ? $ip : get_current_user_ID();
+
 		?>
-			<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-up" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
 		<?php
 	}
 
