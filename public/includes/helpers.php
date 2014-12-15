@@ -232,6 +232,8 @@ if ( !function_exists('idea_factory_submit_modal') ):
 
 		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
+		$userid 		= $public_can_vote && !is_user_logged_in() ? 1 : get_current_user_ID();
+
 		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<div class="modal fade idea-factory-modal" tabindex="-1">
@@ -258,7 +260,7 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<?php do_action('idea_factory_inside_form_bottom');?>
 
 								<input type="hidden" name="action" value="process_entry">
-								<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
+								<input type="hidden" name="user_id" value="<?php echo $userid; ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
 								<div class="modal-footer">
