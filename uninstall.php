@@ -14,4 +14,13 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// @TODO: Define uninstall functionality here
+global $wpdb;
+$table = $wpdb->prefix.'idea_factory';
+
+// delete meta
+delete_post_meta('_idea_votes');
+delete_post_meta('_idea_total_votes');
+delete_post_meta('_idea_status');
+
+// drop db table
+$wpdb->query("DROP TABLE IF EXISTS $table");
