@@ -44,7 +44,7 @@ class ideaFactoryDB {
 				;",
 				absint( $args['postid'] ),
 				date_i18n( 'Y-m-d H:i:s', $args['time'], true ),
-				sanitize_text_field($args['ip'])
+				filter_var( $args['ip'], FILTER_VALIDATE_IP )
 			)
 		);
 
