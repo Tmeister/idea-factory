@@ -223,12 +223,11 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
 	if ( empty( $postid ) )
 		return;
 
-
     global $wpdb;
 
     $table = $wpdb->base_prefix.'idea_factory';
 
-   	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="'.$ip.'" AND postid ="'.$postid.'"');
+   	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="%s" AND postid ="%d"', $ip, $postid );
 
    	$result =  $wpdb->get_results( $sql );
 
