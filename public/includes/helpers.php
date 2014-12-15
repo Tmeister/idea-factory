@@ -207,9 +207,6 @@ function idea_factory_add_public_vote( $args = array() ) {
 
 	$args = array_merge( $defaults, $args );
 
-	if ( empty( $args['postid'] ) )
-		return;
-
 	$db->insert( $args );
 
 }

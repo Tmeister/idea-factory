@@ -35,8 +35,6 @@ class ideaFactoryDB {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		//var_dump($args);exit;
-
 		$add = $wpdb->query(
 			$wpdb->prepare(
 				"INSERT INTO {$this->table_name} SET

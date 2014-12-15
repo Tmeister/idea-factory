@@ -64,6 +64,8 @@ class Idea_Factory {
 
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.shortcodes.php');
 
+		require_once(IDEA_FACTORY_DIR.'/includes/class.db.php');
+
 		// Load plugin text domain
 		add_action( 'init', 			array( $this, 'load_plugin_textdomain' ) );
 		add_action('plugins_loaded', 	array($this,'upgrade'));
