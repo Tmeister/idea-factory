@@ -178,9 +178,11 @@ function idea_factory_is_voting_active( $postid = '' ) {
 	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
 	$status      	= idea_factory_get_status( $postid );
 
+	$ip =  isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
+
 	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-	if ( !$has_voted && ( is_user_logged_in() || $public_can_vote ) && 'approved' !== $status ){
+	if ( ( !$has_voted && is_user_logged_in() || !idea_factory_has_public_voted( $postid, $ip ) && $public_can_vote ) && 'approved' !== $status ){
 
 		return true;
 
@@ -209,6 +211,36 @@ function idea_factory_add_public_vote( $args = array() ) {
 
 	$db->insert( $args );
 
+}
+
+/**
+*
+*	Has the public user voted
+*
+*/
+function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="'.$ip.'" AND postid ="'.$postid.'"');
+
+   	$result =  $wpdb->get_results( $sql );
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
 }
 
 /**
