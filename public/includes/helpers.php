@@ -366,7 +366,7 @@ if ( !function_exists('idea_factory_vote_controls') ):
 		$ip              = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
 		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		$userid 		= $public_can_vote ? $ip : get_current_user_ID();
+		$userid 		= $public_can_vote && !is_user_logged_in() ? $ip : get_current_user_ID();
 
 		?>
 			<a class="idea-factory vote-up" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
