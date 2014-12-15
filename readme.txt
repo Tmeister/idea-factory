@@ -21,6 +21,8 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 * Limited to logged in users for now
 * 1 vote allowed per user per idea
 * Emails the admin of a new submission
+* Automatic setup or use anywhere with a shortcode
+* Optionally set a threshold where each idea will be given a status based on total votes and emails the admin
 * Extensible with hooks and actions on events
 * More ideas loaded with AJAX on front-end
 * Mobile friendly
@@ -49,7 +51,11 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 
 == Screenshots ==
 
-1. Front end votes view.
+1. What you see when you visit yoursite.com/ideas
+2. User submit new ideas within a popup modal
+3. New ideas are logged as a custom post type
+4. You can change a few settings here
+5. And more settings here
 
 == Upgrade Notice ==
 
@@ -57,6 +63,14 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 * Initial Release
 
 == Changelog ==
+
+= 1.1 =
+* NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
+* NEW - Added an option to manually reset all votes on all ideas back to zero
+* NEW - Added a status column within the edit posts screen to show the status of each idea
+* NEW - Added a shortcode [idea_factory] to show the ideas and voting form with options to hide the form, votes, or voting
+* NEW - Added an option to disable the automatic archive
+* TWEAK - Instead of posts being put into draft when the option is selected, they are put into "pending" allowing proper review
 
 = 1.0 =
 * Initial Release

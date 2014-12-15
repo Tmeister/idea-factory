@@ -41,6 +41,8 @@ class Idea_Factory_Admin {
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.settings.php');
+		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.meta.php');
+		require_once(IDEA_FACTORY_DIR.'/admin/includes/class.column-mods.php');
 
 
 	}
