@@ -189,6 +189,30 @@ function idea_factory_is_voting_active( $postid = '' ) {
 }
 
 /**
+* 	Adds a public vote entry into the databse
+*
+* 	@since    1.2
+*/
+function idea_factory_add_public_vote( $args = array() ) {
+
+	$db = new ideaFactoryDB;
+
+	$defaults = array(
+		'postid' => get_the_ID(),
+		'time'   => current_time('timestamp'),
+		'ip'   	 => isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0,
+	);
+
+	$args = array_merge( $defaults, $args );
+
+	if ( empty( $args['postid'] ) )
+		return;
+
+	$db->insert( $args );
+
+}
+
+/**
 *
 *
 *	ALL PLUGGABLE BELOW

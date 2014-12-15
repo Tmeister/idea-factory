@@ -239,6 +239,14 @@ class if_settings_api_wrap {
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 ),
+                array(
+                    'name' 				=> 'if_public_voting',
+                    'label' 			=> __( 'Enable Public Voting', 'idea-factory' ),
+                    'desc' 				=> __( 'Enable the public (non logged in users) to submit and vote on new ideas.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
+                ),
             	array(
                     'name' 				=> 'if_threshold',
                     'label' 			=> __( 'Voting Threshold', 'idea-factory' ),

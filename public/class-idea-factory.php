@@ -65,7 +65,8 @@ class Idea_Factory {
 		require_once(IDEA_FACTORY_DIR.'/public/includes/class.shortcodes.php');
 
 		// Load plugin text domain
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', 			array( $this, 'load_plugin_textdomain' ) );
+		add_action('plugins_loaded', 	array($this,'upgrade'));
 	}
 
 	/**
@@ -219,7 +220,23 @@ class Idea_Factory {
 	 * @since    0.0.1
 	 */
 	private static function single_activate() {
+
 		flush_rewrite_rules();
+
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'idea_factory';
+
+		$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			postid bigint(20) NOT NULL,
+			time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+			ip varchar(20) NOT NULL,
+			UNIQUE KEY id (id)
+		);";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
 	}
 
 	/**
@@ -242,6 +259,46 @@ class Idea_Factory {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		$out = load_textdomain( $domain, trailingslashit( IDEA_FACTORY_DIR ). 'languages/' . $domain . '-' . $locale . '.mo' );
+	}
+
+	/**
+	*
+	*	Run on plugin upgrade
+	*	@since 1.2
+	*/
+	function upgrade(){
+
+		$version = get_option('idea_factory_version', true );
+
+		if ( $version != IDEA_FACTORY_VERSION ) {
+
+			self::upgrade_install_db();
+
+		}
+	}
+
+	/**
+	*
+	*	Create public database tabes on upgrade
+	*	@since 1.2
+	*/
+	function upgrade_install_db(){
+
+		$table_name = $wpdb->prefix . 'idea_factory';
+
+		$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			postid bigint(20) NOT NULL,
+			time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+			ip varchar(20) NOT NULL,
+			UNIQUE KEY id (id)
+		);";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+
+		update_option('idea_factory_version', $version );
+
 	}
 }
 
