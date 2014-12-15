@@ -59,11 +59,11 @@ class if_settings_api_wrap {
 
 			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
 
-			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
+			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the private (logged-in) votes. Warning, there is no going back!','idea-factory');?></label>
 			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes" href="#"><?php _e('Reset Logged-in Votes','idea-factory');?></a>
 
 			<?php if ( true == idea_factory_has_public_votes() ) { ?>
-				<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
+				<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the public (logged-out) votes. Warning, there is no going back!','idea-factory');?></label>
 				<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes reset-db" href="#"><?php _e('Reset Public Votes','idea-factory');?></a>
 			<?php }
 
