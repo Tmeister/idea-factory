@@ -66,6 +66,7 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 
 = 1.1 =
 * NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
+* NEW - Added a dropdown box on all ideas to manually change the status
 * NEW - Added an option to manually reset all votes on all ideas back to zero
 * NEW - Added a status column within the edit posts screen to show the status of each idea
 * NEW - Added a shortcode [idea_factory] to show the ideas and voting form with options to hide the form, votes, or voting
