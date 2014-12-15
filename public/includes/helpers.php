@@ -178,7 +178,9 @@ function idea_factory_is_voting_active( $postid = '' ) {
 	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
 	$status      	= idea_factory_get_status( $postid );
 
-	if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){
+	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+	if ( !$has_voted && ( is_user_logged_in() || $public_can_vote ) && 'approved' !== $status ){
 
 		return true;
 
@@ -228,7 +230,9 @@ if ( !function_exists('idea_factory_submit_modal') ):
 
 	function idea_factory_submit_modal(){
 
-		if ( is_user_logged_in() ): ?>
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<div class="modal fade idea-factory-modal" tabindex="-1">
 				<div class="modal-dialog ">
@@ -282,8 +286,9 @@ if ( !function_exists('idea_factory_submit_header') ):
 	function idea_factory_submit_header(){
 
 		$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		if ( is_user_logged_in() ): ?>
+		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<aside class="idea-factory--layout-submit">
 
