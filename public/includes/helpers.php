@@ -206,15 +206,15 @@ if ( !function_exists('idea_factory_submit_modal') ):
 
 		if ( is_user_logged_in() ): ?>
 
-			<div class="modal fade idea-factory-modal" tabindex="-1">
-				<div class="modal-dialog ">
-				    <div class="modal-content">
-				    	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
+			<div class="fade idea-factory-modal" tabindex="-1">
+				<div class="idea-factory-modal-dialog ">
+				    <div class="idea-factory-modal-content">
+				    	<button type="button" class="close" data-dismiss="idea-factory-modal"><span aria-hidden="true">&times;</button>
 
-				    	<div class="modal-header">
-				    		<h3 class="modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
+				    	<div class="idea-factory-modal-header">
+				    		<h3 class="idea-factory-modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
 				    	</div>
-				    	<div class="modal-body">
+				    	<div class="idea-factory-modal-body">
 
 							<div id="idea-factory--entry--form-results"></div>
 							<form id="idea-factory--entry--form" method="post" enctype="multipart/form-data">
@@ -233,7 +233,7 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
-								<div class="modal-footer">
+								<div class="idea-factory-modal-footer">
 									<input class="idea-factory--button" type="submit" value="<?php apply_filters('idea_factory_submit_label', _e('Submit','idea-factory'));?>">
 								</div>
 							</form>
@@ -273,7 +273,7 @@ if ( !function_exists('idea_factory_submit_header') ):
 
 					<?php do_action('idea_factory_before_submit_button'); ?>
 
-						<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e('Submit Idea','idea-factory');?></a>
+						<a href="#" data-toggle="idea-factory-modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e('Submit Idea','idea-factory');?></a>
 
 					<?php do_action('idea_factory_after_submit_button'); ?>
 

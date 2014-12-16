@@ -1,7 +1,7 @@
-.modal-open {
+.idea-factory-modal-open {
     overflow: hidden;
 }
-.modal {
+.idea-factory-modal {
     display: none;
     overflow: hidden;
     position: fixed;
@@ -13,24 +13,24 @@
     -webkit-overflow-scrolling: touch;
     outline: 0;
 
-    &.fade .modal-dialog {
+    &.fade .idea-factory-modal-dialog {
         .translate(0, -25%);
         .transition-transform(~"0.3s ease-out");
     }
-    &.in .modal-dialog { .translate(0, 0) }
+    &.in .idea-factory-modal-dialog { .translate(0, 0) }
 }
-.modal-open .modal {
+.idea-factory-modal-open .idea-factory-modal {
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.modal-dialog {
+.idea-factory-modal-dialog {
     position: relative;
     width: auto;
     margin: 10px;
 }
 
-.modal-content {
+.idea-factory-modal-content {
     position: relative;
     background-color: @modal--content-bg;
     border: 1px solid @modal--content-fallback-border-color; //old browsers fallback (ie8 etc)
@@ -42,7 +42,7 @@
     outline: 0;
 }
 
-.modal-backdrop {
+.idea-factory-modal-backdrop {
     position: absolute;
     top: 0;
     right: 0;
@@ -53,26 +53,26 @@
     &.in { .opacity(@modal--backdrop-opacity); }
 }
 
-.modal-header {
+.idea-factory-modal-header {
     padding: @modal--title_padding;
     border-bottom: 1px solid @modal--header-border-color;
     min-height: (@modal--title_padding + @modal--title-line-height);
 }
-.modal-header .close {
+.idea-factory-modal-header .close {
     margin-top: -2px;
 }
 
-.modal-title {
+.idea-factory-modal-title {
     margin: 0;
     line-height: @modal--title-line-height;
 }
 
-.modal-body {
+.idea-factory-modal-body {
     position: relative;
     padding: @modal--innerpadding;
 }
 
-.modal-footer {
+.idea-factory-modal-footer {
     padding-top: @modal--innerpadding;
     text-align: left; // right align buttons
     &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
@@ -104,7 +104,7 @@
     }
 
 }
-.modal-scrollbar-measure {
+.idea-factory-modal-scrollbar-measure {
     position: absolute;
     top: -9999px;
     width: 50px;
@@ -114,19 +114,19 @@
 
 @media (min-width: 768px) {
 
-    .modal-dialog {
+    .idea-factory-modal-dialog {
         width: @modal--md;
         margin: 80px auto 30px;
     }
-    .modal-content {
+    .idea-factory-modal-content {
         .box-shadow(0 5px 15px rgba(0,0,0,.5));
     }
 
-    .modal-sm { width: @modal--sm; }
+    .idea-factory-modal-sm { width: @modal--sm; }
 }
 
 @media (min-width: 992px) {
-    .modal-lg { width: @modal--lg; }
+    .idea-factory-modal-lg { width: @modal--lg; }
 }
 
 // CLOSE
