@@ -78,104 +78,104 @@ msgstr "Marque esta casilla de verificación para activar nuevas ideas presentad
 
 #: ../admin/includes/class.settings.php:105
 msgid "Header Image Height"
-msgstr ""
+msgstr "Altura de la Imagen del Encabezado"
 
 #: ../admin/includes/class.settings.php:106
 msgid "Height of the masthead."
-msgstr ""
+msgstr "Altura del tope."
 
 #: ../admin/includes/class.settings.php:115
 msgid "Disable Core CSS"
-msgstr ""
+msgstr "Desactivar el CSS Nucleo"
 
 #: ../admin/includes/class.settings.php:116
 msgid "Disable the core css file from loading."
-msgstr ""
+msgstr "Desactivar el núcleo archivo css de cargar."
 
 #: ../admin/includes/class.settings.php:123
 msgid "Disable Emails"
-msgstr ""
+msgstr "Desactivar los correos electrónicos"
 
 #: ../admin/includes/class.settings.php:124
 msgid "Disable the admin email notification of new submissions."
-msgstr ""
+msgstr "Desactivar la notificación de correo electrónico de administración de las presentaciones nuevas."
 
 #: ../includes/class.process-entry.php:59
 msgid "Thanks for your entry!"
-msgstr ""
+msgstr "¡Gracias por su entrada!"
 
 #: ../includes/class.type.php:27 ../includes/class.type.php:40
 msgid "Ideas"
-msgstr ""
+msgstr "Ideas"
 
 #: ../includes/class.type.php:28
 msgid "Parent Idea:"
-msgstr ""
+msgstr "Idea Matriz:"
 
 #: ../includes/class.type.php:29
 msgid "All Ideas"
-msgstr ""
+msgstr "Todas las Ideas"
 
 #: ../includes/class.type.php:30
 msgid "View Idea"
-msgstr ""
+msgstr "Ver Idea"
 
 #: ../includes/class.type.php:31
 msgid "Add New Idea"
-msgstr ""
+msgstr "Añada Nueva Idea"
 
 #: ../includes/class.type.php:32
 msgid "New Idea"
-msgstr ""
+msgstr "Nueva Idea"
 
 #: ../includes/class.type.php:33
 msgid "Edit Idea"
-msgstr ""
+msgstr "Edite Idea"
 
 #: ../includes/class.type.php:34
 msgid "Update Idea"
-msgstr ""
+msgstr "Actualice Idea"
 
 #: ../includes/class.type.php:35
 msgid "Search Ideas"
-msgstr ""
+msgstr "Busque Ideas"
 
 #: ../includes/class.type.php:36
-msgid "No Ideas found"
-msgstr ""
+msgid "No Ideas Found"
+msgstr "No Hay Ideas Encrontradas"
 
 #: ../includes/class.type.php:37
 msgid "No Ideas found in Trash"
-msgstr ""
+msgstr "No Hay Ideas Encrontradas en la Basura"
 
 #: ../includes/class.type.php:41
 msgid "Create votes"
-msgstr ""
+msgstr "Cree votos"
 
 #: ../public/includes/class.assets.php:34
 msgid "Load more ideas"
-msgstr ""
+msgstr "Cargue más ideas"
 
 #: ../public/includes/class.assets.php:35
-msgid "Loading ideas..."
-msgstr ""
+msgid "Loading ideas ..."
+msgstr "Cargando ideas ..."
 
 #: ../templates/template-ideas.php:94
 msgid "No ideas found. Why not submit one?"
-msgstr ""
+msgstr "No hay ideas encrontradas. ¿Por qué no enviar uno?"
 
 #: ../templates/template-ideas.php:113
 msgid "Submit idea"
-msgstr ""
+msgstr "Envíe idea"
 
 #: ../templates/template-ideas.php:122
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: ../templates/template-ideas.php:125
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: ../templates/template-ideas.php:135
 msgid "Submit"
-msgstr ""
+msgstr "Envíe"
