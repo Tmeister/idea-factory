@@ -1,8 +1,8 @@
 === Idea Factory ===
 Contributors: nphaskins
 Author URI:  http://nickhaskins.com
-Plugin URI: http://nickhaskins.com/idea-factory
-Donate link: http://nickhaskins.com/idea-factory
+Plugin URI: http://wpideafactory.com/
+Donate link: http://wpideafactory.com/
 Tags: vote, voting, idea, feedback, user submission, front end submission, front end voting
 Requires at least: 3.8
 Tested up to: 4.1
