@@ -454,8 +454,8 @@ if ( !function_exists('idea_factory_vote_controls') ):
 		$userid 		= $public_can_vote && !is_user_logged_in() ? $ip : get_current_user_ID();
 
 		?>
-			<a class="idea-factory vote-up" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-up" data-user-id="<?php echo esc_attr( $userid );?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-user-id="<?php echo esc_attr( $userid );?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
 		<?php
 	}
 
