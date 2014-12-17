@@ -109,6 +109,11 @@ class if_settings_api_wrap {
 
 			<hr style="margin-top:20px;">
 
+			<h3 style="margin-bottom:0;"><?php _e('How the Threshold Works','idea-factory');?></h3> 
+			<p style="margin-top:5px;"><?php _e('The threshold allows individual ideas to automatically be assigned a status based on a grading formula. For example, if you set this threshold to 10, then when the total votes reaches 10 it will trigger the grading. A vote up, and vote down, both count. In the end, if the total votes is over 10, and the total up votes is over 10, it passes. If not, it fails. Otherwise, the status remains open.','idea-factory');?></p>
+
+			<hr style="margin-top:20px;">
+
 			<h3 style="margin-bottom:0;"><?php _e('Reset','idea-factory');?></h3> 
 			<p style="margin-top:5px;"><?php _e('On your left you will see the Reset option. When you click into this menu, and you click the red Reset button, it will reset all the votes back to zero. There is no going back, so be sure this is what you want to do when you click that button.','idea-factory');?></p>
 

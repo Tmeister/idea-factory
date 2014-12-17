@@ -24,10 +24,12 @@ class ideaFactoryColumnMods {
 	    unset(
 	    	$item['title'],
 			$item['date'],
+			$item['author'],
 			$item['comments']
 		);
 
 	    $item['title'] 		= __('Title','idea-factory');
+	    $item['author'] 	= __('Author','idea-factory');
 	    $item['idea_status'] = __('Idea Status','idea-factory');
 		$item['date'] 		= __('Date Published','idea-factory');
 

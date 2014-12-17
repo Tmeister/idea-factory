@@ -175,12 +175,14 @@ function idea_factory_is_archive(){
 */
 function idea_factory_is_voting_active( $postid = '' ) {
 
-	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
+
 	$status      	= idea_factory_get_status( $postid );
 
 	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-	if ( ( !$has_voted && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
+	//if ( ( !idea_factory_has_private_voted( $postid ) && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
+
+	if ( ( ( false == idea_factory_has_private_voted( $postid ) && is_user_logged_in()) || false == idea_factory_has_public_voted( $postid ) && $public_can_vote && !is_user_logged_in() ) && 'approved' !== $status ){
 
 		return true;
 
@@ -300,6 +302,34 @@ function idea_factory_has_public_votes(){
 		return false;
 
 	}
+}
+
+/**
+*
+*	The variables being localized 
+*	@param $max int max number of pages
+*	@param $paged
+*	@since 1.2
+*/
+function idea_factory_localized_args( $max = '', $paged = '' ){
+
+	global $wp_query, $post;
+
+	$args = array(
+		'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+		'nonce'			=> wp_create_nonce('idea_factory'),
+		'error_message' => apply_filters('idea_factory_error',__('Awww snap, something went wrong!','idea-factory')),
+		'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
+		'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
+		'thanks_voting' => apply_filters('idea_factory_thanks_voting',__('Thanks for voting!','idea-factory')),
+		'alread_voted' 	=> apply_filters('idea_factory_alread_voted',__('You have already voted!','idea-factory')),
+		'startPage' 	=> $paged,
+		'maxPages' 		=> $max,
+		'nextLink' 		=> next_posts($max, false)
+	);
+
+	return apply_filters('idea_factory_localized_args', $args );
+
 }
 
 /**

@@ -57,15 +57,7 @@ class ideaFactoryShortcodes {
 
 				$max = $q->max_num_pages;
 
-				wp_localize_script('idea-factory-script', 'idea_factory', array(
-					'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
-					'nonce'			=> wp_create_nonce('idea_factory'),
-					'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
-					'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
-					'startPage' 	=> $paged,
-		 			'maxPages' 		=> $max,
-		 			'nextLink' 		=> next_posts($max, false)
-				));
+				wp_localize_script('idea-factory-script', 'idea_factory',  idea_factory_localized_args( $max , $paged ) );
 
 				if ( $q->have_posts() ):
 
