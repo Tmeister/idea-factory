@@ -448,14 +448,9 @@ if ( !function_exists('idea_factory_vote_controls') ):
 		if ( empty( $postid ) )
 			$postid = get_the_ID();
 
-		$ip              = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
-		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
-
-		$userid 		= $public_can_vote && !is_user_logged_in() ? $ip : get_current_user_ID();
-
 		?>
-			<a class="idea-factory vote-up" data-user-id="<?php echo esc_attr( $userid );?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-user-id="<?php echo esc_attr( $userid );?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-up" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
 		<?php
 	}
 
