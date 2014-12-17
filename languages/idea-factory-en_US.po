@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Idea Factory\n"
-"POT-Creation-Date: 2014-12-17 15:07-0600\n"
-"PO-Revision-Date: 2014-12-17 15:07-0600\n"
+"POT-Creation-Date: 2014-12-17 15:12-0600\n"
+"PO-Revision-Date: 2014-12-17 15:12-0600\n"
 "Last-Translator: Team Aesop <support@aesopinteractive.com>\n"
 "Language-Team:  <email@nickhaskins.com>\n"
 "Language: en_US\n"
@@ -58,7 +58,7 @@ msgid "Help"
 msgstr ""
 
 #: ../admin/includes/class.settings.php:46
-#: ../admin/includes/class.settings.php:112
+#: ../admin/includes/class.settings.php:117
 msgid "Reset"
 msgstr ""
 
@@ -149,7 +149,21 @@ msgid ""
 "difference is where the data is stored."
 msgstr ""
 
+#: ../admin/includes/class.settings.php:112
+msgid "How the Threshold Works"
+msgstr ""
+
 #: ../admin/includes/class.settings.php:113
+msgid ""
+"The threshold allows individual ideas to automatically be assigned a status "
+"based on a grading formula. For example, if you set this threshold to 10, "
+"then when the total votes reaches 10 it will trigger the grading. A vote up, "
+"and vote down, both count. In the end, if the total votes is over 10, and "
+"the total up votes is over 10, it passes. If not, it fails. Otherwise, the "
+"status remains open."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:118
 msgid ""
 "On your left you will see the Reset option. When you click into this menu, "
 "and you click the red Reset button, it will reset all the votes back to "
@@ -157,116 +171,116 @@ msgid ""
 "you click that button."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:117
+#: ../admin/includes/class.settings.php:122
 msgid "Developers"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:118
+#: ../admin/includes/class.settings.php:123
 msgid ""
 "Full documentation of hooks, actions, filters, and helper functions are "
 "available on the GitHub wiki page located <a href=\"https://github.com/"
 "bearded-avenger/idea-factory/wiki\">here</a>"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:191
+#: ../admin/includes/class.settings.php:196
 msgid "All logged-in votes reset!"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:212
+#: ../admin/includes/class.settings.php:217
 msgid "All public votes reset!!"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:220
+#: ../admin/includes/class.settings.php:225
 msgid "Idea Factory Settings"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:233
+#: ../admin/includes/class.settings.php:238
 msgid "Setup"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:237
+#: ../admin/includes/class.settings.php:242
 msgid "Advanced"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:251
+#: ../admin/includes/class.settings.php:256
 msgid "Naming Convention"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:252
+#: ../admin/includes/class.settings.php:257
 msgid "Link to ideas page"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:252
+#: ../admin/includes/class.settings.php:257
 msgid "By default its called Ideas. You can rename this here."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:254
+#: ../admin/includes/class.settings.php:259
 msgid "ideas"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:259
+#: ../admin/includes/class.settings.php:264
 msgid "Welcome Message"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:260
+#: ../admin/includes/class.settings.php:265
 msgid "Enter a message to display to users to vote. Some HTML ok."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:262 ../public/includes/helpers.php:408
+#: ../admin/includes/class.settings.php:267 ../public/includes/helpers.php:408
 msgid "Submit and vote for new features!"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:267
+#: ../admin/includes/class.settings.php:272
 msgid "Require Idea Approval"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:268
+#: ../admin/includes/class.settings.php:273
 msgid ""
 "Check this box to enable newly submitted ideas to be put into a pending "
 "status instead of automatically publishing."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:275
+#: ../admin/includes/class.settings.php:280
 msgid "Enable Public Voting"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:276
+#: ../admin/includes/class.settings.php:281
 msgid ""
 "Enable the public (non logged in users) to submit and vote on new ideas."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:283
+#: ../admin/includes/class.settings.php:288
 msgid "Voting Threshold"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:284
+#: ../admin/includes/class.settings.php:289
 msgid ""
 "Specify an optional number of votes that each idea must reach in order for "
 "its status to be automatically updated to \"approved\" , \"declined\", or "
 "\"open.\""
 msgstr ""
 
-#: ../admin/includes/class.settings.php:293
+#: ../admin/includes/class.settings.php:298
 msgid "Disable Core CSS"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:294
+#: ../admin/includes/class.settings.php:299
 msgid "Disable the core css file from loading."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:301
+#: ../admin/includes/class.settings.php:306
 msgid "Disable Emails"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:302
+#: ../admin/includes/class.settings.php:307
 msgid "Disable the admin email notification of new submissions."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:309
+#: ../admin/includes/class.settings.php:314
 msgid "Disable Archive"
 msgstr ""
 
-#: ../admin/includes/class.settings.php:310
+#: ../admin/includes/class.settings.php:315
 msgid ""
 "Disable the automatic archive. This assumes you will be using the shortcode "
 "instead to show the ideas on a page that you specify."
