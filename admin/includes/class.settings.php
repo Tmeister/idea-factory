@@ -137,31 +137,37 @@ class if_settings_api_wrap {
 
 		$nonce = wp_create_nonce('idea-factory-reset');
 
-		?>
-			<!-- Reset Votes -->
-			<script>
-				jQuery(document).ready(function($){
-					// reset post meta
-				  	jQuery('.idea-factory-reset--votes').click(function(e){
+		$screen = get_current_screen();
 
-				  		e.preventDefault();
+		if ( 'ideas_page_idea-factory-reset' == $screen->id ) {
 
-				  		var data = {
-				            action: $(this).hasClass('reset-db') ? 'idea_factory_db_reset' : 'idea_factory_reset',
-				            security: '<?php echo $nonce;?>'
-				        };
+			?>
+				<!-- Reset Votes -->
+				<script>
+					jQuery(document).ready(function($){
+						// reset post meta
+					  	jQuery('.idea-factory-reset--votes').click(function(e){
 
-					  	jQuery.post(ajaxurl, data, function(response) {
-					  		if( response ){
-					        	alert(response);
-					        	location.reload();
-					  		}
+					  		e.preventDefault();
+
+					  		var data = {
+					            action: $(this).hasClass('reset-db') ? 'idea_factory_db_reset' : 'idea_factory_reset',
+					            security: '<?php echo $nonce;?>'
+					        };
+
+						  	jQuery.post(ajaxurl, data, function(response) {
+						  		if( response ){
+						        	alert(response);
+						        	location.reload();
+						  		}
+						    });
+
 					    });
+					});
+				</script>
 
-				    });
-				});
-			</script>
-		<?php 
+		<?php }
+
 	}
 
 	/**
@@ -172,6 +178,9 @@ class if_settings_api_wrap {
 	function idea_factory_reset(){
 
 		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		if ( !current_user_can('manage_options') )
+			exit;
 
 		$posts = get_posts( array('post_type' => 'ideas', 'posts_per_page' => -1 ) );
 
@@ -207,6 +216,9 @@ class if_settings_api_wrap {
 	function idea_factory_db_reset(){
 
 		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		if ( !current_user_can('manage_options') )
+			exit;
 
 	    global $wpdb;
 

@@ -378,7 +378,6 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<?php do_action('idea_factory_inside_form_bottom');?>
 
 								<input type="hidden" name="action" value="process_entry">
-								<input type="hidden" name="user_id" value="<?php echo $userid; ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
 								<div class="idea-factory-modal-footer">
@@ -448,14 +447,9 @@ if ( !function_exists('idea_factory_vote_controls') ):
 		if ( empty( $postid ) )
 			$postid = get_the_ID();
 
-		$ip              = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
-		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
-
-		$userid 		= $public_can_vote && !is_user_logged_in() ? $ip : get_current_user_ID();
-
 		?>
-			<a class="idea-factory vote-up" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-user-id="<?php echo $userid;?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-up" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
 		<?php
 	}
 
