@@ -29,12 +29,20 @@ class ideaFactoryProcessVote {
 			$postid = $_POST['post_id'];
 			$userid = $_POST['user_id'];
 
+			// get vote statuses
+			$has_public_voted = idea_factory_has_public_voted( $postid );
+			$has_private_voted = idea_factory_has_private_voted( $postid );
+
 			// get votes
 			$votes 			=	get_post_meta( $postid, '_idea_votes', true );
 			$total_votes 	=	get_post_meta( $postid, '_idea_total_votes', true );
 
-			// public voting
+			// public voting enabled
 			$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
+			if ( $public_can_vote && $has_public_voted || $has_private_voted )
+				return;
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) + 1 );
@@ -74,9 +82,20 @@ class ideaFactoryProcessVote {
 			$postid = $_POST['post_id'];
 			$userid = $_POST['user_id'];
 
+			// get vote statuses
+			$has_public_voted = idea_factory_has_public_voted( $postid );
+			$has_private_voted = idea_factory_has_private_voted( $postid );
+
 			// get votes
 			$votes 			=	get_post_meta( $postid, '_idea_votes', true );
 			$total_votes 	=	get_post_meta( $postid, '_idea_total_votes', true );
+
+			// public voting enabled
+			$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
+			if ( $public_can_vote && $has_public_voted || $has_private_voted )
+				return;
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) - 1 );

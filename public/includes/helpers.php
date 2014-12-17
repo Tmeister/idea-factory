@@ -214,6 +214,35 @@ function idea_factory_add_public_vote( $args = array() ) {
 
 /**
 *
+*	Has the private (logged in) user voted
+*
+*	@since 1.2
+*	@param $postid int id of post to check
+*	@param $userid id of user to check againts
+*/
+function idea_factory_has_private_voted( $postid = '', $userid = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	if ( empty( $userid ) )
+		$userid = get_current_user_ID();
+
+	$has_voted 	= get_user_meta( $userid, '_idea'.absint( $postid ).'_has_voted', true);
+
+	if ( $has_voted ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
+*
 *	Has the public user voted
 *
 *	@since 1.2
