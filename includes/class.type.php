@@ -42,7 +42,7 @@ class ahIdeaType {
 			'label'               		=> __( 'Ideas', 'idea-factory' ),
 			'description'         		=> __( 'Create votes', 'idea-factory' ),
 			'labels'              		=> $labels,
-			'supports'            		=> array( 'editor','title', 'comments'),
+			'supports'            		=> array( 'editor','title', 'comments', 'author'),
 			'public'              		=> false,
 			'menu_icon'					=> 'dashicons-lightbulb',
 			'publicly_queryable'		=> true,
