@@ -378,7 +378,6 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<?php do_action('idea_factory_inside_form_bottom');?>
 
 								<input type="hidden" name="action" value="process_entry">
-								<input type="hidden" name="user_id" value="<?php echo $userid; ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
 								<div class="idea-factory-modal-footer">

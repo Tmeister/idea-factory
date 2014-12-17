@@ -23,7 +23,6 @@ class ideaFactoryProcessEntry {
 
 		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : apply_filters('idea_factory_default_public_author', 1 );
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
@@ -44,6 +43,15 @@ class ideaFactoryProcessEntry {
 					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
 
 				} else {
+
+					if ( is_user_logged_in() ) {
+
+						$userid = get_current_user_ID();
+
+					} elseif ( !is_user_logged_in() && $public_can_vote ) {
+
+						$userid = apply_filters('idea_factory_default_public_author', 1 );
+					}
 
 					// create an ideas post type
 					$post_args = array(
