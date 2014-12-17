@@ -18,11 +18,12 @@ Front end submission and voting system.
 Idea Factory was born out of necessity, and the frustration of the lack of plugins that did exactly what I wanted it to do. This plugin allows users to submit new ideas from the front-end, and vote on them. Currently it allows a user to vote once per idea, then locks them out. It's also currently limited to logged in users, for now.
 
 * AJAX powered front-end submission and voting
-* Limited to logged in users for now
+* Works for both logged in and logged out users
 * 1 vote allowed per user per idea
 * Emails the admin of a new submission
 * Automatic setup or use anywhere with a shortcode
 * Optionally set a threshold where each idea will be given a status based on total votes and emails the admin
+* Automatic status grading
 * Extensible with hooks and actions on events
 * More ideas loaded with AJAX on front-end
 * Mobile friendly
@@ -67,6 +68,8 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 = 1.2 =
 * NEW - Added an option to enable public voting
 * NEW - Added a reset button to reset public votes
+* NEW - Added "Author" to the Ideas
+* FIXED - Fixed strings that were not translatable
 
 = 1.1 =
 * NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
