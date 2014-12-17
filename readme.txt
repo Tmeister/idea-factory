@@ -70,6 +70,8 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 * NEW - Added a reset button to reset public votes
 * NEW - Added "Author" to the Ideas
 * FIXED - Fixed strings that were not translatable
+* FIXED - Fixed minor security that would allow vote spoofing
+* FIXED - Added capability checks to reset events
 
 = 1.1 =
 * NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
