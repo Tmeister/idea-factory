@@ -10,6 +10,7 @@ class ideaFactoryProcessEntry {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_entry', 				array($this, 'process_entry' ));
+		add_action( 'wp_ajax_nopriv_process_entry', 		array($this, 'process_entry' ));
 		add_action( 'idea_factory_entry_submitted',			array($this,'send_mail'), 10, 2);
 	}
 
@@ -20,7 +21,9 @@ class ideaFactoryProcessEntry {
 	*/
 	function process_entry(){
 
-		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : apply_filters('idea_factory_default_public_author', 1 );
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
@@ -28,8 +31,8 @@ class ideaFactoryProcessEntry {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_entry' ) {
 
-			// only run for logged in users
-			if( !is_user_logged_in() )
+			// only run for logged in users or if public is allowed
+			if( !is_user_logged_in() && 'on' !== $public_can_vote )
 				return;
 
 			// ok security passes so let's process some data

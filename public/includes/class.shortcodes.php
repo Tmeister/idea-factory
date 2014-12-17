@@ -73,7 +73,17 @@ class ideaFactoryShortcodes {
 
 						// setup some vars
 						$id             = get_the_ID();
-						$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+						if ( is_user_logged_in() ) {
+
+							$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+						} elseif( $public_can_vote ) {
+
+							$has_voted 		= idea_factory_has_public_voted( $id );
+
+						}
+
 						$total_votes 	= idea_factory_get_votes( $id );
 						$status      	= idea_factory_get_status( $id );
 
