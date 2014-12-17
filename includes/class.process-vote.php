@@ -41,8 +41,10 @@ class ideaFactoryProcessVote {
 			$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted )
-				return;
+			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+				echo 'already-voted';
+				die();
+			}
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) + 1 );
@@ -94,8 +96,10 @@ class ideaFactoryProcessVote {
 			$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted )
-				return;
+			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+				echo 'already-voted';
+				die();
+			}
 
 			// increase votes
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) - 1 );

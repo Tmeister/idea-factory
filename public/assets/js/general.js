@@ -46,6 +46,9 @@ jQuery(document).ready(function($){
 			if( response == 'success' ) {
 				$this.parent().addClass('voted');
 				$this.parent().html('Thanks for voting!');
+			} else if( 'already-voted' == response ) {
+				alert( 'You have already voted!' );
+				location.reload();
 			} else {
 				alert( 'Aww snap, something went wrong.' );
 				location.reload();
