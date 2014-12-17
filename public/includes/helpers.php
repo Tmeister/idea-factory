@@ -175,12 +175,14 @@ function idea_factory_is_archive(){
 */
 function idea_factory_is_voting_active( $postid = '' ) {
 
-	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
+
 	$status      	= idea_factory_get_status( $postid );
 
 	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-	if ( ( !$has_voted && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
+	//if ( ( !idea_factory_has_private_voted( $postid ) && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
+
+	if ( ( ( false == idea_factory_has_private_voted( $postid ) && is_user_logged_in()) || false == idea_factory_has_public_voted( $postid ) && $public_can_vote && !is_user_logged_in() ) && 'approved' !== $status ){
 
 		return true;
 
