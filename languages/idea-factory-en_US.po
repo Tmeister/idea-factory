@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Idea Factory\n"
-"POT-Creation-Date: 2014-12-15 14:40-0600\n"
-"PO-Revision-Date: 2014-12-15 14:40-0600\n"
+"POT-Creation-Date: 2014-12-17 15:07-0600\n"
+"PO-Revision-Date: 2014-12-17 15:07-0600\n"
 "Last-Translator: Team Aesop <support@aesopinteractive.com>\n"
 "Language-Team:  <email@nickhaskins.com>\n"
 "Language: en_US\n"
@@ -15,17 +15,21 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/includes/class.column-mods.php:30
-#: ../public/includes/helpers.php:310
+#: ../admin/includes/class.column-mods.php:31
+#: ../public/includes/helpers.php:372
 msgid "Title"
 msgstr ""
 
-#: ../admin/includes/class.column-mods.php:31
+#: ../admin/includes/class.column-mods.php:32
+msgid "Author"
+msgstr ""
+
+#: ../admin/includes/class.column-mods.php:33
 #: ../admin/includes/class.meta.php:31
 msgid "Idea Status"
 msgstr ""
 
-#: ../admin/includes/class.column-mods.php:32
+#: ../admin/includes/class.column-mods.php:34
 msgid "Date Published"
 msgstr ""
 
@@ -208,7 +212,7 @@ msgstr ""
 msgid "Enter a message to display to users to vote. Some HTML ok."
 msgstr ""
 
-#: ../admin/includes/class.settings.php:262 ../public/includes/helpers.php:346
+#: ../admin/includes/class.settings.php:262 ../public/includes/helpers.php:408
 msgid "Submit and vote for new features!"
 msgstr ""
 
@@ -320,45 +324,55 @@ msgstr ""
 msgid "Create votes"
 msgstr ""
 
-#: ../public/includes/class.assets.php:34
-#: ../public/includes/class.shortcodes.php:63
-msgid "Load more ideas"
-msgstr ""
-
-#: ../public/includes/class.assets.php:35
-#: ../public/includes/class.shortcodes.php:64
-msgid "Loading ideas..."
-msgstr ""
-
-#: ../public/includes/class.shortcodes.php:111
+#: ../public/includes/class.shortcodes.php:103
 #: ../templates/template-ideas.php:57
 #, php-format
 msgid "%s vote"
 msgstr ""
 
-#: ../public/includes/class.shortcodes.php:118
+#: ../public/includes/class.shortcodes.php:110
 #: ../templates/template-ideas.php:64
 #, php-format
 msgid "%s votes"
 msgstr ""
 
-#: ../public/includes/class.shortcodes.php:153
+#: ../public/includes/class.shortcodes.php:145
 #: ../templates/template-ideas.php:100
 msgid "No ideas found. Why not submit one?"
 msgstr ""
 
-#: ../public/includes/helpers.php:301
-msgid "Submit idea"
+#: ../public/includes/helpers.php:321
+msgid "Awww snap, something went wrong!"
 msgstr ""
 
-#: ../public/includes/helpers.php:313
-msgid "Description"
+#: ../public/includes/helpers.php:322
+msgid "Load more ideas"
 msgstr ""
 
 #: ../public/includes/helpers.php:323
-msgid "Submit"
+msgid "Loading ideas..."
+msgstr ""
+
+#: ../public/includes/helpers.php:324
+msgid "Thanks for voting!"
+msgstr ""
+
+#: ../public/includes/helpers.php:325
+msgid "You have already voted!"
 msgstr ""
 
 #: ../public/includes/helpers.php:363
+msgid "Submit idea"
+msgstr ""
+
+#: ../public/includes/helpers.php:375
+msgid "Description"
+msgstr ""
+
+#: ../public/includes/helpers.php:385
+msgid "Submit"
+msgstr ""
+
+#: ../public/includes/helpers.php:425
 msgid "Submit Idea"
 msgstr ""

@@ -2,7 +2,10 @@ jQuery(document).ready(function($){
 
 	//vars
 	var ajaxurl			= idea_factory.ajaxurl,
-		results         = $('#idea-factory--entry--form-results');
+		results         = $('#idea-factory--entry--form-results'),
+		thanks_voting   = idea_factory.thanks_voting,
+		already_voted   = idea_factory.label,
+		error_message 	= idea_factory.error_message;
 
 
 	// entry handler
@@ -43,16 +46,25 @@ jQuery(document).ready(function($){
 		};
 
 		$.post( ajaxurl, data, function(response) {
+
 			if( response == 'success' ) {
+
 				$this.parent().addClass('voted');
-				$this.parent().html('Thanks for voting!');
+				$this.parent().html( thanks_voting );
+
 			} else if( 'already-voted' == response ) {
-				alert( 'You have already voted!' );
+
+				alert( already_voted );
 				location.reload();
+
 			} else {
-				alert( 'Aww snap, something went wrong.' );
+
+				alert( error_message );
 				location.reload();
+
 			}
-		} );
+
+		});
+
 	});
 });
