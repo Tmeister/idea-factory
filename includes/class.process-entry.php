@@ -98,16 +98,16 @@ class ideaFactoryProcessEntry {
 		$entry       	= get_post( $entry_id );
 		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
 
-		$message = "Submitted by: ".$user->display_name.".\n\n";
-		$message .= "Title:\n";
-		$message .= "".$entry->post_title."\n\n";
-		$message .= "Description:\n";
-		$message .= "".$entry->post_content."\n\n";
-		$message .= "Manage ideas at link below\n";
-		$message .= "".wp_login_url()."\n\n";
+		$message = sprintf(__("Submitted by: %s", 'idea-factory'), $user->display_name) .".\n\n";
+		$message .= __("Title:", 'idea-factory') . "\n";
+		$message .= $entry->post_title."\n\n";
+		$message .= __("Description:", 'idea-factory') . "\n";
+		$message .= $entry->post_content."\n\n";
+		$message .= __("Manage all ideas at", 'idea-factory') . "\n";
+		$message .= admin_url('edit.php?post_type=ideas');
 
 		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
-			wp_mail( $admin_email, 'New Idea Submission - '.$entry_id.' ', $message );
+                    wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message );
 
 	}
 
