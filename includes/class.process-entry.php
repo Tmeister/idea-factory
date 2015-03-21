@@ -102,7 +102,7 @@ class ideaFactoryProcessEntry {
 		$message .= "Manage ideas at link below\n";
 		$message .= "".wp_login_url()."\n\n";
 
-		if ( !$mail_disabled )
+		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
 			wp_mail( $admin_email, 'New Idea Submission - '.$entry_id.' ', $message );
 
 	}
