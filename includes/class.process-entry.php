@@ -40,7 +40,7 @@ class ideaFactoryProcessEntry {
 				// bail if we dont have rquired fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
-					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
+					printf(('<div class="error">%s</div>'), __('Whoopsy! Looks like you forgot the Title and/or description.', 'idea-factory'));
 
 				} else {
 
@@ -69,6 +69,10 @@ class ideaFactoryProcessEntry {
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
 					_e('Thanks for your entry!','idea-factory');
+                                        if($must_approve == 'pending'){
+                                            echo "<br/>";
+                                            _e('You suggestion is awaiting moderation.','idea-factory');
+                                        }
 
 				}
 
