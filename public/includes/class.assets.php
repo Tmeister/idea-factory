@@ -8,7 +8,7 @@
 class ideaFactoryAssetLoader {
 
 	function __construct(){
-		add_action('wp_enqueue_scripts', array($this,'scripts'));
+		add_action('wp_enqueue_scripts', array($this,'scripts'), 99);
 	}
 
 	function scripts(){
