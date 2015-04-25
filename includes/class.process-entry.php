@@ -40,7 +40,7 @@ class ideaFactoryProcessEntry {
 				// bail if we dont have rquired fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
-					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
+					printf(('<div class="error">%s</div>'), __('Whoopsy! Looks like you forgot the Title and/or description.', 'idea-factory'));
 
 				} else {
 
@@ -69,6 +69,10 @@ class ideaFactoryProcessEntry {
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
 					_e('Thanks for your entry!','idea-factory');
+                                        if($must_approve == 'pending'){
+                                            echo "<br/>";
+                                            _e('You suggestion is awaiting moderation.','idea-factory');
+                                        }
 
 				}
 
@@ -94,16 +98,16 @@ class ideaFactoryProcessEntry {
 		$entry       	= get_post( $entry_id );
 		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
 
-		$message = "Submitted by: ".$user->display_name.".\n\n";
-		$message .= "Title:\n";
-		$message .= "".$entry->post_title."\n\n";
-		$message .= "Description:\n";
-		$message .= "".$entry->post_content."\n\n";
-		$message .= "Manage ideas at link below\n";
-		$message .= "".wp_login_url()."\n\n";
+		$message = sprintf(__("Submitted by: %s", 'idea-factory'), $user->display_name) .".\n\n";
+		$message .= __("Title:", 'idea-factory') . "\n";
+		$message .= $entry->post_title."\n\n";
+		$message .= __("Description:", 'idea-factory') . "\n";
+		$message .= $entry->post_content."\n\n";
+		$message .= __("Manage all ideas at", 'idea-factory') . "\n";
+		$message .= admin_url('edit.php?post_type=ideas');
 
-		if ( !$mail_disabled )
-			wp_mail( $admin_email, 'New Idea Submission - '.$entry_id.' ', $message );
+		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
+                    wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message );
 
 	}
 
