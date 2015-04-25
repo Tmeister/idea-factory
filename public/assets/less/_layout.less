@@ -61,6 +61,11 @@
 // main article
 .idea-factory--entry-wrap {
     .clearfix();
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
     padding:@entry--wrap_padding;
 
     &:nth-child(even){
@@ -79,19 +84,18 @@
 .idea-factory--entry {
     font-size:@entry--font_size;
     line-height: @entry--font_lineheight;
+    width: 100%;
     h2 {
         margin:0 auto;
         font-size:@entry--title_fontsize;
         line-height: @entry--title_lineheight;
         font-weight:bold;
     }
+    p{
+		margin: 0;
+    }
 }
 
-// vote controls
-.idea-factory--controls,
-.idea-factory--entry {
-    float: left;
-}
 .idea-factory--controls {
     width:100px;
     text-align: center;
@@ -117,6 +121,8 @@
     width:30px;
     font-size:@icon--font_size;
     margin-bottom: 4px;
+    text-decoration: none;
+    border-bottom: 0 none;
 
     &:after {
         font-family:Dashicons;
