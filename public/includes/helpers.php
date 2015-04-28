@@ -357,7 +357,7 @@ if ( !function_exists('idea_factory_submit_modal') ):
 			<div class="fade idea-factory-modal" tabindex="-1">
 				<div class="idea-factory-modal-dialog ">
 				    <div class="idea-factory-modal-content">
-				    	<button type="button" class="close" data-dismiss="idea-factory-modal"><span aria-hidden="true">&times;</button>
+						<button type="button" class="close" data-dismiss="idea-factory-modal"><span aria-hidden="true">&times;</span></button>
 
 				    	<div class="idea-factory-modal-header">
 				    		<h3 class="idea-factory-modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
