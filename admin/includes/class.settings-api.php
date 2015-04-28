@@ -131,7 +131,7 @@ class WeDevs_Settings_API {
         $value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
         $size = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
         $html = sprintf( '<input type="text" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
-        $html .= sprintf( '<span class="description"> %s</span>', $args['desc'] );
+        $html .= sprintf( '<br/><span class="description"> %s</span>', $args['desc'] );
         echo $html;
     }
     /**
