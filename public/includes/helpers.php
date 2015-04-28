@@ -306,7 +306,7 @@ function idea_factory_has_public_votes(){
 
 /**
 *
-*	The variables being localized 
+*	The variables being localized
 *	@param $max int max number of pages
 *	@param $paged
 *	@since 1.2
@@ -322,7 +322,7 @@ function idea_factory_localized_args( $max = '', $paged = '' ){
 		'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
 		'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
 		'thanks_voting' => apply_filters('idea_factory_thanks_voting',__('Thanks for voting!','idea-factory')),
-		'alread_voted' 	=> apply_filters('idea_factory_alread_voted',__('You have already voted!','idea-factory')),
+		'already_voted' => apply_filters('idea_factory_already_voted',__('You have already voted!','idea-factory')),
 		'startPage' 	=> $paged,
 		'maxPages' 		=> $max,
 		'nextLink' 		=> next_posts($max, false)

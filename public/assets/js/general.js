@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 	var ajaxurl			= idea_factory.ajaxurl,
 		results         = $('#idea-factory--entry--form-results'),
 		thanks_voting   = idea_factory.thanks_voting,
-		already_voted   = idea_factory.label,
+		already_voted   = idea_factory.already_voted,
 		error_message 	= idea_factory.error_message;
 
 
@@ -55,12 +55,10 @@ jQuery(document).ready(function($){
 			} else if( 'already-voted' == response ) {
 
 				alert( already_voted );
-				location.reload();
 
 			} else {
 
 				alert( error_message );
-				location.reload();
 
 			}
 
