@@ -302,7 +302,16 @@ class if_settings_api_wrap {
                     'type' 				=> 'text',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_int'
+                ),
+				array(
+                    'name' 				=> 'if_positive_only',
+                    'label'				=> __( 'Positive Votes Only', 'idea-factory' ),
+                    'desc'				=> __( 'Check this box to only allow positive votes.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 )
+
             ),
             'if_settings_advanced' 	=> array(
             	array(
@@ -378,9 +387,3 @@ class if_settings_api_wrap {
 endif;
 
 $settings = new if_settings_api_wrap();
-
-
-
-
-
-

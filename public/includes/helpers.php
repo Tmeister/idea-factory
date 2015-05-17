@@ -56,7 +56,7 @@ function idea_factory_get_votes( $postid = 0 ) {
 
 /**
 *
-*	Grab an optoin from our settings
+*	Grab an option from our settings
 *
 *	@param $option string name of the option
 *	@param $section string name of the section
@@ -448,9 +448,14 @@ if ( !function_exists('idea_factory_vote_controls') ):
 			$postid = get_the_ID();
 
 		?>
-			<a class="idea-factory vote-up" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-		<?php
+			<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a> 
+			
+            <?php
+			$positive 	= idea_factory_get_option('if_positive_only','if_settings_main');
+			if ( 'on' !== $positive ) { 
+			?> <a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?> " href="#"></a>
+				<?php
+			}
 	}
 
 endif;
