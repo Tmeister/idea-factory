@@ -1,11 +1,11 @@
 === Idea Factory ===
-Contributors: nphaskins
+Contributors: nphaskins, tmeister
 Author URI:  http://nickhaskins.com
 Plugin URI: http://wpideafactory.com/
 Donate link: http://wpideafactory.com/
 Tags: vote, voting, idea, feedback, user submission, front end submission, front end voting
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -72,6 +72,10 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 * FIXED - Fixed strings that were not translatable
 * FIXED - Fixed minor security that would allow vote spoofing
 * FIXED - Added capability checks to reset events
+* FIXED - Only show the Idea Status if threshold is "on" in the ideas list
+* FIXED - Fixed broken check for admin notification
+* FIXED - Frontend UI improvements
+* FIXED - Added high priority to load the plugin styles after the theme styles to avoid CSS override and to not use !important.
 
 = 1.1 =
 * NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
