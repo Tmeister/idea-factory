@@ -179,7 +179,7 @@ msgstr ""
 msgid ""
 "Full documentation of hooks, actions, filters, and helper functions are "
 "available on the GitHub wiki page located <a href=\"https://github.com/"
-"bearded-avenger/idea-factory/wiki\">here</a>"
+"tmeister/idea-factory/wiki\">here</a>"
 msgstr ""
 
 #: ../admin/includes/class.settings.php:196

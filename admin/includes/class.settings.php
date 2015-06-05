@@ -42,7 +42,7 @@ class if_settings_api_wrap {
 
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
-		add_submenu_page( 'edit.php?post_type=ideas', 'Help', __('Help','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );		
+		add_submenu_page( 'edit.php?post_type=ideas', 'Help', __('Help','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );
 		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
 	}
 
@@ -86,12 +86,12 @@ class if_settings_api_wrap {
 			?><h2 style="margin-bottom:0;"><?php _e('Idea Factory Documentation','idea-factory');?></h2>
 			<hr>
 
-			<h3 style="margin-bottom:0;"><?php _e('The Basics','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('The Basics','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('After you activate <em>Idea Factory</em>, it will automatically be available at <a href="'.get_post_type_archive_link( $domain ).'" target="_blank">'.get_post_type_archive_link( $domain ).'</a>. You can rename this in the settings or deactivate it all together and use the shortcode instead. By default voting is limited to logged in users, however you can activate public voting that would work (in addition to) logged in voting.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('The Shortcode','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('The Shortcode','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('You can additionally display the form and ideas via a shortcode as documented below.','idea-factory');?></p>
 
 			<code>[idea_factory hide_submit="off" hide_votes="off" hide_voting="off"]</code>
@@ -104,23 +104,23 @@ class if_settings_api_wrap {
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('How Voting Works','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('How Voting Works','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('Voting is available to logged in users, and logged out users (with the option enabled). Total votes are stored in the post meta table for (logged in users). Once a user votes, a flag is recorded in the user_meta table (logged in users), preventing this user from being able to vote again on the same idea.</br></br>In the case of public voting, voters IP addresses are recorded into a custom table. From there the logic works the same, only difference is where the data is stored.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('How the Threshold Works','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('How the Threshold Works','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('The threshold allows individual ideas to automatically be assigned a status based on a grading formula. For example, if you set this threshold to 10, then when the total votes reaches 10 it will trigger the grading. A vote up, and vote down, both count. In the end, if the total votes is over 10, and the total up votes is over 10, it passes. If not, it fails. Otherwise, the status remains open.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('Reset','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('Reset','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('On your left you will see the Reset option. When you click into this menu, and you click the red Reset button, it will reset all the votes back to zero. There is no going back, so be sure this is what you want to do when you click that button.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('Developers','idea-factory');?></h3> 
-			<p style="margin-top:5px;"><?php _e('Full documentation of hooks, actions, filters, and helper functions are available on the GitHub wiki page located <a href="https://github.com/bearded-avenger/idea-factory/wiki">here</a>','idea-factory');?>.</p>
+			<h3 style="margin-bottom:0;"><?php _e('Developers','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('Full documentation of hooks, actions, filters, and helper functions are available on the GitHub wiki page located <a href="https://github.com/tmeister/idea-factory/wiki">here</a>','idea-factory');?>.</p>
 
 			<?php
 
