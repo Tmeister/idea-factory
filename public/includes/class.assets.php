@@ -8,7 +8,7 @@
 class ideaFactoryAssetLoader {
 
 	function __construct(){
-		add_action('wp_enqueue_scripts', array($this,'scripts'));
+		add_action('wp_enqueue_scripts', array($this,'scripts'), 99);
 	}
 
 	function scripts(){
@@ -28,15 +28,7 @@ class ideaFactoryAssetLoader {
 			}
 
 			wp_enqueue_script('idea-factory-script', IDEA_FACTORY_URL.'/public/assets/js/idea-factory.js', array('jquery'), IDEA_FACTORY_VERSION, true);
-			wp_localize_script('idea-factory-script', 'idea_factory', array(
-				'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
-				'nonce'			=> wp_create_nonce('idea_factory'),
-				'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
-				'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
-				'startPage' 	=> $paged,
-	 			'maxPages' 		=> $max,
-	 			'nextLink' 		=> next_posts($max, false)
-			));
+			wp_localize_script('idea-factory-script', 'idea_factory', idea_factory_localized_args( $max , $paged) );
 
 		endif;
 	}

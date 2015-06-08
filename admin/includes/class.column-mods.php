@@ -9,8 +9,15 @@
 class ideaFactoryColumnMods {
 
 	function __construct(){
-    	add_filter('manage_ideas_posts_columns', 		array($this,'col_head'));
-		add_action('manage_ideas_posts_custom_column', 	array($this,'col_content'), 10, 2);
+
+		$threshold = idea_factory_get_option('if_threshold','if_settings_main');
+
+		if( $threshold ){
+
+			add_filter('manage_ideas_posts_columns', 		array($this,'col_head'));
+			add_action('manage_ideas_posts_custom_column', 	array($this,'col_content'), 10, 2);
+
+		}
 	}
 
 	/**
@@ -24,10 +31,12 @@ class ideaFactoryColumnMods {
 	    unset(
 	    	$item['title'],
 			$item['date'],
+			$item['author'],
 			$item['comments']
 		);
 
 	    $item['title'] 		= __('Title','idea-factory');
+	    $item['author'] 	= __('Author','idea-factory');
 	    $item['idea_status'] = __('Idea Status','idea-factory');
 		$item['date'] 		= __('Date Published','idea-factory');
 
@@ -51,10 +60,11 @@ class ideaFactoryColumnMods {
 	       	} elseif ('declined' == $status ) {
 	       		$color = '#d9534f';
 	       	} else {
+				$status = __('open', 'idea_factory');
 	       		$color = '#5bc0de';
 	       	}
 
-	        echo '<strong style="color:'.esc_attr( $color ).';">'.esc_html( $status ).'</strong>';
+	        echo '<strong style="color:'.esc_attr( $color ).';">'.esc_html( ucfirst( $status ) ).'</strong>';
 
 	    }
 	}

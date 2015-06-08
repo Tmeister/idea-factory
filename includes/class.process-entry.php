@@ -10,6 +10,7 @@ class ideaFactoryProcessEntry {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_entry', 				array($this, 'process_entry' ));
+		add_action( 'wp_ajax_nopriv_process_entry', 		array($this, 'process_entry' ));
 		add_action( 'idea_factory_entry_submitted',			array($this,'send_mail'), 10, 2);
 	}
 
@@ -20,7 +21,8 @@ class ideaFactoryProcessEntry {
 	*/
 	function process_entry(){
 
-		$userid 		= isset( $_POST['user_id'] ) ? $_POST['user_id'] : null;
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
 		$title 			= isset( $_POST['idea-title'] ) ? $_POST['idea-title'] : null;
 		$desc 			= isset( $_POST['idea-description'] ) ? $_POST['idea-description'] : null;
 
@@ -28,8 +30,8 @@ class ideaFactoryProcessEntry {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_entry' ) {
 
-			// only run for logged in users
-			if( !is_user_logged_in() )
+			// only run for logged in users or if public is allowed
+			if( !is_user_logged_in() && 'on' !== $public_can_vote )
 				return;
 
 			// ok security passes so let's process some data
@@ -38,9 +40,18 @@ class ideaFactoryProcessEntry {
 				// bail if we dont have rquired fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
-					echo '<div class="error">Whoopsy! Looks like you forgot the Title and/or description.</div>';
+					printf(('<div class="error">%s</div>'), __('Whoopsy! Looks like you forgot the Title and/or description.', 'idea-factory'));
 
 				} else {
+
+					if ( is_user_logged_in() ) {
+
+						$userid = get_current_user_ID();
+
+					} elseif ( !is_user_logged_in() && $public_can_vote ) {
+
+						$userid = apply_filters('idea_factory_default_public_author', 1 );
+					}
 
 					// create an ideas post type
 					$post_args = array(
@@ -58,6 +69,10 @@ class ideaFactoryProcessEntry {
 					do_action('idea_factory_entry_submitted', $entry_id, $userid );
 
 					_e('Thanks for your entry!','idea-factory');
+                                        if($must_approve == 'pending'){
+                                            echo "<br/>";
+                                            _e('You suggestion is awaiting moderation.','idea-factory');
+                                        }
 
 				}
 
@@ -83,16 +98,16 @@ class ideaFactoryProcessEntry {
 		$entry       	= get_post( $entry_id );
 		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
 
-		$message = "Submitted by: ".$user->display_name.".\n\n";
-		$message .= "Title:\n";
-		$message .= "".$entry->post_title."\n\n";
-		$message .= "Description:\n";
-		$message .= "".$entry->post_content."\n\n";
-		$message .= "Manage ideas at link below\n";
-		$message .= "".wp_login_url()."\n\n";
+		$message = sprintf(__("Submitted by: %s", 'idea-factory'), $user->display_name) .".\n\n";
+		$message .= __("Title:", 'idea-factory') . "\n";
+		$message .= $entry->post_title."\n\n";
+		$message .= __("Description:", 'idea-factory') . "\n";
+		$message .= $entry->post_content."\n\n";
+		$message .= __("Manage all ideas at", 'idea-factory') . "\n";
+		$message .= admin_url('edit.php?post_type=ideas');
 
-		if ( !$mail_disabled )
-			wp_mail( $admin_email, 'New Idea Submission - '.$entry_id.' ', $message );
+		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
+                    wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message );
 
 	}
 

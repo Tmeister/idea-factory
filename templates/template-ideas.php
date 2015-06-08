@@ -2,6 +2,8 @@
 
 get_header();
 
+	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
 	do_action('idea_factory_layout_before'); ?>
 
 	<div class="idea-factory--wrap">
@@ -19,7 +21,17 @@ get_header();
 
 					// setup some vars
 					$id             = get_the_ID();
-					$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+					if ( is_user_logged_in() ) {
+
+						$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+					} elseif( $public_can_vote ) {
+
+						$has_voted 		= idea_factory_has_public_voted( $id );
+
+					}
+
 					$total_votes 	= idea_factory_get_votes( $id );
 					$status      	= idea_factory_get_status( $id );
 

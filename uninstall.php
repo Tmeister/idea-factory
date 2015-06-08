@@ -14,4 +14,11 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// @TODO: Define uninstall functionality here
+global $wpdb;
+$table = $wpdb->prefix.'idea_factory';
+
+// delete optoin
+delete_option('idea_factory_version');
+
+// drop db table
+$wpdb->query("DROP TABLE IF EXISTS $table");

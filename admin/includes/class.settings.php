@@ -22,10 +22,11 @@ class if_settings_api_wrap {
         $this->url  		= plugins_url( '', __FILE__ );
         $this->settings_api = new WeDevs_Settings_API;
 
-        add_action( 'admin_init', 					array($this, 'admin_init') );
-        add_action( 'admin_menu', 					array($this,'submenu_page'));
-        add_action( 'admin_head', 					array($this, 'reset_votes'));
-        add_action( 'wp_ajax_idea_factory_reset', 	array($this, 'idea_factory_reset' ));
+        add_action( 'admin_init', 						array($this, 'admin_init') );
+        add_action( 'admin_menu', 						array($this,'submenu_page'));
+        add_action( 'admin_head', 						array($this, 'reset_votes'));
+        add_action( 'wp_ajax_idea_factory_reset', 		array($this, 'idea_factory_reset' ));
+        add_action( 'wp_ajax_idea_factory_db_reset', 	array($this, 'idea_factory_db_reset' ));
 
     }
 
@@ -41,7 +42,7 @@ class if_settings_api_wrap {
 
 	function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=ideas', 'Settings', __('Settings','idea-factory'), 'manage_options', 'idea-factory-settings', array($this,'submenu_page_callback') );
-		add_submenu_page( 'edit.php?post_type=ideas', 'Help', __('Help','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );		
+		add_submenu_page( 'edit.php?post_type=ideas', 'Help', __('Help','idea-factory'), 'manage_options', 'idea-factory-docs', array($this,'docs_callback') );
 		add_submenu_page( 'edit.php?post_type=ideas', 'Reset', __('Reset','idea-factory'), 'manage_options', 'idea-factory-reset', array($this,'reset_callback') );
 	}
 
@@ -52,15 +53,19 @@ class if_settings_api_wrap {
 	*/
 	function reset_callback(){
 
+
+
 		echo '<div class="wrap">';
 
 			?><h2><?php _e('Idea Factory Reset','idea-factory');?></h2>
 
-			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the votes. Warning, there is no going back!','idea-factory');?></label>
-			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button" href="#" id="idea-factory-reset--votes"><?php _e('Reset Votes','idea-factory');?></a>
+			<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the private (logged-in) votes. Warning, there is no going back!','idea-factory');?></label>
+			<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes" href="#"><?php _e('Reset Logged-in Votes','idea-factory');?></a>
 
-			<?php
-
+			<?php if ( true == idea_factory_has_public_votes() ) { ?>
+				<label style="display:block;margin-top:20px;"><?php _e('Click the button below to reset the public (logged-out) votes. Warning, there is no going back!','idea-factory');?></label>
+				<a style="background:#d9534f;border:none;box-shadow:none;color:white;display:inline-block;margin-top:10px;" class="button idea-factory-reset--votes reset-db" href="#"><?php _e('Reset Public Votes','idea-factory');?></a>
+			<?php }
 
 		echo '</div>';
 
@@ -81,12 +86,12 @@ class if_settings_api_wrap {
 			?><h2 style="margin-bottom:0;"><?php _e('Idea Factory Documentation','idea-factory');?></h2>
 			<hr>
 
-			<h3 style="margin-bottom:0;"><?php _e('The Basics','idea-factory');?></h3> 
-			<p style="margin-top:5px;"><?php _e('After you activate <em>Idea Factory</em>, it will automatically be available at <a href="'.get_post_type_archive_link( $domain ).'" target="_blank">'.get_post_type_archive_link( $domain ).'</a>. You can rename this in the settings or deactivate it all together and use the shortcode instead.','idea-factory');?></p>
+			<h3 style="margin-bottom:0;"><?php _e('The Basics','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('After you activate <em>Idea Factory</em>, it will automatically be available at <a href="'.get_post_type_archive_link( $domain ).'" target="_blank">'.get_post_type_archive_link( $domain ).'</a>. You can rename this in the settings or deactivate it all together and use the shortcode instead. By default voting is limited to logged in users, however you can activate public voting that would work (in addition to) logged in voting.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('The Shortcode','idea-factory');?></h3> 
+			<h3 style="margin-bottom:0;"><?php _e('The Shortcode','idea-factory');?></h3>
 			<p style="margin-top:5px;"><?php _e('You can additionally display the form and ideas via a shortcode as documented below.','idea-factory');?></p>
 
 			<code>[idea_factory hide_submit="off" hide_votes="off" hide_voting="off"]</code>
@@ -99,13 +104,23 @@ class if_settings_api_wrap {
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('How Voting Works','idea-factory');?></h3> 
-			<p style="margin-top:5px;"><?php _e('Voting is currently restricted to logged in users. Total votes are stored in the post meta table. Once a user votes, a flag is recorded in the user_meta table, preventing this user from being able to vote again on the same idea.','idea-factory');?></p>
+			<h3 style="margin-bottom:0;"><?php _e('How Voting Works','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('Voting is available to logged in users, and logged out users (with the option enabled). Total votes are stored in the post meta table for (logged in users). Once a user votes, a flag is recorded in the user_meta table (logged in users), preventing this user from being able to vote again on the same idea.</br></br>In the case of public voting, voters IP addresses are recorded into a custom table. From there the logic works the same, only difference is where the data is stored.','idea-factory');?></p>
 
 			<hr style="margin-top:20px;">
 
-			<h3 style="margin-bottom:0;"><?php _e('Developers','idea-factory');?></h3> 
-			<p style="margin-top:5px;"><?php _e('Full documentation of hooks, actions, filters, and helper functions are available on the GitHub wiki page located <a href="https://github.com/bearded-avenger/idea-factory/wiki">here</a>','idea-factory');?>.</p>
+			<h3 style="margin-bottom:0;"><?php _e('How the Threshold Works','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('The threshold allows individual ideas to automatically be assigned a status based on a grading formula. For example, if you set this threshold to 10, then when the total votes reaches 10 it will trigger the grading. A vote up, and vote down, both count. In the end, if the total votes is over 10, and the total up votes is over 10, it passes. If not, it fails. Otherwise, the status remains open.','idea-factory');?></p>
+
+			<hr style="margin-top:20px;">
+
+			<h3 style="margin-bottom:0;"><?php _e('Reset','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('On your left you will see the Reset option. When you click into this menu, and you click the red Reset button, it will reset all the votes back to zero. There is no going back, so be sure this is what you want to do when you click that button.','idea-factory');?></p>
+
+			<hr style="margin-top:20px;">
+
+			<h3 style="margin-bottom:0;"><?php _e('Developers','idea-factory');?></h3>
+			<p style="margin-top:5px;"><?php _e('Full documentation of hooks, actions, filters, and helper functions are available on the GitHub wiki page located <a href="https://github.com/tmeister/idea-factory/wiki">here</a>','idea-factory');?>.</p>
 
 			<?php
 
@@ -122,30 +137,37 @@ class if_settings_api_wrap {
 
 		$nonce = wp_create_nonce('idea-factory-reset');
 
-		?>
-			<!-- Reset Votes -->
-			<script>
-				jQuery(document).ready(function($){
-				  	jQuery('#idea-factory-reset--votes').click(function(e){
+		$screen = get_current_screen();
 
-				  		e.preventDefault();
+		if ( 'ideas_page_idea-factory-reset' == $screen->id ) {
 
-				  		var data = {
-				            action: 'idea_factory_reset',
-				            security: '<?php echo $nonce;?>'
-				        };
+			?>
+				<!-- Reset Votes -->
+				<script>
+					jQuery(document).ready(function($){
+						// reset post meta
+					  	jQuery('.idea-factory-reset--votes').click(function(e){
 
-					  	jQuery.post(ajaxurl, data, function(response) {
-					  		if( response ){
-					        	alert(response);
-					        	location.reload();
-					  		}
+					  		e.preventDefault();
+
+					  		var data = {
+					            action: $(this).hasClass('reset-db') ? 'idea_factory_db_reset' : 'idea_factory_reset',
+					            security: '<?php echo $nonce;?>'
+					        };
+
+						  	jQuery.post(ajaxurl, data, function(response) {
+						  		if( response ){
+						        	alert(response);
+						        	location.reload();
+						  		}
+						    });
+
 					    });
+					});
+				</script>
 
-				    });
-				});
-			</script>
-		<?php 
+		<?php }
+
 	}
 
 	/**
@@ -156,6 +178,9 @@ class if_settings_api_wrap {
 	function idea_factory_reset(){
 
 		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		if ( !current_user_can('manage_options') )
+			exit;
 
 		$posts = get_posts( array('post_type' => 'ideas', 'posts_per_page' => -1 ) );
 
@@ -177,12 +202,35 @@ class if_settings_api_wrap {
 
 		endif;
 
-		echo __('All reset!','idea-factory');
+		echo __('All logged-in votes reset!','idea-factory');
 
 		exit;
 
 	}
 
+	/**
+	*
+	*	Process the votes database reset
+	*	@since 1.1
+	*/
+	function idea_factory_db_reset(){
+
+		check_ajax_referer( 'idea-factory-reset', 'security' );
+
+		if ( !current_user_can('manage_options') )
+			exit;
+
+	    global $wpdb;
+
+	    $table = $wpdb->base_prefix.'idea_factory';
+
+	   	$delete = $wpdb->query('TRUNCATE TABLE '.$table.'');
+
+		_e('All public votes reset!!','idea-factory');
+
+		exit;
+
+	}
 	function submenu_page_callback() {
 
 		echo '<div class="wrap">';
@@ -235,6 +283,14 @@ class if_settings_api_wrap {
                     'name' 				=> 'if_approve_ideas',
                     'label' 			=> __( 'Require Idea Approval', 'idea-factory' ),
                     'desc' 				=> __( 'Check this box to enable newly submitted ideas to be put into a pending status instead of automatically publishing.', 'idea-factory' ),
+                    'type'				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'idea_factory_sanitize_checkbox'
+                ),
+                array(
+                    'name' 				=> 'if_public_voting',
+                    'label' 			=> __( 'Enable Public Voting', 'idea-factory' ),
+                    'desc' 				=> __( 'Enable the public (non logged in users) to submit and vote on new ideas.', 'idea-factory' ),
                     'type'				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'

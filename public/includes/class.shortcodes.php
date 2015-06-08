@@ -57,15 +57,7 @@ class ideaFactoryShortcodes {
 
 				$max = $q->max_num_pages;
 
-				wp_localize_script('idea-factory-script', 'idea_factory', array(
-					'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
-					'nonce'			=> wp_create_nonce('idea_factory'),
-					'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
-					'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
-					'startPage' 	=> $paged,
-		 			'maxPages' 		=> $max,
-		 			'nextLink' 		=> next_posts($max, false)
-				));
+				wp_localize_script('idea-factory-script', 'idea_factory',  idea_factory_localized_args( $max , $paged ) );
 
 				if ( $q->have_posts() ):
 
@@ -73,7 +65,17 @@ class ideaFactoryShortcodes {
 
 						// setup some vars
 						$id             = get_the_ID();
-						$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+						if ( is_user_logged_in() ) {
+
+							$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
+
+						} elseif( $public_can_vote ) {
+
+							$has_voted 		= idea_factory_has_public_voted( $id );
+
+						}
+
 						$total_votes 	= idea_factory_get_votes( $id );
 						$status      	= idea_factory_get_status( $id );
 

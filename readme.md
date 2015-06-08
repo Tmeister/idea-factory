@@ -3,14 +3,14 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 
 ![Image](https://s3.amazonaws.com/f.cl.ly/items/001M1a0O3I1l1o0n0S2U/Image%202014-12-09%20at%205.22.10%20PM.png)
 
-[GIF Demo](http://cl.ly/0B1r0H2f2Z1c)
+[Demo](http://wpideafactory.com/ideas/)
 
 
 ---
 
 ### Features  
 * AJAX powered front-end submission and voting
-* Limited to logged in users for now
+* Works for both logged-in and logged-out users
 * 1 vote allowed per user per idea
 * Emails the admin of a new submission
 * Automatic setup or use anywhere with a shortcode

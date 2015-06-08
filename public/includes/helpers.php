@@ -142,7 +142,7 @@ function idea_factory_archive_query( $query ) {
 *	Determine if we're on the ideas post type and also account for their being no entries
 *	as our post type archive still has to work regardless
 *	@since 1.0
-*
+*	@return bool
 */
 function idea_factory_is_archive(){
 
@@ -175,10 +175,14 @@ function idea_factory_is_archive(){
 */
 function idea_factory_is_voting_active( $postid = '' ) {
 
-	$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.absint( $postid ).'_has_voted', true);
+
 	$status      	= idea_factory_get_status( $postid );
 
-	if ( !$has_voted && is_user_logged_in() && 'approved' !== $status ){
+	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
+
+	//if ( ( !idea_factory_has_private_voted( $postid ) && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
+
+	if ( ( ( false == idea_factory_has_private_voted( $postid ) && is_user_logged_in()) || false == idea_factory_has_public_voted( $postid ) && $public_can_vote && !is_user_logged_in() ) && 'approved' !== $status ){
 
 		return true;
 
@@ -186,6 +190,146 @@ function idea_factory_is_voting_active( $postid = '' ) {
 
 		return false;
 	}
+}
+
+/**
+* 	Adds a public vote entry into the databse
+*
+* 	@since    1.2
+*	@return null
+*/
+function idea_factory_add_public_vote( $args = array() ) {
+
+	$db = new ideaFactoryDB;
+
+	$defaults = array(
+		'postid' => get_the_ID(),
+		'time'   => current_time('timestamp'),
+		'ip'   	 => isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0,
+	);
+
+	$args = array_merge( $defaults, $args );
+
+	$db->insert( $args );
+
+}
+
+/**
+*
+*	Has the private (logged in) user voted
+*
+*	@since 1.2
+*	@param $postid int id of post to check
+*	@param $userid id of user to check againts
+*/
+function idea_factory_has_private_voted( $postid = '', $userid = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	if ( empty( $userid ) )
+		$userid = get_current_user_ID();
+
+	$has_voted 	= get_user_meta( $userid, '_idea'.absint( $postid ).'_has_voted', true);
+
+	if ( $has_voted ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
+*
+*	Has the public user voted
+*
+*	@since 1.2
+*	@param $postid int id of the post
+*	@param $ip ip address of the public voter
+*	@return bool
+*/
+function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
+
+	if ( empty( $postid ) )
+		return;
+
+	if ( empty( $ip ) )
+		$ip =  isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
+
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="%s" AND postid ="%d"', $ip, $postid );
+
+   	$result =  $wpdb->get_results( $sql );
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
+*	Determinees if public votes exist
+*	@since 1.2
+*	@return bool
+*/
+function idea_factory_has_public_votes(){
+
+    global $wpdb;
+
+    $table = $wpdb->base_prefix.'idea_factory';
+
+   	$result =  $wpdb->get_results('SELECT * FROM '.$table.' ');
+
+	if ( $result ) {
+
+		return true;
+
+	} else {
+
+		return false;
+
+	}
+}
+
+/**
+*
+*	The variables being localized
+*	@param $max int max number of pages
+*	@param $paged
+*	@since 1.2
+*/
+function idea_factory_localized_args( $max = '', $paged = '' ){
+
+	global $wp_query, $post;
+
+	$args = array(
+		'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+		'nonce'			=> wp_create_nonce('idea_factory'),
+		'error_message' => apply_filters('idea_factory_error',__('Awww snap, something went wrong!','idea-factory')),
+		'label'			=> apply_filters('idea_factory_loadmore_label',__('Load more ideas','idea-factory')),
+		'label_loading' => apply_filters('idea_factory_loadmore_loading',__('Loading ideas...','idea-factory')),
+		'thanks_voting' => apply_filters('idea_factory_thanks_voting',__('Thanks for voting!','idea-factory')),
+		'already_voted' => apply_filters('idea_factory_already_voted',__('You have already voted!','idea-factory')),
+		'startPage' 	=> $paged,
+		'maxPages' 		=> $max,
+		'nextLink' 		=> next_posts($max, false)
+	);
+
+	return apply_filters('idea_factory_localized_args', $args );
+
 }
 
 /**
@@ -204,17 +348,21 @@ if ( !function_exists('idea_factory_submit_modal') ):
 
 	function idea_factory_submit_modal(){
 
-		if ( is_user_logged_in() ): ?>
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-			<div class="modal fade idea-factory-modal" tabindex="-1">
-				<div class="modal-dialog ">
-				    <div class="modal-content">
-				    	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</button>
+		$userid 		= $public_can_vote && !is_user_logged_in() ? 1 : get_current_user_ID();
 
-				    	<div class="modal-header">
-				    		<h3 class="modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
+		if ( is_user_logged_in() || $public_can_vote ): ?>
+
+			<div class="fade idea-factory-modal" tabindex="-1">
+				<div class="idea-factory-modal-dialog ">
+				    <div class="idea-factory-modal-content">
+						<button type="button" class="close" data-dismiss="idea-factory-modal"><span aria-hidden="true">&times;</span></button>
+
+				    	<div class="idea-factory-modal-header">
+				    		<h3 class="idea-factory-modal-title"><?php apply_filters('idea_factory_submit_idea_label', _e('Submit idea','idea-factory'));?></h3>
 				    	</div>
-				    	<div class="modal-body">
+				    	<div class="idea-factory-modal-body">
 
 							<div id="idea-factory--entry--form-results"></div>
 							<form id="idea-factory--entry--form" method="post" enctype="multipart/form-data">
@@ -230,10 +378,9 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<?php do_action('idea_factory_inside_form_bottom');?>
 
 								<input type="hidden" name="action" value="process_entry">
-								<input type="hidden" name="user_id" value="<?php echo get_current_user_ID(); ?>">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
 
-								<div class="modal-footer">
+								<div class="idea-factory-modal-footer">
 									<input class="idea-factory--button" type="submit" value="<?php apply_filters('idea_factory_submit_label', _e('Submit','idea-factory'));?>">
 								</div>
 							</form>
@@ -258,8 +405,9 @@ if ( !function_exists('idea_factory_submit_header') ):
 	function idea_factory_submit_header(){
 
 		$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
+		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		if ( is_user_logged_in() ): ?>
+		if ( is_user_logged_in() || $public_can_vote ): ?>
 
 			<aside class="idea-factory--layout-submit">
 
@@ -273,7 +421,7 @@ if ( !function_exists('idea_factory_submit_header') ):
 
 					<?php do_action('idea_factory_before_submit_button'); ?>
 
-						<a href="#" data-toggle="modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e('Submit Idea','idea-factory');?></a>
+						<a href="#" data-toggle="idea-factory-modal" data-target=".idea-factory-modal" class="idea-factory--button idea-factory-trigger"><?php _e('Submit Idea','idea-factory');?></a>
 
 					<?php do_action('idea_factory_after_submit_button'); ?>
 
@@ -300,8 +448,8 @@ if ( !function_exists('idea_factory_vote_controls') ):
 			$postid = get_the_ID();
 
 		?>
-			<a class="idea-factory vote-up" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
-			<a class="idea-factory vote-down" data-user-id="<?php echo get_current_user_ID();?>" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-up" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
+			<a class="idea-factory vote-down" data-post-id="<?php echo (int) $postid;?>" href="#"></a>
 		<?php
 	}
 

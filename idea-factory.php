@@ -8,10 +8,10 @@
  	*	@copyright 			2015 Your Mom
  	*
  	* 	Plugin Name:       Idea Factory
- 	* 	Plugin URI:        http://nickhaskins.com/idea-factory
+ 	* 	Plugin URI:        http://wpideafactory.com
  	* 	Description:       Front-end user submission and voting system.
- 	* 	Version:           1.1
- 	* 	GitHub Plugin URI: https://github.com/bearded-avenger/idea-factory
+ 	* 	Version:           1.2
+ 	* 	GitHub Plugin URI: https://github.com/tmeister/idea-factory
  	*	Author:            Nick Haskins
 	* 	Author URI:        http://nickhaskins.com
 	* 	Text Domain:       idea-factory
