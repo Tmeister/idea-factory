@@ -6,7 +6,7 @@ Donate link: http://wpideafactory.com/
 Tags: vote, voting, idea, feedback, user submission, front end submission, front end voting
 Requires at least: 3.8
 Tested up to: 4.2.2
-Stable tag: trunk
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
