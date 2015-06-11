@@ -15,7 +15,7 @@ Front end submission and voting system.
 
 == Description ==
 
-Idea Factory was born out of necessity, and the frustration of the lack of plugins that did exactly what I wanted it to do. This plugin allows users to submit new ideas from the front-end, and vote on them. Currently it allows a user to vote once per idea, then locks them out. It's also currently limited to logged in users, for now.
+Idea Factory was born out of necessity, and the frustration of the lack of plugins that did exactly what I wanted it to do. This plugin allows users to submit new ideas from the front-end, and vote on them. Currently, it allows a user to vote once per idea, then locks them out.
 
 * AJAX powered front-end submission and voting
 * Works for both logged in and logged out users
