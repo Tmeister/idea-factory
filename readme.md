@@ -1,5 +1,5 @@
 # Description
-Idea Factory was born out of necessity, and the frustration of the lack of plugins that did exactly what I wanted it to do. This plugin allows users to submit new ideas from the front-end, and vote on them. Currently it allows a user to vote once per idea, then locks them out. It's also currently limited to logged in users, for now.
+Idea Factory was born out of necessity, and the frustration of the lack of plugins that did exactly what I wanted it to do. This plugin allows users to submit new ideas from the front-end, and vote on them. Currently, it allows a user to vote once per idea, then locks them out.
 
 ![Image](https://s3.amazonaws.com/f.cl.ly/items/001M1a0O3I1l1o0n0S2U/Image%202014-12-09%20at%205.22.10%20PM.png)
 
