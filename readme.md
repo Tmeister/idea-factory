@@ -26,7 +26,7 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 
 1. Navigate to 'Add New' in the plugins dashboard  
 2. Navigate to the 'Upload' area  
-3. Select `idea-factoryzip` from your computer  
+3. Select `idea-factory.zip` from your computer  
 4. Click 'Install Now'  
 5. Activate the plugin in the Plugin dashboard  
 
