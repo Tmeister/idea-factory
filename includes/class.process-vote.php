@@ -44,13 +44,13 @@ class ideaFactoryProcessVote {
 
 				$userid = get_current_user_ID();
 
-			} elseif ( !is_user_logged_in() && $public_can_vote ) {
+			} elseif ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$userid = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
 			}
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+			if ( $public_can_vote == 'on' && $has_public_voted || $has_private_voted ) {
 				echo 'already-voted';
 				die();
 			}
@@ -107,14 +107,14 @@ class ideaFactoryProcessVote {
 
 				$userid = get_current_user_ID();
 
-			} elseif ( !is_user_logged_in() && $public_can_vote ) {
+			} elseif ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$userid = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
 			}
 
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+			if ( $public_can_vote == 'on' && $has_public_voted || $has_private_voted ) {
 				echo 'already-voted';
 				die();
 			}
