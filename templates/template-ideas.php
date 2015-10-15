@@ -26,7 +26,7 @@ get_header();
 
 						$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
 
-					} elseif( $public_can_vote ) {
+					} elseif( $public_can_vote == 'on' ) {
 
 						$has_voted 		= idea_factory_has_public_voted( $id );
 

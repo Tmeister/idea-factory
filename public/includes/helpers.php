@@ -182,7 +182,7 @@ function idea_factory_is_voting_active( $postid = '' ) {
 
 	//if ( ( !idea_factory_has_private_voted( $postid ) && is_user_logged_in() || !idea_factory_has_public_voted( $postid ) && $public_can_vote ) && 'approved' !== $status ){
 
-	if ( ( ( false == idea_factory_has_private_voted( $postid ) && is_user_logged_in()) || false == idea_factory_has_public_voted( $postid ) && $public_can_vote && !is_user_logged_in() ) && 'approved' !== $status ){
+	if ( ( ( false == idea_factory_has_private_voted( $postid ) && is_user_logged_in()) || false == idea_factory_has_public_voted( $postid ) && $public_can_vote == 'on' && !is_user_logged_in() ) && 'approved' !== $status ){
 
 		return true;
 
@@ -407,7 +407,7 @@ if ( !function_exists('idea_factory_submit_header') ):
 		$intro_message = idea_factory_get_option('if_welcome','if_settings_main',apply_filters('idea_factory_default_message', __('Submit and vote for new features!','idea-factory')));
 		$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
-		if ( is_user_logged_in() || $public_can_vote ): ?>
+		if ( is_user_logged_in() || $public_can_vote == 'on' ): ?>
 
 			<aside class="idea-factory--layout-submit">
 

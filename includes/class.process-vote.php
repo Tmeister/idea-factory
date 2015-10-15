@@ -44,13 +44,13 @@ class ideaFactoryProcessVote {
 
 				$userid = get_current_user_ID();
 
-			} elseif ( !is_user_logged_in() && $public_can_vote ) {
+			} elseif ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$userid = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
 			}
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+			if ( $public_can_vote == 'on' && $has_public_voted || $has_private_voted ) {
 				echo 'already-voted';
 				die();
 			}
@@ -59,7 +59,7 @@ class ideaFactoryProcessVote {
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) + 1 );
 			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
-			if ( !is_user_logged_in() && $public_can_vote ) {
+			if ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$args = array( 'postid' => $postid );
 		        idea_factory_add_public_vote( $args );
@@ -107,14 +107,14 @@ class ideaFactoryProcessVote {
 
 				$userid = get_current_user_ID();
 
-			} elseif ( !is_user_logged_in() && $public_can_vote ) {
+			} elseif ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$userid = isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
 			}
 
 
 			// if the public can vote and the user has already voted or they are logged in and have already voted then bail out
-			if ( $public_can_vote && $has_public_voted || $has_private_voted ) {
+			if ( $public_can_vote == 'on' && $has_public_voted || $has_private_voted ) {
 				echo 'already-voted';
 				die();
 			}
@@ -124,7 +124,7 @@ class ideaFactoryProcessVote {
 			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
 			// update user meta so they can't vote on this again
-			if ( !is_user_logged_in() && $public_can_vote ) {
+			if ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$args = array( 'postid' => $postid );
 		        idea_factory_add_public_vote( $args );
