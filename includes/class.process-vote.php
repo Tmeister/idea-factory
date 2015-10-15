@@ -59,7 +59,7 @@ class ideaFactoryProcessVote {
 			update_post_meta( $postid, '_idea_votes', intval( $votes ) + 1 );
 			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
-			if ( !is_user_logged_in() && $public_can_vote ) {
+			if ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$args = array( 'postid' => $postid );
 		        idea_factory_add_public_vote( $args );
@@ -124,7 +124,7 @@ class ideaFactoryProcessVote {
 			update_post_meta( $postid, '_idea_total_votes', intval( $total_votes ) + 1 );
 
 			// update user meta so they can't vote on this again
-			if ( !is_user_logged_in() && $public_can_vote ) {
+			if ( !is_user_logged_in() && $public_can_vote == 'on' ) {
 
 				$args = array( 'postid' => $postid );
 		        idea_factory_add_public_vote( $args );
