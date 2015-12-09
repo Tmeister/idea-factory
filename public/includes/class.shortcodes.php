@@ -74,12 +74,18 @@ class ideaFactoryShortcodes {
 
 							$has_voted 		= idea_factory_has_public_voted( $id );
 
+						} else {
+							
+							$has_voted 		= false;
 						}
+						
 
 						$total_votes 	= idea_factory_get_votes( $id );
 						$status      	= idea_factory_get_status( $id );
 
 						$status_class   = $status ? sprintf('idea-factory--entry__%s', $status ) : false;
+						
+						$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
 						?>
 						<section class="idea-factory--entry-wrap <?php echo sanitize_html_class( $status_class );?> <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
