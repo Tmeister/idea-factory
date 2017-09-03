@@ -1,0 +1,413 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Idea Factory\n"
+"POT-Creation-Date: 2017-09-03 18:43+0200\n"
+"PO-Revision-Date: 2017-09-03 19:23+0200\n"
+"Language-Team: email@nickhaskins.com\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"Last-Translator: \n"
+"Language: fr_FR\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin/includes/class.column-mods.php:31
+#: ../public/includes/helpers.php:372
+msgid "Title"
+msgstr "Titre"
+
+#: ../admin/includes/class.column-mods.php:32
+msgid "Author"
+msgstr "Auteur"
+
+#: ../admin/includes/class.column-mods.php:33
+#: ../admin/includes/class.meta.php:31
+msgid "Idea Status"
+msgstr "Statut de l'idée"
+
+#: ../admin/includes/class.column-mods.php:34
+msgid "Date Published"
+msgstr "Date de publication"
+
+#: ../admin/includes/class.meta.php:51
+msgid "Approved"
+msgstr "Approuvée"
+
+#: ../admin/includes/class.meta.php:52
+msgid "Declined"
+msgstr "Rejetée"
+
+#: ../admin/includes/class.meta.php:53
+msgid "Open"
+msgstr "Ouverte"
+
+#: ../admin/includes/class.settings-api.php:239
+msgid "Browse"
+msgstr "Parcourir"
+
+#: ../admin/includes/class.settings.php:44
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../admin/includes/class.settings.php:45
+msgid "Help"
+msgstr "Aide"
+
+#: ../admin/includes/class.settings.php:46
+#: ../admin/includes/class.settings.php:117
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: ../admin/includes/class.settings.php:60
+msgid "Idea Factory Reset"
+msgstr "Réinitialiser Idea Factory"
+
+#: ../admin/includes/class.settings.php:62
+msgid ""
+"Click the button below to reset the private (logged-in) votes. Warning, "
+"there is no going back!"
+msgstr ""
+"Cliquer sur le bouton ci-dessous pour réinitialiser les votes privés (avec "
+"authentification). Attention: ce n'est pas annulable!"
+
+#: ../admin/includes/class.settings.php:63
+msgid "Reset Logged-in Votes"
+msgstr "Réinitialiser les votes privés"
+
+#: ../admin/includes/class.settings.php:66
+msgid ""
+"Click the button below to reset the public (logged-out) votes. Warning, "
+"there is no going back!"
+msgstr ""
+"Cliquer sur le bouton ci-dessous pour réinitialiser les votes publics (sans "
+"authentification). Attention: ce n'est pas annulable!"
+
+#: ../admin/includes/class.settings.php:67
+msgid "Reset Public Votes"
+msgstr "Réinitialiser les votes publics"
+
+#: ../admin/includes/class.settings.php:86
+msgid "Idea Factory Documentation"
+msgstr "Documentation d'Idea Factory"
+
+#: ../admin/includes/class.settings.php:89
+msgid "The Basics"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:90
+msgid ""
+"After you activate <em>Idea Factory</em>, it will automatically be available "
+"at <a href=\""
+msgstr ""
+"Après avoir activer <em>Idea Factory</em>, il sera automatiquement "
+"disponible à <a href=\""
+
+#: ../admin/includes/class.settings.php:94
+msgid "The Shortcode"
+msgstr "Le shortcode"
+
+#: ../admin/includes/class.settings.php:95
+msgid ""
+"You can additionally display the form and ideas via a shortcode as "
+"documented below."
+msgstr ""
+"Vous pouvez par ailleurs afficher le formulaire et les idées via un "
+"shortcode comme documenté ci-dessous."
+
+#: ../admin/includes/class.settings.php:100
+msgid "Hide Submit"
+msgstr "Masquer Soumettre"
+
+#: ../admin/includes/class.settings.php:100
+msgid "Set this to \"on\" to hide the submission button and form."
+msgstr ""
+"Régler ceci sur \"on\" pour marquer le bouton et le formulaire de "
+"proposition."
+
+#: ../admin/includes/class.settings.php:101
+msgid "Hide Votes"
+msgstr "Masquer Votes"
+
+#: ../admin/includes/class.settings.php:101
+msgid "Set this to \"on\" to hide the votes."
+msgstr "Régler ceci sur \"on\" pour masquer les votes."
+
+#: ../admin/includes/class.settings.php:102
+msgid "Hide Voting"
+msgstr "Masquer Vote"
+
+#: ../admin/includes/class.settings.php:102
+msgid "Set this to \"on\" to hide the voting features."
+msgstr "Régler ceci sur \"on\" pour masquer la fonctionnalité de vote."
+
+#: ../admin/includes/class.settings.php:107
+msgid "How Voting Works"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:108
+msgid ""
+"Voting is available to logged in users, and logged out users (with the "
+"option enabled). Total votes are stored in the post meta table for (logged "
+"in users). Once a user votes, a flag is recorded in the user_meta table "
+"(logged in users), preventing this user from being able to vote again on the "
+"same idea.</br></br>In the case of public voting, voters IP addresses are "
+"recorded into a custom table. From there the logic works the same, only "
+"difference is where the data is stored."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:112
+msgid "How the Threshold Works"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:113
+msgid ""
+"The threshold allows individual ideas to automatically be assigned a status "
+"based on a grading formula. For example, if you set this threshold to 10, "
+"then when the total votes reaches 10 it will trigger the grading. A vote up, "
+"and vote down, both count. In the end, if the total votes is over 10, and "
+"the total up votes is over 10, it passes. If not, it fails. Otherwise, the "
+"status remains open."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:118
+msgid ""
+"On your left you will see the Reset option. When you click into this menu, "
+"and you click the red Reset button, it will reset all the votes back to "
+"zero. There is no going back, so be sure this is what you want to do when "
+"you click that button."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:122
+msgid "Developers"
+msgstr "Développeurs"
+
+#: ../admin/includes/class.settings.php:123
+msgid ""
+"Full documentation of hooks, actions, filters, and helper functions are "
+"available on the GitHub wiki page located <a href=\"https://github.com/"
+"tmeister/idea-factory/wiki\">here</a>"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:196
+msgid "All logged-in votes reset!"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:217
+msgid "All public votes reset!!"
+msgstr ""
+
+#: ../admin/includes/class.settings.php:225
+msgid "Idea Factory Settings"
+msgstr "Paramètres d'Idea Factory"
+
+#: ../admin/includes/class.settings.php:238
+msgid "Setup"
+msgstr "Installation"
+
+#: ../admin/includes/class.settings.php:242
+msgid "Advanced"
+msgstr "Avancé"
+
+#: ../admin/includes/class.settings.php:256
+msgid "Naming Convention"
+msgstr "Convention de nommage"
+
+#: ../admin/includes/class.settings.php:257
+msgid "Link to ideas page"
+msgstr "Lien vers la page des idées"
+
+#: ../admin/includes/class.settings.php:257
+msgid "By default its called Ideas. You can rename this here."
+msgstr "Par défaut, c'est appelé idées. Vous pouvez le renommer ici."
+
+#: ../admin/includes/class.settings.php:259
+msgid "ideas"
+msgstr "idées"
+
+#: ../admin/includes/class.settings.php:264
+msgid "Welcome Message"
+msgstr "Message de bienvenue"
+
+#: ../admin/includes/class.settings.php:265
+msgid "Enter a message to display to users to vote. Some HTML ok."
+msgstr ""
+
+#: ../admin/includes/class.settings.php:267 ../public/includes/helpers.php:408
+msgid "Submit and vote for new features!"
+msgstr "Proposer et voter pour de nouvelles fonctionnalités!"
+
+#: ../admin/includes/class.settings.php:272
+msgid "Require Idea Approval"
+msgstr "Nécessite validation idée"
+
+#: ../admin/includes/class.settings.php:273
+msgid ""
+"Check this box to enable newly submitted ideas to be put into a pending "
+"status instead of automatically publishing."
+msgstr ""
+"Cocher cette cas pour permettre que les nouvelles idées envoyées soient "
+"placées en statut \"pending\" au lieu d'être automatiquement publiées."
+
+#: ../admin/includes/class.settings.php:280
+msgid "Enable Public Voting"
+msgstr "Permettre vote public"
+
+#: ../admin/includes/class.settings.php:281
+msgid ""
+"Enable the public (non logged in users) to submit and vote on new ideas."
+msgstr ""
+"Permet que le public (les utilisateurs non authentifiées) propose et vote "
+"sur des idées."
+
+#: ../admin/includes/class.settings.php:288
+msgid "Voting Threshold"
+msgstr "Seuil de votes"
+
+#: ../admin/includes/class.settings.php:289
+msgid ""
+"Specify an optional number of votes that each idea must reach in order for "
+"its status to be automatically updated to \"approved\" , \"declined\", or "
+"\"open.\""
+msgstr ""
+"Spécifié un nombre optionnel de votes que chaque idée doit atteindre afin "
+"que sont statut soit automatiquement mis à jour à \"approuvée, \"rejetée\" "
+"ou \"ouverte\"."
+
+#: ../admin/includes/class.settings.php:298
+msgid "Disable Core CSS"
+msgstr "Désactiver Core CSS"
+
+#: ../admin/includes/class.settings.php:299
+msgid "Disable the core css file from loading."
+msgstr "Désactive le chargement du fichier core css."
+
+#: ../admin/includes/class.settings.php:306
+msgid "Disable Emails"
+msgstr "Désactiver emails"
+
+#: ../admin/includes/class.settings.php:307
+msgid "Disable the admin email notification of new submissions."
+msgstr ""
+"Désactive la notification email à l'administrateur en cas de nouvelle "
+"proposition."
+
+#: ../admin/includes/class.settings.php:314
+msgid "Disable Archive"
+msgstr "Désactiver archive"
+
+#: ../admin/includes/class.settings.php:315
+msgid ""
+"Disable the automatic archive. This assumes you will be using the shortcode "
+"instead to show the ideas on a page that you specify."
+msgstr ""
+"Désactive l'archivage automatique. Cela suppose que vous utiliserez le "
+"shortcode à la place pour montrer les idées sur une page que vous définirez."
+
+#: ../includes/class.process-entry.php:63
+msgid "Thanks for your entry!"
+msgstr "Merci pour votre proposition!"
+
+#: ../includes/class.type.php:29 ../includes/class.type.php:42
+msgid "Ideas"
+msgstr "Idées"
+
+#: ../includes/class.type.php:30
+msgid "Parent Idea:"
+msgstr "Idée parente:"
+
+#: ../includes/class.type.php:31
+msgid "All Ideas"
+msgstr "Toutes les idées"
+
+#: ../includes/class.type.php:32
+msgid "View Idea"
+msgstr "Voir idée"
+
+#: ../includes/class.type.php:33
+msgid "Add New Idea"
+msgstr "Ajouter une nouvelle idée"
+
+#: ../includes/class.type.php:34
+msgid "New Idea"
+msgstr "Nouvelle idée"
+
+#: ../includes/class.type.php:35
+msgid "Edit Idea"
+msgstr "Modifier idée"
+
+#: ../includes/class.type.php:36
+msgid "Update Idea"
+msgstr "Mettre à jour idée"
+
+#: ../includes/class.type.php:37
+msgid "Search Ideas"
+msgstr "Chercher idées"
+
+#: ../includes/class.type.php:38
+msgid "No Ideas found"
+msgstr "Aucune idée trouvée"
+
+#: ../includes/class.type.php:39
+msgid "No Ideas found in Trash"
+msgstr "Aucune idée trouvée dans la corbeille"
+
+#: ../includes/class.type.php:43
+msgid "Create votes"
+msgstr "Créer votes"
+
+#: ../public/includes/class.shortcodes.php:103
+#: ../templates/template-ideas.php:57
+#, php-format
+msgid "%s vote"
+msgstr ""
+
+#: ../public/includes/class.shortcodes.php:110
+#: ../templates/template-ideas.php:64
+#, php-format
+msgid "%s votes"
+msgstr "%s votes"
+
+#: ../public/includes/class.shortcodes.php:145
+#: ../templates/template-ideas.php:100
+msgid "No ideas found. Why not submit one?"
+msgstr "Aucune idée trouvée. Pourquoi ne pas en proposer une ?"
+
+#: ../public/includes/helpers.php:321
+msgid "Awww snap, something went wrong!"
+msgstr "Ah zut... quelque chose à clocher techniquement !"
+
+#: ../public/includes/helpers.php:322
+msgid "Load more ideas"
+msgstr "Charger plus d'idées"
+
+#: ../public/includes/helpers.php:323
+msgid "Loading ideas..."
+msgstr "Idées en chargement..."
+
+#: ../public/includes/helpers.php:324
+msgid "Thanks for voting!"
+msgstr "Merci d'avoir voté!"
+
+#: ../public/includes/helpers.php:325
+msgid "You have already voted!"
+msgstr "Vous avez déjà voté!"
+
+#: ../public/includes/helpers.php:363
+msgid "Submit idea"
+msgstr "Proposer une idée"
+
+#: ../public/includes/helpers.php:375
+msgid "Description"
+msgstr "Description"
+
+#: ../public/includes/helpers.php:385
+msgid "Submit"
+msgstr "Envoyer"
+
+#: ../public/includes/helpers.php:425
+msgid "Submit Idea"
+msgstr "Proposer une idée"
